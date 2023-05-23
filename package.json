@@ -1,12 +1,13 @@
 {
-  "name": "metaverse_next13",
+  "name": "algae-store",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "eslint-config-next": "13.0.3",
@@ -16,6 +17,8 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@types/node": "20.2.3",
+    "@types/react": "18.2.6",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.27.0",
     "eslint-config-airbnb": "^19.0.4",
