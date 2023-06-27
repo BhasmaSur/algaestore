@@ -1,9 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import styles from '../styles';
+import styles from '../../styles';
 import { TypingText, TitleText, NewFeatures } from '../components';
-import { newFeatures } from '../app/constants';
+import { newFeatures } from '../constants';
 import { fadeIn, staggerContainer, planetVariants } from '../utils/motion';
 
 const WhatsNew = () => (
