@@ -2,8 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { TypingText, TitleText, StartSteps } from '../components';
-import { startingFeatures } from '../app/constants';
-import styles from '../styles';
+import { startingFeatures } from '../constants';
+import styles from '../../styles';
 import { fadeIn, staggerContainer, planetVariants } from '../utils/motion';
 
 const GetStarted = () => (
