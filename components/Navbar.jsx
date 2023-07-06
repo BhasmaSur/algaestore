@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 import styles from '../styles';
 import { navVariants } from '../utils/motion';
+import Link from 'next/link';
 
 const Navbar = () => (
   <motion.nav
@@ -22,6 +23,13 @@ const Navbar = () => (
       <h2 className="font-extrabold text-[24px] leading-[30px] text-white">
         Algae Stores
       </h2>
+      <Link href = "/store">
+      <img
+        src="/search.svg"
+        alt="menu"
+        className="w-[24px] h-[24px] object-contain"
+      />
+      </Link>
       <img
         src="/menu.svg"
         alt="menu"
