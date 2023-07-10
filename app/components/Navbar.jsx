@@ -6,7 +6,7 @@ import styles from '../../styles';
 import { navVariants } from '../utils/motion';
 import Link from 'next/link';
 
-const Navbar = ({navObject}) => (
+const Navbar = ({ navObject }) => (
   <motion.nav
     variants={navVariants}
     initial="hidden"
@@ -23,18 +23,20 @@ const Navbar = ({navObject}) => (
       <h2 className="font-extrabold text-[24px] leading-[30px] text-white">
         {`${navObject.algae} ${navObject.store}`}
       </h2>
-      <Link href = "/store">
-      <img
-        src="/search.svg"
-        alt="menu"
-        className="w-[24px] h-[24px] object-contain"
-      />
-      </Link>
-      <img
-        src="/menu.svg"
-        alt="menu"
-        className="w-[24px] h-[24px] object-contain"
-      />
+      <div className='flex gap-4'>
+        <Link href="/store">
+          <img
+            src="/Store.svg"
+            alt="menu"
+            className="w-[24px] h-[24px] object-contain fill-white"
+          />
+        </Link>
+        <img
+          src="/menu.svg"
+          alt="menu"
+          className="w-[24px] h-[24px] object-contain"
+        />
+      </div>
     </div>
   </motion.nav>
 );

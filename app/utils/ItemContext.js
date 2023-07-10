@@ -1,12 +1,13 @@
-import { createContext, useState } from "react";
+
+import { createContext, useContext, useState } from "react";
 
 const ItemContext = createContext();
 
-const ItemProvider = ({ children }) => {
+export default function ItemStore({ children }){
     const [items, setItems] = useState([]);
 
-    const addItem = (item) => {
-        setItems([...items, item])
+    const addItem = (newItem) => {
+        setItems([...items, newItem])
     }
 
     return (
@@ -18,4 +19,7 @@ const ItemProvider = ({ children }) => {
 }
 
 
-export { ItemContext, ItemProvider }; 
+export function useItemContext(){
+    return useContext(ItemContext)
+}
+

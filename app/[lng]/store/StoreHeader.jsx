@@ -2,11 +2,25 @@ import React, {useContext} from 'react';
 import 'tailwindcss/tailwind.css';
 import Link from 'next/link';
 import { ItemContext } from '../../utils/ItemContext';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+// import { ItemProvider } from '../../utils/ItemContext';
+import { useItemContext } from '../../utils/ItemContext';
+import { useSelector } from 'react-redux';
 
-const StoreHeader = () => {
-    const { items, addItem } = useContext(ItemContext);
+const StoreHeader = ({storeItem}) => {
     const router = useRouter();
+    // const { items, addItem } = useItemContext();
+    // {console.log("storeItem", items)}
+
+    const cartItems = useSelector((store) => [
+        store.cart.items
+    ])
+
+    console.log("redux item", cartItems)
+
+    const handleClick = () => {
+        router.push('/cart')
+    }
 
     return (
         <div className='flex p-5 justify-between'>
@@ -19,12 +33,12 @@ const StoreHeader = () => {
             </Link>
             <h1 className='font-bold text-white'>Welcome to the Store</h1>
             <div className='flex items-center'>
-                <h1 className='font-bold text-white'>{items.length}</h1>
+                <h1 className='font-bold text-white'>{cartItems[0]?.length}</h1>
                 <img
                     src="/cart.png"
                     alt="Cart"
                     className="w-10 h-10"
-                    onClick={() => {router.push('/cart');}}
+                    onClick={handleClick}
                 />
             </div>
         </div>

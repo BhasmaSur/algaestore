@@ -1,12 +1,22 @@
+"use client";
 import Link from 'next/link'
+import React, {useCallback, useState} from 'react';
 
-export default function Page({ params: { lng } }) {
+
+function Page({ params: { lng } }) {
+
+  const [market, setMarket] = useState("AlgaeStore")
+
   return (
     <>
-      <h1>Hi from market page!</h1>
+      <h1>Hi from {market} market page!</h1>
       <Link href={`/${lng}`}>
         back
       </Link>
     </>
   )
 }
+
+
+
+export default Page;
