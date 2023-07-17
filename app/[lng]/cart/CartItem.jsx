@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useContext } from 'react';
-import { ItemContext } from '../../utils/ItemContext';
-import { useItemContext } from '../../utils/ItemContext';
 import { useSelector } from 'react-redux';
 import CartCard from './CartCard';
 import { useDispatch } from 'react-redux';

@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice({
     name: "cart",
     initialState: {
-        items: []
+        items: [],
+        loginscreen: 'admin'
     },
     reducers: {
         addItem: (state, action) => {
@@ -19,9 +20,14 @@ const cartSlice = createSlice({
         clearCart: (state) => {
             state.items = [];
             console.log("cart cleared")
+        },
+
+        setLoginScreen: (state, action) => {
+            state.loginscreen = action.payload
+            console.log("login reducer", state.loginscreen)
         }
     }
 })
 
-export const { addItem, removeItem, clearCart } = cartSlice.actions;
+export const { addItem, removeItem, clearCart , setLoginScreen} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -1,11 +1,8 @@
 "use client";
 
 import React, { useState, useContext } from 'react';
-import { ItemContext, ItemProvider } from '../../utils/ItemContext';
 import CartItem from './CartItem';
 import { useRouter } from 'next/navigation';
-import ItemStore from '../../utils/ItemContext';
-import { useSelector } from 'react-redux';
 import { Provider } from 'react-redux';
 import store from '../../utils/store';
 

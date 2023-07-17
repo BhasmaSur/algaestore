@@ -2,11 +2,7 @@
 
 import React, { useContext, useState } from 'react';
 import 'tailwindcss/tailwind.css';
-import Link from 'next/link';
 import StoreData from './StoreData';
-import { ItemProvider } from '../../utils/ItemContext';
-import { ItemContext } from '../../utils/ItemContext';
-import ItemStore from '../../utils/ItemContext';
 import StoreHeader from './StoreHeader';
 import store from '../../utils/store';
 import {Provider} from 'react-redux';
