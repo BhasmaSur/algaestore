@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { ADMIN_AUTHENTICATION } from '../../demo-data/login-data';
 import { setCookieDetails } from '../../utils/loginUtils';
-import httpService from '../../services/httpservice';
+import httpService from '../../services/httpService';
 import { API, APIS, CONTROLLERS, METHODS } from '../../constants/apiDetails';
 import { USER_BUYER_ROLE, USER_FARMER_ROLE } from '../../constants/userConstants';
 
