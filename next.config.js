@@ -5,6 +5,7 @@ const nextConfig = {
   },
   images: {
     path: "/",
+    domains: ['www.salamat.gr', 'cdn.shopify.com', 'www.doorsteporganics.com.au'],
   },
 };
 
