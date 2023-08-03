@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { setCookieDetails } from '../../utils/loginUtils';
-import httpService from '../../services/httpservice';
+import httpService from '../../services/httpService';
 import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
 import { USER_BUYER_ROLE } from '../../constants/userConstants';
 
