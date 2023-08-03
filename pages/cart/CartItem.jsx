@@ -3,9 +3,6 @@ import { ItemContext } from '../../utils/ItemContext';
 
 const CartItem = () => {
     const { items } = useContext(ItemContext);
-
-    {console.log("cart items", items)}
-
     return items?.length === 0 ? (
         <div>
             <h1>No Item in the cart</h1>

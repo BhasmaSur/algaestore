@@ -1,10 +1,47 @@
-import React from "react";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
+import { setCookieDetails, signUpValidations } from "../../utils/loginUtils";
+import httpService from "../../services/httpservice";
+import { API, CONTROLLERS, METHODS } from "../../constants/apiDetails";
+import { USER_FARMER_ROLE } from "../../constants/userConstants";
 
 
 const SignupScreen = () => {
-    const currentscreen = useSelector((store) => store.cart.loginscreen)
-    console.log("LoginScreen", currentscreen)
+  const router = useRouter();
+  const currentscreen = useSelector((store) => store.cart.loginscreen);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('')
+
+  const signUp = () => {
+    const { valid, message } = signUpValidations(
+        username,
+        password,
+        confirmPassword
+      );
+      if(valid){
+        let userDetails = {
+            username,
+            password,
+            type : USER_FARMER_ROLE
+          }
+          httpService(CONTROLLERS.signup, METHODS.post, userDetails, API).then((res)=>{
+            if(res){
+              const jwtToken = res?.data?.jwtToken
+              setCookieDetails({
+                username,
+                jwtToken
+              });
+              router.push('/');
+            }
+          })
+      }else{
+        alert(message)
+      }
+    }
     return (
         <div>
             <section class="gradient-form h-full bg-neutral-20">
@@ -32,7 +69,7 @@ const SignupScreen = () => {
                                             <form>
                                                 <p class="mb-4">Create your {currentscreen} account</p>
                                                 {/* <!--Username input--> */}
-                                                <div class="relative mb-4" data-te-input-wrapper-init>
+                                                {/* <div class="relative mb-4" data-te-input-wrapper-init>
                                                     <input
                                                         type="text"
                                                         class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
@@ -43,9 +80,11 @@ const SignupScreen = () => {
                                                         class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
                                                     >Full Name
                                                     </label>
-                                                </div>
+                                                </div> */}
                                                 <div class="relative mb-4" data-te-input-wrapper-init>
                                                     <input
+                                                        value={username}
+                                                        onChange={(event) => setUsername(event.target.value)}
                                                         type="email"
                                                         class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                                         // id="exampleFormControlInput1"
@@ -60,6 +99,8 @@ const SignupScreen = () => {
                                                 {/* <!--Password input--> */}
                                                 <div class="relative mb-4" data-te-input-wrapper-init>
                                                     <input
+                                                        value={password}
+                                                        onChange={(event) => setPassword(event.target.value)}
                                                         type="password"
                                                         class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                                         // id="exampleFormControlInput11"
@@ -72,6 +113,8 @@ const SignupScreen = () => {
                                                 </div>
                                                 <div class="relative mb-4" data-te-input-wrapper-init>
                                                     <input
+                                                        value={confirmPassword}
+                                                        onChange={(event) => setConfirmPassword(event.target.value)}
                                                         type="password"
                                                         class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                                                         // id="exampleFormControlInput11"
@@ -86,6 +129,7 @@ const SignupScreen = () => {
                                                 {/* <!--Submit button--> */}
                                                 <div class="mb-12 pb-1 pt-1 text-center">
                                                     <button
+                                                        onClick={signUp}
                                                         class="mb-3 inline-block w-full rounded px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_rgba(0,0,0,0.2)] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(0,0,0,0.1),0_4px_18px_0_rgba(0,0,0,0.2)]"
                                                         type="button"
                                                         data-te-ripple-init

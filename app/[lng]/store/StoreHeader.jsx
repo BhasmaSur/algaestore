@@ -16,8 +16,6 @@ const StoreHeader = ({storeItem}) => {
         store.cart.items
     ])
 
-    console.log("redux item", cartItems)
-
     const handleClick = () => {
         router.push('/cart')
     }

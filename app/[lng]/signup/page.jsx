@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "../../utils/store";
 import SignupScreen from './SignupScreen';
 
-const Login = () => {
+const SignUp = () => {
  
     return (
         <div>
@@ -16,4 +16,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default SignUp;
