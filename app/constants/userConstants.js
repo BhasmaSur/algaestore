@@ -1,2 +1,0 @@
-export const USER_BUYER_ROLE = "USER_BUYER"
-export const USER_FARMER_ROLE = "USER_FARMER"
