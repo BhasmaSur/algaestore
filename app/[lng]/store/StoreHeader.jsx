@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import 'tailwindcss/tailwind.css';
 import Link from 'next/link';
 import { ItemContext } from '../../utils/ItemContext';
@@ -6,8 +6,9 @@ import { useRouter } from 'next/navigation';
 // import { ItemProvider } from '../../utils/ItemContext';
 import { useItemContext } from '../../utils/ItemContext';
 import { useSelector } from 'react-redux';
+import SearchBar from './SearchBar';
 
-const StoreHeader = ({storeItem}) => {
+const StoreHeader = ({ storeItem }) => {
     const router = useRouter();
     // const { items, addItem } = useItemContext();
     // {console.log("storeItem", items)}
@@ -24,14 +25,21 @@ const StoreHeader = ({storeItem}) => {
 
     return (
         <div className='flex p-5 justify-between'>
-            <Link href="/">
-                <img
+            <div className='flex items-center'>
+            <Link href={`/`}>
+            <img
                     src="/arrow-back.png"
-                    alt="Store"
+                    alt="search"
                     className="w-10 h-10"
                 />
             </Link>
-            <h1 className='font-bold text-white'>Welcome to the Store</h1>
+            </div>
+            {/* <h1 className='font-bold text-white'>Welcome to the Store</h1> */}
+
+            <div>
+                <SearchBar/>
+            </div>
+
             <div className='flex items-center'>
                 <h1 className='font-bold text-white'>{cartItems[0]?.length}</h1>
                 <img
