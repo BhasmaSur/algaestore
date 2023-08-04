@@ -10,13 +10,18 @@ export const config = {
 }
 
 const cookieName = 'i18next'
-
+const protectedPages = ['home', 'contact-us', 'market'];
 export function middleware(req) {
   let lng
   if (req.cookies.has(cookieName)) lng = acceptLanguage.get(req.cookies.get(cookieName).value)
   if (!lng) lng = acceptLanguage.get(req.headers.get('Accept-Language'))
   if (!lng) lng = fallbackLng
+  let verify = req.cookies.get('jwtToken');
+  let url = req.url;
 
+  if (!verify && protectedPages.some((pPage) => url.includes(pPage))) {
+    return NextResponse.redirect(`https://algaestore.in/${lng}/login`);
+  }
   // Redirect if lng in path is not supported
   if (
     !languages.some(loc => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
@@ -24,7 +29,9 @@ export function middleware(req) {
   ) {
     if(req.nextUrl.pathname.includes('.jpg') || req.nextUrl.pathname.includes('.png') || req.nextUrl.pathname.includes('.svg'))
       return NextResponse.redirect(new URL(`/en${req.nextUrl.pathname}`, req.url))
-    else{
+    else if(req.nextUrl.pathname.includes('/api/')){
+      return NextResponse.redirect(new URL(`/${req.nextUrl.pathname}`, req.url))
+    }else{
       return NextResponse.redirect(new URL(`/${lng}${req.nextUrl.pathname}`, req.url))
     }
   }

@@ -11,8 +11,6 @@ const CartItem = () => {
 
     const cartItems = useSelector((store) => store.cart.items)
     const dispatch = useDispatch();
-    console.log("redux cart item", cartItems)
-
     const handleClear = () => {
         dispatch(clearCart())
     }
