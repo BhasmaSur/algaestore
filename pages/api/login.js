@@ -34,5 +34,5 @@ export default async function (req, res) {
   //   });
   // }
   res.setHeader(corsHeaders);
-   return res.json({ foo: "bar" }, { headers: corsHeaders });
+  res.json({ foo: "bar" });
 }
