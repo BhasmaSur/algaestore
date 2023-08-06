@@ -35,7 +35,7 @@ const httpService = (
 //   }
 
   let url = "";
-  url = `${service}/${serviceUrl}`;
+  url = `${BASE_URL}/${service}/${serviceUrl}`;
   switch (type) {
     case "get": {
       const promise = axios.get(url, config);
