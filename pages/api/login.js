@@ -1,5 +1,11 @@
 import { authenticateUser } from '../../app/services/auth';
 
+export const corsHeaders = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
 export default async function (req, res) {
    const { method } = req;
 
@@ -13,18 +19,19 @@ export default async function (req, res) {
     return;
   }
 
-  const { username, password } = req.body;
-  if (username && password) {
-    authenticateUser({
-      username,
-      password,
-    }).then((src) => {
-      if (src) {
-        res.json({
-          jwtToken: src.jwtToken,
-          type : src.type
-        });
-      }
-    });
-  }
+  // const { username, password } = req.body;
+  // if (username && password) {
+  //   authenticateUser({
+  //     username,
+  //     password,
+  //   }).then((src) => {
+  //     if (src) {
+  //       res.json({
+  //         jwtToken: src.jwtToken,
+  //         type : src.type
+  //       });
+  //     }
+  //   });
+  // }
+   return res.json({ foo: "bar" }, { headers: corsHeaders });
 }
