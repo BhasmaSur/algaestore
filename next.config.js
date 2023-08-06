@@ -21,6 +21,14 @@ const nextConfig = {
       }
     ]
   }
+  async rewrites() {
+        return [
+          {
+            source: '/api/:path*',
+            destination: 'https://algaestore.in/:path*',
+          },
+        ]
+      },
 };
 
 module.exports = nextConfig;
