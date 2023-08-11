@@ -8,9 +8,8 @@ import { StarIcon } from "@heroicons/react/24/solid";
 import { useItemContext } from '../../utils/ItemContext';
 import { addItem } from '../../utils/cartSlice';
 import { useDispatch } from 'react-redux';
-import Link from 'next/link';
 
-const StoreCard = ({ product_id, image_url, name, storeItem, setItem }) => {
+const ProductCard = ({ image_url, name, storeItem, setItem }) => {
 
     // const { items, addItem } = useItemContext();
 
@@ -18,15 +17,9 @@ const StoreCard = ({ product_id, image_url, name, storeItem, setItem }) => {
 
     // const newItemObj = {image_url, name};
 
-    const dispatch = useDispatch();
-
-    const addWeedItem = (item) => {
-        dispatch(addItem(item))
-    }
 
     return (
         <motion.div variants={children_variant} className="cursor-pointer group relative card border-[1px] border-[#dbdbdb] rounded-[12px] overflow-hidden bg-white">
-            <Link href={`/products/`+String(product_id)}>
             <img
                 src={image_url}
                 alt="product"
@@ -47,7 +40,6 @@ const StoreCard = ({ product_id, image_url, name, storeItem, setItem }) => {
                 </div>
                 <p className="mt-3 font-bold text-[1.6rem] ">₹{120}</p>
             </div>
-            </Link>
             <button
 
                 onClick={() => {addWeedItem({image_url, name})}}
@@ -61,4 +53,4 @@ const StoreCard = ({ product_id, image_url, name, storeItem, setItem }) => {
     )
 }
 
-export default StoreCard;
+export default ProductCard;
