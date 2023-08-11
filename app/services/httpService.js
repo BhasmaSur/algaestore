@@ -10,7 +10,7 @@ const httpService = (
   stream = false,
   additionalConfig = {}
 ) => {
-  let BASE_URL = "https://algaestore.in"; //provide url
+  let BASE_URL = "https://www.algaestore.in"; //provide url
 
   const config = {
     headers: {
@@ -35,7 +35,7 @@ const httpService = (
 //   }
 
   let url = "";
-  url = `${service}/${serviceUrl}`;
+  url = `${BASE_URL}/${service}/${serviceUrl}`;
   switch (type) {
     case "get": {
       const promise = axios.get(url, config);

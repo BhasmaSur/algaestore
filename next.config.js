@@ -5,7 +5,7 @@ const nextConfig = {
   },
   images: {
     path: "/",
-    domains: ['www.salamat.gr', 'cdn.shopify.com', 'www.doorsteporganics.com.au'],
+    domains: ['https://algaestore.in'],
   },
   async headers() {
     return [
@@ -20,7 +20,15 @@ const nextConfig = {
         ]
       }
     ]
-  }
+  },
+  async rewrites() {
+        return [
+          {
+            source: '/api/:path*',
+            destination: 'https://algaestore.in/:path*',
+          },
+        ]
+      },
 };
 
 module.exports = nextConfig;
