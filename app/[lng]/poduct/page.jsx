@@ -3,12 +3,11 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation'
 
-const Products = () => {
+const Productdetail = () => {
 
 
     const searchParams = useSearchParams()
-    const pi = searchParams.get('productid')
-    console.log("product_id", pi)
+    const product_id = searchParams.get('productid')
 
     const Product = {
         "name": "Seaweed Snack",
@@ -33,7 +32,7 @@ const Products = () => {
 
     return (
         <div>
-            <h1>Product ID : {pi }</h1>
+            <h1>Product ID : {product_id }</h1>
             <section class="text-gray-700 body-font overflow-hidden bg-white">
                 <div class="container px-5 py-24 mx-auto">
                     <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -143,4 +142,4 @@ const Products = () => {
     );
 }
 
-export default Products;
+export default Productdetail;
