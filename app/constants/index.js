@@ -126,7 +126,8 @@ export const storeData = [
     "price": 4.99,
     "weight": "50g",
     "ingredients": ["Organic Seaweed", "Sunflower Oil", "Sea Salt"],
-    "image_url": "https://www.salamat.gr/image/cache/catalog/GEORGINA%20ESHOP/04-03-22/EE11002-1080x1080.png"
+    "image_url": "https://www.salamat.gr/image/cache/catalog/GEORGINA%20ESHOP/04-03-22/EE11002-1080x1080.png",
+    "product_id": '121'
   },
   {
     "name": "Oceanic Nori Sheets",
@@ -135,7 +136,8 @@ export const storeData = [
     "price": 9.99,
     "weight": "25 sheets",
     "ingredients": ["Seaweed Nori"],
-    "image_url": "https://cdn.shopify.com/s/files/1/0579/3149/7654/products/OCE8_large_a8180de7-daeb-4869-b1fb-6269f3a537e5.jpg?v=1674656643"
+    "image_url": "https://cdn.shopify.com/s/files/1/0579/3149/7654/products/OCE8_large_a8180de7-daeb-4869-b1fb-6269f3a537e5.jpg?v=1674656643",
+    "product_id": '122'
   },
   {
     "name": "Seaweed Crisps",
@@ -144,7 +146,8 @@ export const storeData = [
     "price": 3.49,
     "weight": "30g",
     "ingredients": ["Seaweed", "Canola Oil", "Spices"],
-    "image_url": "https://cdn.shopify.com/s/files/1/0522/0125/9183/products/634158955907_T1.jpg?v=1665569729"
+    "image_url": "https://cdn.shopify.com/s/files/1/0522/0125/9183/products/634158955907_T1.jpg?v=1665569729",
+    "product_id": '123'
   },
   {
     "name": "Sea Veggie Mix",
@@ -153,7 +156,8 @@ export const storeData = [
     "price": 6.99,
     "weight": "100g",
     "ingredients": ["Seaweed Mix (Dulse, Nori, Wakame)", "Sea Lettuce"],
-    "image_url": "https://www.doorsteporganics.com.au/image/optimised/large/Sea-Vegetables-Toated-Fine-Cut-Nori-Nutritionist-Choice-25g.jpg"
+    "image_url": "https://www.doorsteporganics.com.au/image/optimised/large/Sea-Vegetables-Toated-Fine-Cut-Nori-Nutritionist-Choice-25g.jpg",
+    "product_id": '124'
   },
   {
     "name": "Seaweed Pasta",
@@ -162,7 +166,8 @@ export const storeData = [
     "price": 5.99,
     "weight": "250g",
     "ingredients": ["Durum Wheat Semolina", "Seaweed Powder"],
-    "image_url": "https://everydaylatina.com/wp-content/uploads/2020/11/FCCC00CD-9FB5-4892-8D37-1F714F585EE7-F309229B-3D12-42D9-AFA6-7EFB0EF239CC-985x1024.jpg"
+    "image_url": "https://everydaylatina.com/wp-content/uploads/2020/11/FCCC00CD-9FB5-4892-8D37-1F714F585EE7-F309229B-3D12-42D9-AFA6-7EFB0EF239CC-985x1024.jpg",
+    "product_id": '125'
   },
   {
     "name": "Roasted Seaweed Strips",
@@ -171,7 +176,8 @@ export const storeData = [
     "price": 3.99,
     "weight": "20g",
     "ingredients": ["Seaweed", "Sesame Oil", "Spices"],
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSaTapRd3HP6X9gCaxoOXKTLzLwEPtO2PccA&usqp=CAU"
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSaTapRd3HP6X9gCaxoOXKTLzLwEPtO2PccA&usqp=CAU",
+    "product_id": '126'
   },
   {
     "name": "Seaweed Seasoning Blend",
@@ -180,7 +186,8 @@ export const storeData = [
     "price": 2.99,
     "weight": "50g",
     "ingredients": ["Seaweed Flakes", "Sea Salt", "Spices"],
-    "image_url": "https://www.feastingathome.com/wp-content/uploads/2020/02/furikake-recipe-8.jpg"
+    "image_url": "https://www.feastingathome.com/wp-content/uploads/2020/02/furikake-recipe-8.jpg",
+    "product_id": '127'
   },
   {
     "name": "Seaweed and Tofu Soup",
@@ -189,7 +196,8 @@ export const storeData = [
     "price": 7.99,
     "weight": "350g",
     "ingredients": ["Seaweed", "Tofu", "Vegetables", "Broth"],
-    "image_url": "https://assets.bonappetit.com/photos/58a6240fa9bc8a7a3f1cfada/1:1/w_2560%2Cc_limit/classic-miso-soup.jpg"
+    "image_url": "https://assets.bonappetit.com/photos/58a6240fa9bc8a7a3f1cfada/1:1/w_2560%2Cc_limit/classic-miso-soup.jpg",
+    "product_id": '128'
   },
   {
     "name": "Seaweed Rice Crackers",
@@ -198,7 +206,8 @@ export const storeData = [
     "price": 2.49,
     "weight": "100g",
     "ingredients": ["Rice Flour", "Seaweed Extract", "Soy Sauce"],
-    "image_url": "https://www.royalnutcompany.com.au/wp-content/uploads/2020/11/10323_04-04-2014_5011.jpg"
+    "image_url": "https://www.royalnutcompany.com.au/wp-content/uploads/2020/11/10323_04-04-2014_5011.jpg",
+    "product_id": '129'
   },
   {
     "name": "Seaweed Salad",
@@ -207,7 +216,8 @@ export const storeData = [
     "price": 6.49,
     "weight": "200g",
     "ingredients": ["Seaweed Mix (Wakame, Kelp, Hijiki)", "Sesame Seeds", "Dressing"],
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSimPiACLnNV4bh88CBBWLE-930h06h_Vpcug&usqp=CAU"
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSimPiACLnNV4bh88CBBWLE-930h06h_Vpcug&usqp=CAU",
+    "product_id": '130'
   },
   {
     "name": "Seaweed Protein Bars",
@@ -216,7 +226,8 @@ export const storeData = [
     "price": 3.99,
     "weight": "50g",
     "ingredients": ["Seaweed", "Almonds", "Dates", "Protein Powder"],
-    "image_url": "https://c-va.niceshops.com/upload/image/product/large/default/ironmaxx-zenith-50-high-protein-bars-brownie-chocolate-crisp-810212-en.jpg"
+    "image_url": "https://c-va.niceshops.com/upload/image/product/large/default/ironmaxx-zenith-50-high-protein-bars-brownie-chocolate-crisp-810212-en.jpg",
+    "product_id": '131'
   },
   {
     "name": "Seaweed Sushi Rice Seasoning",
@@ -225,7 +236,8 @@ export const storeData = [
     "price": 4.99,
     "weight": "100g",
     "ingredients": ["Seaweed Flakes", "Rice Vinegar", "Sugar", "Salt"],
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYKNQE4EO0Y1152e0rlJnsWbtfoSfN1CVJeg&usqp=CAU"
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYKNQE4EO0Y1152e0rlJnsWbtfoSfN1CVJeg&usqp=CAU",
+    "product_id": '132'
   },
   {
     "name": "Seaweed Face Mask",
@@ -234,7 +246,8 @@ export const storeData = [
     "price": 9.99,
     "weight": "50ml",
     "ingredients": ["Seaweed Extracts", "Aloe Vera", "Hyaluronic Acid"],
-    "image_url": "https://m.media-amazon.com/images/I/71Afmwk5QnL._AC_UF1000,1000_QL80_.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/71Afmwk5QnL._AC_UF1000,1000_QL80_.jpg",
+    "product_id": '133'
   },
   {
     "name": "Seaweed Popcorn",
@@ -243,7 +256,8 @@ export const storeData = [
     "price": 3.49,
     "weight": "100g",
     "ingredients": ["Popcorn Kernels", "Seaweed Seasoning", "Coconut Oil"],
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJmKeIQnzVjfxUXftZehpVjCEzLdAvegK70w&usqp=CAU"
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJmKeIQnzVjfxUXftZehpVjCEzLdAvegK70w&usqp=CAU",
+    "product_id": '134'
   },
   {
     "name": "Seaweed Hair Conditioner",
@@ -252,7 +266,8 @@ export const storeData = [
     "price": 8.99,
     "weight": "250ml",
     "ingredients": ["Seaweed Extracts", "Argan Oil", "Coconut Milk"],
-    "image_url": "https://sc04.alicdn.com/kf/H7cd4e5d8dc454103879ba15aa9fa1536h.jpg"
+    "image_url": "https://sc04.alicdn.com/kf/H7cd4e5d8dc454103879ba15aa9fa1536h.jpg",
+    "product_id": '135'
   },
   {
     "name": "Seaweed Bath Salts",
@@ -261,7 +276,8 @@ export const storeData = [
     "price": 12.99,
     "weight": "500g",
     "ingredients": ["Seaweed Extracts", "Epsom Salt", "Lavender Oil"],
-    "image_url": "https://m.media-amazon.com/images/I/619QI7KEMhL.jpg"
+    "image_url": "https://m.media-amazon.com/images/I/619QI7KEMhL.jpg",
+    "product_id": '136'
   },
   {
     "name": "Seaweed Body Scrub",
@@ -270,7 +286,8 @@ export const storeData = [
     "price": 7.99,
     "weight": "200g",
     "ingredients": ["Seaweed Particles", "Coconut Oil", "Essential Oils"],
-    "image_url": "https://i.etsystatic.com/5225632/r/il/7774d4/4436313318/il_570xN.4436313318_pja4.jpg"
+    "image_url": "https://i.etsystatic.com/5225632/r/il/7774d4/4436313318/il_570xN.4436313318_pja4.jpg",
+    "product_id": '137'
   },
   {
     "name": "Seaweed Vegetable Roll",
@@ -279,7 +296,8 @@ export const storeData = [
     "price": 5.99,
     "weight": "150g",
     "ingredients": ["Seaweed", "Sushi Rice", "Cucumber", "Carrot", "Avocado"],
-    "image_url": "https://www.shutterstock.com/image-photo/fresh-vegetable-salad-rolls-sheet-260nw-1417850018.jpg"
+    "image_url": "https://www.shutterstock.com/image-photo/fresh-vegetable-salad-rolls-sheet-260nw-1417850018.jpg",
+    "product_id": '138'
   },
   {
     "name": "Seaweed Soap",
@@ -288,7 +306,8 @@ export const storeData = [
     "price": 3.99,
     "weight": "100g",
     "ingredients": ["Seaweed Extracts", "Olive Oil", "Shea Butter"],
-    "image_url": "https://cdn.shopify.com/s/files/1/0505/3045/1652/products/Hebridean_Seaweed_Cold_Press_1000x1000.png?v=1606224684"
+    "image_url": "https://cdn.shopify.com/s/files/1/0505/3045/1652/products/Hebridean_Seaweed_Cold_Press_1000x1000.png?v=1606224684",
+    "product_id": '139'
   },
   {
     "name": "Seaweed Chips",
@@ -297,6 +316,7 @@ export const storeData = [
     "price": 3.49,
     "weight": "50g",
     "ingredients": ["Seaweed", "Vegetable Oil", "Sea Salt"],
-    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmVZf67Uu_8VF55CDxx-QS_E--y7Th2L085g&usqp=CAU"
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmVZf67Uu_8VF55CDxx-QS_E--y7Th2L085g&usqp=CAU",
+    "product_id": '140'
   }
 ]
