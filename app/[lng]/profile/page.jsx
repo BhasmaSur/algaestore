@@ -3,7 +3,7 @@
 import React from 'react';
 import ProductCard from './ProductCard'
 
-const ProfilePage = ({ products }) => {
+const ProfilePage = () => {
 
     const farmerInfo = {
         name: 'Madan',
