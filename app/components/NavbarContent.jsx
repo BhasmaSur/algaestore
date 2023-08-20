@@ -65,7 +65,7 @@ const NavbarContent = ({ navObject }) => {
                         <div className='flex gap-4'>
                             <Link href="/store">
                                 <img
-                                    src="/Store.svg"
+                                    src="/store.svg"
                                     alt="menu"
                                     className="w-[24px] h-[24px] object-contain fill-white"
                                 />
