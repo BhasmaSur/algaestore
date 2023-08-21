@@ -10,7 +10,7 @@ const httpService = (
   stream = false,
   additionalConfig = {}
 ) => {
-  let BASE_URL = "http://localhost:3000"; //provide url
+  let BASE_URL = "https://algaestore.in"; //provide url
 
   const config = {
     headers: {
