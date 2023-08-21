@@ -8,8 +8,7 @@ export const setCookieDetails = (authenticationDetails) => {
 
 export const getCookieObject = () => {
   const authenticationObj = {
-    name: Cookies.get('name'),
-    emailId: Cookies.get('emailId'),
+    emailId: Cookies.get('username'),
     role: Cookies.get('role'),
     jwtToken: Cookies.get('jwtToken'),
   };
