@@ -10,7 +10,7 @@ export const config = {
 }
 
 const cookieName = 'i18next'
-const protectedPages = ['home', 'contact-us', 'market'];
+const protectedPages = ['home', 'contact-us', 'market', 'store', 'products', 'cart', 'profile'];
 export function middleware(req) {
   let lng
   if (req.cookies.has(cookieName)) lng = acceptLanguage.get(req.cookies.get(cookieName).value)

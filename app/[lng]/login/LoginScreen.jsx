@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
@@ -17,19 +17,23 @@ const LoginScreen = () => {
     const userDetails = {
       username,
       password,
-    }
-    httpService(CONTROLLERS.login, METHODS.post, userDetails, API).then((res)=>{
-      if(res){
-        setCookieDetails({
-          username: username,
-          jwtToken : res.data.jwtToken,
-          type : res.data.type
-        });
-        router.push('/');
+    };
+    httpService(CONTROLLERS.login, METHODS.post, userDetails, API).then(
+      (res) => {
+        if (res) {
+          setCookieDetails({
+            username: username,
+            jwtToken: res.data.jwtToken,
+            type: res.data.type,
+          });
+          router.push('/');
+        }
       }
-    })
-    
-    
+    );
+  };
+
+  const redirectToSignUp = () => {
+    router.push('/signup');
   };
   return (
     <div>
@@ -56,10 +60,16 @@ const LoginScreen = () => {
 
                       <form>
                         <p class="mb-4">
-                          Please login to your {currentscreen} account
+                          Please login to your account
                         </p>
                         {/* <!--Username input--> */}
                         <div class="relative mb-4" data-te-input-wrapper-init>
+                          <label
+                            class="block text-gray-700 text-sm font-bold mb-2"
+                            for="username"
+                          >
+                            Username
+                          </label>
                           <input
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
@@ -68,16 +78,16 @@ const LoginScreen = () => {
                             // id="exampleFormControlInput1"
                             placeholder="Username"
                           />
-                          <label
-                            for="exampleFormControlInput1"
-                            class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                          >
-                            Username
-                          </label>
                         </div>
 
                         {/* <!--Password input--> */}
                         <div class="relative mb-4" data-te-input-wrapper-init>
+                          <label
+                            class="block text-gray-700 text-sm font-bold mb-2"
+                            for="password"
+                          >
+                            Password
+                          </label>
                           <input
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
@@ -85,12 +95,6 @@ const LoginScreen = () => {
                             class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                             placeholder="Password"
                           />
-                          <label
-                            for="exampleFormControlInput11"
-                            class="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-                          >
-                            Password
-                          </label>
                         </div>
 
                         {/* <!--Submit button--> */}
@@ -121,6 +125,7 @@ const LoginScreen = () => {
                             class="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
                             data-te-ripple-init
                             data-te-ripple-color="light"
+                            onClick={redirectToSignUp}
                           >
                             Register
                           </button>
