@@ -25,7 +25,7 @@ const Page = async ({params : {lng}}) => {
   }
 
   return (
-  <div className="bg-primary-black overflow-hidden">
+  <div className="bg-primary-white overflow-hidden">
     <Navbar navObject={heroObject}/>
     <Hero heroObject={heroObject}/>
     <div className="relative">
