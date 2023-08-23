@@ -20,7 +20,7 @@ export function middleware(req) {
   let url = req.url;
 
   if (!verify && protectedPages.some((pPage) => url.includes(pPage))) {
-    return NextResponse.redirect(`https://algaestore.in/${lng}/login`);
+    return NextResponse.redirect(`http://localhost:3000/${lng}/login`);
   }
   // Redirect if lng in path is not supported
   if (

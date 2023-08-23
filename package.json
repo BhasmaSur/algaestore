@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "start:debug": "nest start --debug --watch"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
