@@ -1,5 +1,6 @@
 // import { useCollection } from 'react-firebase-hooks/firestore';
 import { COLLECTIONS } from '../constants/collectionDetails';
+import { getCookieObject } from '../utils/loginUtils';
 import { Encrypt } from './encryptService';
 import { db } from './firebaseService';
 import {
@@ -80,4 +81,13 @@ const getUserById = async (userID) => {
   return userSnap;
 };
 
-export { addUser, authenticateUser, getUserById };
+const getUserDetailsFromCookie = ()=>{
+  const userDetails = getCookieObject(); 
+  if(userDetails.jwtToken && userDetails.emailId){
+    return userDetails;
+  }else{
+    return null;
+  }
+}
+
+export { addUser, authenticateUser, getUserById, getUserDetailsFromCookie };
