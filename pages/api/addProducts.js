@@ -7,20 +7,20 @@ export const corsHeaders = {
   };
 
   
-  export default async function handler(req, res){
-    const {method, query} = req;
+//   export default async function handler(req, res){
+//     const {method, query} = req;
 
-    if(!req.body){
-        res.status(404).end('Error');
-        return;
-    }
+//     if(!req.body){
+//         res.status(404).end('Error');
+//         return;
+//     }
 
-    try{
-        if(method == 'POST'){
-            const { product_id, location, weight, ingredients, supplier, price, image_url, name, brand, description } = req.body;
+//     try{
+//         if(method == 'POST'){
+//             const { product_id, location, weight, ingredients, supplier, price, image_url, name, brand, description } = req.body;
             
-        }
-    }
+//         }
+//     }
 
 
-  }
+//   }
