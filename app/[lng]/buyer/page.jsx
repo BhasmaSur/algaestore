@@ -29,17 +29,17 @@ const page = () => {
                     <form>
                         <div className="mb-4">
                             <label htmlFor="companyName" className="block mb-2 font-medium">Company Name:</label>
-                            <input type="text" id="companyName" placeholder = "ISRO" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" />
+                            <input type="text" id="companyName" placeholder = "ISRO" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"/>
                         </div>
                         <div className="mb-4">
                             <div className='flex flex-col md:flex-row'>
                                 <div className="mb-2 md:mb-0 md:mr-4">
                                     <label htmlFor="firstName" className="block font-medium mb-2">First name:</label>
-                                    <input type="text" id="firstName" placeholder = "John" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" />
+                                    <input type="text" id="firstName" placeholder = "John" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"/>
                                 </div>
                                 <div className="md:ml-4">
                                     <label htmlFor="lastName"  className="block font-medium mb-2">Last name:</label>
-                                    <input type="text" id="lastName" placeholder = "Doe" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" />
+                                    <input type="text" id="lastName" placeholder = "Doe" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"/>
                                 </div>
                             </div>
 
