@@ -20,6 +20,7 @@ module.exports = {
         'secondary-white': '#c7c7c7',
         'light-blue': colors.lightBlue,
         cyan: colors.cyan,
+        'light-green' : '#f4fbf8'
       },
       width: {
         120: '120%',

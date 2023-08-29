@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { USER_BUYER_ROLE } from "../constants/userConstants";
 import { BUYER_SETTINGS, FARMER_SETTINGS } from "../constants/settings";
 import { menuDetails } from "../constants/menuDetails";
+import { useRouter } from 'next/navigation';
 
 const itemVariants = {
   closed: {
@@ -42,8 +43,11 @@ const NavbarContent = ({ navObject }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [links, setLinks] = useState([]);
 
+  const router = useRouter();
+
   const redirectToPage = (redirectTo) => {
     console.log(redirectTo);
+    router.push(redirectTo)
   };
   useEffect(() => {
     const userDetails = getUserDetailsFromCookie();

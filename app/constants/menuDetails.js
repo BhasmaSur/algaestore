@@ -7,12 +7,12 @@ export const menuDetails = [
     {
         id : 2,
         name : "Buyers",
-        to : "/buyers"
+        to : "/buyer"
     },
     {
         id : 3,
         name : "Suppliers",
-        to : "/suppliers"
+        to : "/supplier"
     },
     {
         id : 3,
