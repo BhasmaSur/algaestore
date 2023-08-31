@@ -41,19 +41,19 @@ const page = () => {
                     <form>
                         <div className="mb-4">
                             <label htmlFor="country" className="block mb-2 font-medium">Country of Origin:</label>
-                            <input type="text" id="country" placeholder="INDIA" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" />
+                            <input type="text" id="country" placeholder="INDIA" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"/>
                         </div>
                         <div className="mb-4">
                             <label htmlFor="city" className="block mb-2 font-medium">City of Origin:</label>
-                            <input type="text" id="city" placeholder="GOA" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" />
+                            <input type="text" id="city" placeholder="GOA" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"/>
                         </div>
                         <div className="mb-4">
                             <label htmlFor="fullname" className="block mb-2 font-medium">Full Name:</label>
-                            <input type="text" id="fullname" placeholder="Jason Chris" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" />
+                            <input type="text" id="fullname" placeholder="Jason Chris" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"/>
                         </div>
                         <div className="mb-4">
                             <label htmlFor="phone" className="block mb-2 font-medium">Phone Number:</label>
-                            <input type="text" id="phone" placeholder="+1 (XXX) XXX-XXXX" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" id="inline-full-name" type="text" />
+                            <input type="text" id="phone" placeholder="+1 (XXX) XXX-XXXX" className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"/>
                         </div>
                        
                         {/* <div className="mb-4">
