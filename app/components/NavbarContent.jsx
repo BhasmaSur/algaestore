@@ -72,15 +72,14 @@ const NavbarContent = ({ navObject }) => {
           whileInView="show"
           className={`${styles.xPaddings} py-8 relative bg-gradient-to-r from-gray-500 to-gray-900`}
         >
-          <div />
           <div
-            className={`${styles.innerWidth} max-auto flex justify-between gap-8`}
+            className={`${styles.innerWidth} max-auto flex justify-between gap-8 items-center`}
           >
-            <img
-              src="/search.svg"
-              alt="search"
-              className="w-[24px] h-[24px] object-contain"
-            />
+            {/* <img
+              src="/algaelogo.png"
+              alt="menu"
+              className="w-[200px] object-contain fill-white"
+            /> */}
             <div class="invisible lg:visible">
               <div
                 class="hidden w-full md:block md:w-auto"
@@ -100,31 +99,32 @@ const NavbarContent = ({ navObject }) => {
                 </ul>
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-8 items-center">
               <Link href="/store">
                 <img
                   src="/store.svg"
                   alt="menu"
-                  className="w-[24px] h-[24px] object-contain fill-white text-green-600"
+                  className="w-[24px] h-[24px] object-contain fill-white"
                 />
               </Link>
-              {isLoggedIn && (
+              {/* {isLoggedIn && (
                 <img
                   className="w-[24px] h-[24px] object-contain fill-white text-green-600 cursor-pointer"
                   src="/defaultProfile.svg"
                   alt="Rounded avatar"
                   onClick={cycleOpen}
                 />
-              )}
+              )} */}
               {!isLoggedIn && (
                 <Link
                   href="/login"
-                  className="text-white p-1 text-xs"
+                  className="block py-2 pl-3 pr-4 cursor-pointer text-white hover:bg-sky-700 rounded"
                 >
                   Login
                 </Link>
               )}
-              <div class="lg:invisible">
+            </div>
+            {/* <div class="lg:invisible">
                 {openMenu ? (
                   <img
                     src="/close.svg"
@@ -141,11 +141,10 @@ const NavbarContent = ({ navObject }) => {
                     onClick={cycleOpenMenu}
                   />
                 )}
-              </div>
-            </div>
+              </div> */}
           </div>
         </motion.nav>
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {open && (
             <motion.aside
               initial={{ width: 0 }}
@@ -248,7 +247,7 @@ const NavbarContent = ({ navObject }) => {
               </motion.div>
             </motion.aside>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </Provider>
     </div>
   );
