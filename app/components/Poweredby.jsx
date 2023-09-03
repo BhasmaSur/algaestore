@@ -50,7 +50,7 @@ const PoweredBy = () => {
                     <img class="logo-main  scale-with-grid"
                         src="https://www.cppr.in/wp-content/uploads/2020/07/CPPR-logo.jpg"
                         alt="Centre for Public Policy Research (CPPR)"
-                        className="w-18 h-16 object-cover" />
+                        className="w-17 h-16 object-cover" />
                 </a>
             </div>
             <path d="M8.622 0 4.664 9.857H11.5L7.416 16l3.957-9.857H2.5z" />
