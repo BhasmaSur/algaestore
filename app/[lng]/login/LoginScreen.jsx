@@ -13,6 +13,7 @@ const LoginScreen = () => {
   const currentscreen = useSelector((store) => store.cart.loginscreen);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
   const signIn = () => {
     const userDetails = {
       username,
@@ -35,6 +36,7 @@ const LoginScreen = () => {
   const redirectToSignUp = () => {
     router.push('/signup');
   };
+
   return (
     <div>
       <section class="gradient-form h-full bg-neutral-20">

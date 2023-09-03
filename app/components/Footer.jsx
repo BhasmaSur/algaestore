@@ -33,6 +33,7 @@ import Link from 'next/link'
 import styles from '../../styles';
 import { footerVariants } from '../utils/motion';
 import { languages } from '../constants/languages';
+import PoweredBy from './Poweredby';
 
 const Footer = ({ footerObject }) => {
   const getLanguage = (l) => {
@@ -44,7 +45,7 @@ const Footer = ({ footerObject }) => {
       variants={footerVariants}
       initial="hidden"
       whileInView="show"
-      className={`${styles.xPaddings} py-8 relative`}
+      className={`${styles.xPaddings} py-8 relative bg-gradient-to-r from-gray-500 to-gray-900`}
     >
       <div className="footer-gradient" />
       <div className={`${styles.innerWidth} mx-auto flex flex-col gap-8`}>
@@ -56,7 +57,7 @@ const Footer = ({ footerObject }) => {
             <h4 className="font-bold md:text-[34px] text-[24px] text-white">
               {footerObject.selectLanguage}
             </h4>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center text-white">
               {footerObject.languageList.map((l) => {
                 return (
                   <Link href={`/${getLanguage(l)}`}>
@@ -84,14 +85,14 @@ const Footer = ({ footerObject }) => {
         </div>
 
         <div className="flex flex-col">
-          <div className="mb-[50px] h-[2px] bg-white opacity-10" />
+          <div className="mb-[50px] h-[2px] bg-black  opacity-10" />
 
           <div className="flex items-center justify-between flex-wrap gap-4">
             {/* <h4 className="font-extrabold text-[24px] text-white">ALGAETECH</h4> */}
-            <p className="font-normal text-[14px] text-white opacity-50">
+            {/* <p className="font-normal text-[14px] text-white opacity-50">
               Copyright © 2023 Enso . All Rights Reserved .
-            </p>
-
+            </p> */}
+            <PoweredBy/>
             <div className="flex gap-4">
               {socials.map((social) => (
                 <img

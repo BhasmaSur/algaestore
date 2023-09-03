@@ -1,6 +1,7 @@
 export const CONTROLLERS={
     login: "login",
-    signup: "signup"
+    signup: "signup",
+    products: "products"
 }
 
 export const METHODS={

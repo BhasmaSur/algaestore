@@ -20,8 +20,8 @@ const ContactUsPage = () => {
             Looking for help or a new successful partnership? Feel free to drop us a message with some details of your question. We will be happy to help you. We answer within 1 business day.
           </p>
           <div className="text-gray-700">
-            <p>Email: support@algaestore.com</p>
-            <p>Phone: +91 (844) 667 5633</p>
+            <p>Email: support@algaestore.in</p>
+            <p>Phone: +91 (XXX) XXX XXXX</p>
           </div>
         </div>
         <div className="bg-white p-8 rounded-lg w-full md:ml-4">
