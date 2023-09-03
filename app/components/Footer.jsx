@@ -33,6 +33,7 @@ import Link from 'next/link'
 import styles from '../../styles';
 import { footerVariants } from '../utils/motion';
 import { languages } from '../constants/languages';
+import PoweredBy from './Poweredby';
 
 const Footer = ({ footerObject }) => {
   const getLanguage = (l) => {
@@ -88,10 +89,10 @@ const Footer = ({ footerObject }) => {
 
           <div className="flex items-center justify-between flex-wrap gap-4">
             {/* <h4 className="font-extrabold text-[24px] text-white">ALGAETECH</h4> */}
-            <p className="font-normal text-[14px] text-white opacity-50">
+            {/* <p className="font-normal text-[14px] text-white opacity-50">
               Copyright © 2023 Enso . All Rights Reserved .
-            </p>
-
+            </p> */}
+            <PoweredBy/>
             <div className="flex gap-4">
               {socials.map((social) => (
                 <img
