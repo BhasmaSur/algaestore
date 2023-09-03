@@ -74,9 +74,9 @@ const SignupScreen = () => {
                       </div>
 
                       <form>
-                        <div class="flex flex-wrap">
+                        <div class="flex flex-wrap mb-2">
                           <label
-                            class="block text-gray-700 text-lg font-bold mb-2"
+                            class="block text-gray-700 text-lg font-bold mb-10"
                             for="password"
                           >
                             Create your 
@@ -97,7 +97,7 @@ const SignupScreen = () => {
                                 </svg>
                                 <select onChange={(e) => setUserType(e.target.value)} class="ml-2 mr-2 border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                                   <option value={USER_BUYER_ROLE}>Buyer</option>
-                                  <option value={USER_FARMER_ROLE}>Farmer</option>
+                                  {/* <option value={USER_FARMER_ROLE}>Farmer</option> */}
                                   <option value={USER_SELLER_ROLE}>Seller</option>
                                 </select>
                               </div>
@@ -115,8 +115,9 @@ const SignupScreen = () => {
                           <label
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="password"
+                           
                           >
-                            Email
+                            Email or Phone Number
                           </label>
                           <input
                             value={username}
@@ -126,7 +127,8 @@ const SignupScreen = () => {
                             type="email"
                             class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                             // id="exampleFormControlInput1"
-                            placeholder="Email"
+                            className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                            placeholder="yourmail@email.com or +1 (XXX) XXX-XXXX"
                           />
                         </div>
 
@@ -146,6 +148,7 @@ const SignupScreen = () => {
                             type="password"
                             class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                             // id="exampleFormControlInput11"
+                            className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                             placeholder="Password"
                           />
                         </div>
@@ -164,6 +167,7 @@ const SignupScreen = () => {
                             type="password"
                             class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                             // id="exampleFormControlInput11"
+                            className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                             placeholder="Confirm Password"
                           />
                         </div>
