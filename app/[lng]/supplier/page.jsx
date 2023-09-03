@@ -115,9 +115,7 @@ const page = () => {
                             <label htmlFor="address" className="block mb-2 font-medium">Address</label>
                             <textarea id="address" placeholder="Tell us more about what you're doing!" className="w-full bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"></textarea>
                         </div>
-                        <div >
                             <button onClick={handleSubmit} type="button" className="w-full px-4 py-2 bg-violet-500 text-white rounded hover:bg-violet-600">Send</button>
-                        </div>
                     </form>
                 </div>
             </div>
