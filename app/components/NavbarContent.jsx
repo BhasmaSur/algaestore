@@ -73,7 +73,7 @@ const NavbarContent = ({ navObject }) => {
           className={`${styles.xPaddings} py-8 relative bg-gradient-to-r from-gray-500 to-gray-900`}
         >
           <div
-            className={`${styles.innerWidth} max-auto flex justify-between gap-8 items-center ml-10`}
+            className={`${styles.innerWidth} max-auto flex justify-between gap-8 items-center`}
           >
             {/* <img
               src="/algaelogo.png"

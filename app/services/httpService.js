@@ -15,6 +15,7 @@ const httpService = (
   const config = {
     headers: {
       "Access-Control-Allow-Orgin": "*",
+      "Content-Type": "application/json"
     },
     ...additionalConfig,
   };
@@ -34,11 +35,12 @@ const httpService = (
 //     config.headers.Authorization = `Bearer ${accessToken}`;
 //   }
 
-  let url = "";
+  let url = "";  
+  console.log("config", config)
   url = `${BASE_URL}/${service}/${serviceUrl}`;
   switch (type) {
     case "get": {
-      const promise = axios.get(url, config);
+      const promise = axios.get(url,null,config);
       return promise;
     }
     case "post":
