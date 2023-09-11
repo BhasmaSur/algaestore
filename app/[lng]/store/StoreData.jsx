@@ -31,7 +31,7 @@ const StoreData = ({ storeItem, setItem }) => {
     };
 
     const getStoreData = async () => {
-        const response = await fetch('https://www.algaestore.in/api/getallproducts', {
+        const response = await fetch('http://localhost:3000/api/getallproducts', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json', // Include your custom headers here
