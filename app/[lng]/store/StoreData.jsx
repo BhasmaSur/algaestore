@@ -18,27 +18,20 @@ const StoreData = ({ storeItem, setItem }) => {
     const [searchData, setSearchdata] = useState([]);
     const [searchText, setSearchtext] = useState("");
     const [selectedFilter, setSelectedFilter] = useState("");
-
-    // const [isCategoryExpanded, setIsCategoryExpanded] = useState({
-    //     harvested: false,
-    //     processed: false,
-    //     finishedGoods: false,
-    // });
+    const [showFilters, setShowFilters] = useState(false);
 
     const categories = {
-        harvested: ["Wet Seaweed", "Dry Seaweed", "Seed Material"],
-        processed: ["Extract/Sap", "Pulverized Seaweed", "Powdered Seaweed", "Hydrocolloids", "Cellulosic Residue"],
-        finishedGoods: ["Agriculture", "Food", "Packaging", "Fuel", "Textile"],
+        Harvested: ["Wet Seaweed", "Dry Seaweed", "Seed Material"],
+        Processed: ["Extract/Sap", "Pulverized Seaweed", "Powdered Seaweed", "Hydrocolloids", "Cellulosic Residue"],
+        FinishedGoods: ["Agriculture", "Food", "Packaging", "Fuel", "Textile"],
+    };
+
+    const toggleFilters = () => {
+        setShowFilters(!showFilters);
     };
 
     const getStoreData = async () => {
-        // httpService(CONTROLLERS.getallproducts, METHODS.get, null, API).then(
-        //     (res) => {
-        //         if (res) {
-        //             console.log(res);
-        //         }
-        //     }
-        // )
+
         const response = await fetch('https://www.algaestore.in/api/getallproducts', {
             method: 'GET',
             headers: {
@@ -52,37 +45,24 @@ const StoreData = ({ storeItem, setItem }) => {
         });
     }
 
-    // const toggleCategory = (category) => {
-    //     setIsCategoryExpanded((prevState) => ({
-    //         ...prevState,
-    //         [category]: !prevState[category],
-    //     }));
-    // };
 
     const applyFilter = (filter) => {
-        // setSelectedFilter(filter);
-        // Update displayed items based on the selected filter
-        // const filteredData = filterData(filter, data);
-        // const filteredData = data.filter((val, index) => {
-        //     return val.subType == filter;
-        // })
-        // setSearchdata(filteredData);
         if (selectedFilter[0]?.toLowerCase() === filter.toLowerCase()) {
             setSelectedFilter("");
             setSearchdata(data);
         }
         else {
             setSelectedFilter(filter);
-            if(filter === ""){
+            if (filter === "") {
                 setSearchdata(data);
             }
-            else{
+            else {
                 const filteredData = data.filter((val, index) => {
                     return val?.subtype?.toLowerCase() === filter?.toLowerCase();
                 })
                 setSearchdata(filteredData);
             }
-            
+
         }
 
         console.log("filtered data", searchData)
@@ -90,14 +70,9 @@ const StoreData = ({ storeItem, setItem }) => {
 
     useEffect(() => {
         getStoreData();
-        // setData(storeData);
-        // setSearchdata(storeData);
     }, [])
 
     const router = useRouter();
-    // const { items, addItem } = useItemContext();
-    // {console.log("storeItem", items)}
-
     const cartItems = useSelector((store) => [
         store.cart.items
     ])
@@ -110,8 +85,8 @@ const StoreData = ({ storeItem, setItem }) => {
     return (
 
         <div>
-            <div className='flex p-5 justify-between'>
-                <div className='flex items-center'>
+            <div className='flex p-5 justify-between flex-wrap'>
+                <div className='flex items-center mb-10 sm:mb-0 mr-32'>
                     <Link href={`/`}>
                         <img
                             src="/arrow-back.png"
@@ -120,15 +95,16 @@ const StoreData = ({ storeItem, setItem }) => {
                         />
                     </Link>
                 </div>
-                {/* <h1 className='font-bold text-white'>Welcome to the Store</h1> */}
 
-                <div>
-                    <div className="relative p-12 w-full sm:max-w-2xl sm:mx-auto">
+                <div className="flex-1">
+                    <div className="relative p-2 mb-8 w-full sm:max-w-2xl sm:mx-auto">
                         <div className="overflow-hidden z-0 rounded-full relative p-3">
                             <form role="form" className="relative flex z-50 bg-white rounded-full">
                                 <input onChange={(e) => {
                                     setSearchtext(e.target.value)
-                                }} type="text" placeholder="enter your search here" className="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none" />
+                                }} type="text"
+                                    placeholder="enter your search here"
+                                    className="rounded-full flex-1 px-0 py-2 text-gray-700 focus:outline-none sm:w-64 md:w-auto" />
                                 <button onClick={(e) => {
                                     e.preventDefault();
                                     const newData = filterData(searchText, data, selectedFilter)
@@ -144,55 +120,73 @@ const StoreData = ({ storeItem, setItem }) => {
                     </div>
                 </div>
 
-                <div className='flex items-center'>
-                    <h1 className='font-bold text-white'>{cartItems[0]?.length}</h1>
-                    <img
-                        src="/cart.png"
-                        alt="Cart"
-                        className="w-10 h-10"
-                        onClick={handleClick}
-                    />
+                <div className='flex justify-between'>
+                    
+                    <div className='flex justify-center'>
+                        <button
+                            onClick={() => setShowFilters(!showFilters)} // Toggle showFilters state
+                            className={`bg-indigo-500 text-white rounded-full font-semibold px-4 py-2 ml-2 sm:hidden 
+                        }`}
+                        >
+                            {showFilters ? "Hide Filters" : "Show Filters"}
+                        </button>
+                    </div>
+
+                    <div className='flex items-center ml-32'>
+                        <h1 className='font-bold text-white'>{cartItems[0]?.length}</h1>
+                        <img
+                            src="/cart.png"
+                            alt="Cart"
+                            className="w-10 h-10"
+                            onClick={handleClick}
+                        />
+                    </div>
                 </div>
             </div>
 
+
+
             <div className='flex'>
-                <div className='mb-2'>
-                    <h2 className='text-xl font-semibold text-white'>Filters:</h2>
+                <div className={`mb-2 ml-10 sm:w-auto sm:ml-10 ${!showFilters ? 'hidden sm:block' : '' // Hide filters content on mobile if showFilters is false
+                    }`}>
+                    <h2 className='text-xl font-semibold text-white mb-4'>Filters:</h2>
                     {Object.keys(categories).map((category) => (
                         <div key={category} className='mb-2'>
-                            <label className='text-white'>{category}:</label>
-                            {categories[category].map((filter) => (
-                                <label key={filter} className='ml-2 text-white'>
+                            <label className='text-white font-black'>{category}:</label>
+                            <div className='flex-col space-x-2'>
+                                {categories[category].map((filter) => (
+                                    <label key={filter} className='ml-2 text-white flex items-center'>
+                                        <input
+                                            type="radio"
+                                            value={filter}
+                                            checked={selectedFilter === filter}
+                                            onChange={() => applyFilter(filter)}
+                                        />
+                                        {filter}
+                                    </label>
+                                ))}
+                                <label className='ml-2 text-white flex items-center'>
                                     <input
                                         type="radio"
-                                        value={filter}
-                                        checked={selectedFilter === filter}
-                                        onChange={() => applyFilter(filter)}
+                                        value=""
+                                        checked={selectedFilter === ""}
+                                        onChange={() => applyFilter("")} // Deselect filter
                                     />
-                                    {filter}
+                                    All
                                 </label>
-                            ))}
-                            <label className='ml-2 text-white'>
-                                <input
-                                    type="radio"
-                                    value=""
-                                    checked={selectedFilter === ""}
-                                    onChange={() => applyFilter("")} // Deselect filter
-                                />
-                                All
-                            </label>
+                            </div>
                         </div>
                     ))}
                 </div>
 
-                <div>
+                <div className={`w-full mt-4 sm:mt-0 ${showFilters ? 'sm:ml-0' : ''}`}>
                     {
                         data?.lenght === 0 ? (
                             <div>
                                 <h1>No Item Found</h1>
                             </div>
                         ) : (
-                            <div className="flex flex-wrap justify-center gap-4 px-5">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-5">
                                 {searchData.map((item, index) => {
                                     return (
                                         <StoreCard {...item} storeItem={storeItem} setItem={setItem} />

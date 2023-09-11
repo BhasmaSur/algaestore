@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { ItemContext } from '../../utils/ItemContext';
 import { motion } from 'framer-motion';
 import { children_variant } from "./helper/framer-motion";
@@ -31,7 +31,21 @@ const StoreCard = ({ product_id, image_url, name, storeItem, setItem }) => {
 
     const handleParams = () => {
         const modifiedPathname = pathname.replace('/store', '/')
-        router.push(modifiedPathname + '/products?productid='+product_id)
+        router.push(modifiedPathname + '/products?productid=' + product_id)
+    }
+
+    const getProductDetails = async () => {
+        const response = await fetch(`http://localhost:3000/api/products?productId=${product_id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json', // Include your custom headers here
+                // Other headers if needed
+            },
+        }).then(res => res.json()).then((res) => {
+            setData(res);
+            setSearchdata(res);
+            console.log(res)
+        });
     }
 
     return (
