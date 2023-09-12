@@ -14,6 +14,11 @@ export const FARMER_SETTINGS =[
         name : "Contact Details",
         to : "/contact-details"
     },
+    {
+        id : 4,
+        name : "Logout",
+        to : "/logout"
+    }
 ]
 
 export const BUYER_SETTINGS = [
@@ -37,6 +42,11 @@ export const BUYER_SETTINGS = [
         name : "Contact Details",
         to : "/contact-details"
     },
+    {
+        id : 5,
+        name : "Logout",
+        to : "/logout"
+    }
 ]
 
 export const COMMON_SETTINGS = [

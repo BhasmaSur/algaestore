@@ -2,7 +2,9 @@ export const CONTROLLERS={
     login: "login",
     signup: "signup",
     products: "products",
-    getallproducts: "getallproducts"
+    getallproducts: "getallproducts",
+    getSellerProfile: "getSellerProfile",
+    getBuyerProfile: "getBuyerProfile",
 }
 
 export const METHODS={
