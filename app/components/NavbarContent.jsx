@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { USER_BUYER_ROLE } from "../constants/userConstants";
 import { BUYER_SETTINGS, FARMER_SETTINGS } from "../constants/settings";
 import { menuDetails } from "../constants/menuDetails";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 
 const itemVariants = {
   closed: {
@@ -42,13 +42,19 @@ const NavbarContent = ({ navObject }) => {
   const [openMenu, cycleOpenMenu] = useCycle(false, true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [links, setLinks] = useState([]);
-
   const router = useRouter();
 
   const redirectToPage = (redirectTo) => {
     console.log(redirectTo);
-    router.push(redirectTo)
   };
+
+  const openUsersProfile = () =>{
+    if(links === BUYER_SETTINGS){
+      router.push("/buyer-profile");
+    }else{
+      router.push("/seller-profile");
+    }
+  }
   useEffect(() => {
     const userDetails = getUserDetailsFromCookie();
     if (userDetails) {
@@ -72,14 +78,15 @@ const NavbarContent = ({ navObject }) => {
           whileInView="show"
           className={`${styles.xPaddings} py-8 relative bg-gradient-to-r from-gray-500 to-gray-900`}
         >
+          <div />
           <div
-            className={`${styles.innerWidth} max-auto flex justify-between gap-8 items-center`}
+            className={`${styles.innerWidth} max-auto flex justify-between gap-8`}
           >
-            {/* <img
+            <img
               src="/algaelogo.png"
-              alt="menu"
-              className="w-[200px] object-contain fill-white"
-            /> */}
+              alt="search"
+              className="w-[100px] object-contain"
+            />
             <div class="invisible lg:visible">
               <div
                 class="hidden w-full md:block md:w-auto"
@@ -99,32 +106,31 @@ const NavbarContent = ({ navObject }) => {
                 </ul>
               </div>
             </div>
-            <div className="flex gap-8 items-center">
+            <div className="flex gap-4">
               <Link href="/store">
                 <img
                   src="/store.svg"
                   alt="menu"
-                  className="w-[24px] h-[24px] object-contain fill-white"
+                  className="w-[24px] h-[24px] object-contain fill-white text-green-600"
                 />
               </Link>
-              {/* {isLoggedIn && (
+              {isLoggedIn && (
                 <img
                   className="w-[24px] h-[24px] object-contain fill-white text-green-600 cursor-pointer"
                   src="/defaultProfile.svg"
                   alt="Rounded avatar"
-                  onClick={cycleOpen}
+                  onClick={openUsersProfile}
                 />
-              )} */}
+              )}
               {!isLoggedIn && (
                 <Link
                   href="/login"
-                  className="block py-2 pl-3 pr-4 cursor-pointer text-white hover:bg-sky-700 rounded"
+                  className="text-white p-1 text-xs"
                 >
                   Login
                 </Link>
               )}
-            </div>
-            {/* <div class="lg:invisible">
+              <div class="lg:invisible">
                 {openMenu ? (
                   <img
                     src="/close.svg"
@@ -141,10 +147,11 @@ const NavbarContent = ({ navObject }) => {
                     onClick={cycleOpenMenu}
                   />
                 )}
-              </div> */}
+              </div>
+            </div>
           </div>
         </motion.nav>
-        {/* <AnimatePresence>
+        <AnimatePresence>
           {open && (
             <motion.aside
               initial={{ width: 0 }}
@@ -247,7 +254,7 @@ const NavbarContent = ({ navObject }) => {
               </motion.div>
             </motion.aside>
           )}
-        </AnimatePresence> */}
+        </AnimatePresence>
       </Provider>
     </div>
   );
