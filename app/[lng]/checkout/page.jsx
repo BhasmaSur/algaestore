@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import CheckoutItem from './CheckoutItem';
+import CheckoutItem from './checkoutItem';
 import store from '../../utils/store';
 
 const page = () => {
