@@ -50,7 +50,7 @@ const Products = () => {
 
   const getProductDetails = async () => {
     const response = await fetch(
-      `http://localhost:3000/api/products?productId=${pi}`,
+      `https://www.algaestore.in/api/products?productId=${pi}`,
       {
         method: 'GET',
         headers: {
