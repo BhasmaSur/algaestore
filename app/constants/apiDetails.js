@@ -5,6 +5,8 @@ export const CONTROLLERS={
     getallproducts: "getallproducts",
     getSellerProfile: "getSellerProfile",
     getBuyerProfile: "getBuyerProfile",
+    saveSellerProfile: "saveSellerProfile",
+    saveBuyerProfile: "saveBuyerProfile",
 }
 
 export const METHODS={

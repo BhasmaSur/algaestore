@@ -45,7 +45,7 @@ const NavbarContent = ({ navObject }) => {
   const router = useRouter();
 
   const redirectToPage = (redirectTo) => {
-    console.log(redirectTo);
+    router.push(redirectTo)
   };
 
   const openUsersProfile = () =>{
