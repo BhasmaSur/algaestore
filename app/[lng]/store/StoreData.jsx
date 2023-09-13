@@ -31,10 +31,6 @@ const StoreData = ({ storeItem, setItem }) => {
     };
 
     const getStoreData = async () => {
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/main
         const response = await fetch('http://localhost:3000/api/getallproducts', {
             method: 'GET',
             headers: {

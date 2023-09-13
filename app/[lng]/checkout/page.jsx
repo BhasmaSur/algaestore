@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Provider } from 'react-redux';
-import checkoutItem from './checkoutItem';
+import CheckoutItem from './CheckoutItem';
 import store from '../../utils/store';
 
 const page = () => {
@@ -12,7 +12,7 @@ const page = () => {
     return (
         <div className="bg-primary-black min-h-screen">
             <Provider store={store}>
-                <checkoutItem />
+                <CheckoutItem />
             </Provider>
         </div>
     )
