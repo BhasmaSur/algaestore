@@ -13,7 +13,6 @@ const page = () => {
   return (
     <div className="bg-primary-black overflow-hidden top-0 left-0 w-full h-full">
       <Provider store = {store}>
-        {/* <StoreHeader storeItem = {storeItem}/> */}
         <StoreData storeItem = {storeItem} setItem={setItem}/>
       </Provider>
     </div>
