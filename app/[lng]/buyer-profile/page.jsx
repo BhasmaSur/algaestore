@@ -101,6 +101,10 @@ const Profile = () => {
     router.push('/');
   }
 
+  const redirectTo = () => {
+    router.push('/edit-buyer-profile');
+  };
+
   return (
     <>
       {userProfileData && (
@@ -139,7 +143,7 @@ const Profile = () => {
                   </div>
                 </div>
                 <div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-                  <button class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                  <button onClick={redirectTo} class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                     EDIT PROFILE
                   </button>
                   <button onClick={logout} class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
