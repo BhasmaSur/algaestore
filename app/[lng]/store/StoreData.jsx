@@ -90,7 +90,7 @@ const StoreData = ({ storeItem, setItem }) => {
                     <Link href={`/`}>
                         <img
                             src="/arrow-back.png"
-                            alt="search"
+                            alt="back"
                             className="w-10 h-10"
                         />
                     </Link>
@@ -103,8 +103,8 @@ const StoreData = ({ storeItem, setItem }) => {
                                 <input onChange={(e) => {
                                     setSearchtext(e.target.value)
                                 }} type="text"
-                                    placeholder="enter your search here"
-                                    className="rounded-full flex-1 px-0 py-2 text-gray-700 focus:outline-none sm:w-64 md:w-auto" />
+                                    placeholder="Enter your search here"
+                                    className="rounded-full flex-1 px-0 py-2 ml-2 text-gray-700 focus:outline-none sm:w-64 md:w-auto" />
                                 <button onClick={(e) => {
                                     e.preventDefault();
                                     const newData = filterData(searchText, data, selectedFilter)

@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 
-const StoreCard = ({ product_id, image_url, name, storeItem, setItem }) => {
+const StoreCard = ({ product_id, image_url, name, price, storeItem, setItem }) => {
 
     // const { items, addItem } = useItemContext();
 
@@ -34,19 +34,7 @@ const StoreCard = ({ product_id, image_url, name, storeItem, setItem }) => {
         router.push(modifiedPathname + '/products?productid=' + product_id)
     }
 
-    const getProductDetails = async () => {
-        const response = await fetch(`http://localhost:3000/api/products?productId=${product_id}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json', // Include your custom headers here
-                // Other headers if needed
-            },
-        }).then(res => res.json()).then((res) => {
-            setData(res);
-            setSearchdata(res);
-            console.log(res)
-        });
-    }
+    
 
     return (
         <motion.div variants={children_variant} className="cursor-pointer group relative card border-[1px] border-[#dbdbdb] rounded-[12px] overflow-hidden bg-white">
@@ -70,12 +58,12 @@ const StoreCard = ({ product_id, image_url, name, storeItem, setItem }) => {
                             ({120})
                         </p>
                     </div>
-                    <p className="mt-3 font-bold text-[1.6rem] ">₹{120}</p>
+                    <p className="mt-3 font-bold text-[1.6rem] ">${price}</p>
                 </div>
             </div>
             <button
 
-                onClick={() => { addWeedItem({ image_url, name }) }}
+                onClick={() => { addWeedItem({ product_id, image_url, name, price }) }}
                 className="absolute bottom-[-100%] group-hover:bottom-0 bg-[#001134] w-full text-[1.5rem] font-semibold text-white p-5 z-10 transition-all  flex items-center justify-center gap-x-4"
             >
                 <ShoppingBagIcon className="w-8 h-8" />

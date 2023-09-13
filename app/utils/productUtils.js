@@ -12,7 +12,7 @@ export const productDetails = async (productId) => {
             const extractedProductId = parseInt(docID.split("_")[1]);
             const numbericalProdcutId = parseInt(productId);
             // console.log("extractedProductId", extractedProductId)
-            // console.log("productId", productId)
+            // console.log("numbericalProdcutId", productId)
             if(extractedProductId === numbericalProdcutId){
                 const productData = doc.data()
                 productDataArray.push(productData)

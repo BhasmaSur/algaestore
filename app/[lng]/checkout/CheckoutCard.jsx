@@ -1,18 +1,11 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { children_variant } from "./helper/framer-motion";
-import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { useDispatch } from 'react-redux';
 import { removeItem } from '../../utils/cartSlice';
 
-const CartCard = ({ product_id, image_url, name, price}) => {
-    const dispatch = useDispatch();
-    const removeWeedItem = (item) => {
-        dispatch(removeItem(item))
-    }
+const CheckourCard = ({ poduct_id, price, image_url, name }) => {
     return (
-        <motion.div variants={children_variant} className="cursor-pointer group relative card border-[1px] border-[#dbdbdb] rounded-[12px] overflow-hidden bg-white">
+        <div className="cursor-pointer group relative card border-[1px] border-[#dbdbdb] rounded-[12px] overflow-hidden bg-white">
             <img
                 src={image_url}
                 width={600}
@@ -35,16 +28,10 @@ const CartCard = ({ product_id, image_url, name, price}) => {
                 </div>
                 <p className="mt-3 font-bold text-[1.6rem] ">${price}</p>
             </div>
-            <button
 
-                onClick={() => {removeWeedItem({ image_url, name })}}
-                className="absolute bottom-[-100%] group-hover:bottom-0 bg-[#001134] w-full text-[1.5rem] font-semibold text-white p-5 z-10 transition-all  flex items-center justify-center gap-x-4"
-            >
-                <ShoppingBagIcon className="w-8 h-8" />
-                Remove Item
-            </button>
-        </motion.div>
+ 
+        </div>
     )
 }
 
-export default CartCard;
+export default CheckourCard;

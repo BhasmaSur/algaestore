@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react';
 import httpService from '../../services/httpService';
-import {API, CONTROLLERS, METHODS} from '../../constants/apiDetails'
+import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails'
 
 const Products = () => {
 
@@ -36,18 +36,30 @@ const Products = () => {
         "location": "Dariaoganj"
     }
 
-    const getProductDetails = () => {
-        const productId = "121"
-        httpService(CONTROLLERS.products, METHODS.get, productId, API).then((res) => {
-            if(res){
-                console.log("product details", res)
-            }
-            else{
-                console.log("No response")
-            }
-        })
-    }
+    // const getProductDetails = () => {
+    //     const productId = "121"
+    //     httpService(CONTROLLERS.products, METHODS.get, productId, API).then((res) => {
+    //         if(res){
+    //             console.log("product details", res)
+    //         }
+    //         else{
+    //             console.log("No response")
+    //         }
+    //     })
+    // }
 
+    const getProductDetails = async () => {
+        const response = await fetch(`http://localhost:3000/api/products?productId=${pi}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json', // Include your custom headers here
+                // Other headers if needed
+            },
+        }).then(res => res.json()).then((res) => {
+            setProductdetails(res);
+            console.log("api data", res)
+        });
+    }
 
 
     useEffect(() => {
@@ -58,14 +70,14 @@ const Products = () => {
 
     return (
         <div>
-            <h1>Product ID : {pi}</h1>
+            {/* <h1>Product ID : {pi}</h1> */}
             <section class="text-gray-700 body-font overflow-hidden bg-white">
                 <div class="container px-5 py-24 mx-auto">
                     <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                        <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src={Product.image_url} />
+                        <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src={productDetails[0]?.image_url} />
                         <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                            <h2 class="text-sm title-font text-gray-500 tracking-widest">{Product.brand}</h2>
-                            <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{Product.name}</h1>
+                            <h2 class="text-sm title-font text-gray-500 tracking-widest">{productDetails[0]?.brand}</h2>
+                            <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{productDetails[0]?.name}</h1>
                             <div class="flex mb-4">
                                 <span class="flex items-center">
                                     <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-red-500" viewBox="0 0 24 24">
@@ -103,7 +115,7 @@ const Products = () => {
                                         </a>
                                     </span> */}
                             </div>
-                            <p class="leading-relaxed">{Product.description}</p>
+                            <p class="leading-relaxed">{productDetails[0]?.description}</p>
                             <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
                                 {/* <div class="flex">
                                         <span class="mr-3">Color</span>
@@ -128,31 +140,32 @@ const Products = () => {
                                         </div>
                                     </div> */}
                             </div>
-                            <div class="mt-6">
+                            {productDetails[0]?.ingredients && (<div class="mt-6">
                                 <h2 class="text-lg font-medium text-gray-900 mb-2">Ingredients</h2>
                                 <table class="table-auto w-full">
                                     <tbody>
-                                        {Product.ingredients.map((ingredient, index) => (
+                                        {Object?.entries(productDetails[0]?.ingredients[0]).map(([ingredient, quantity], index) => (
                                             <tr key={index}>
-                                                <td class="pr-4 py-2">{ingredient.name}</td>
-                                                <td class="pr-4 py-2">{ingredient.quantity}</td>
+                                                <td class="pr-4 py-2">{ingredient}</td>
+                                                <td class="pr-4 py-2">{quantity}</td>
                                             </tr>
                                         ))}
                                     </tbody>
                                 </table>
-                            </div>
+                            </div>)
+                            }
                             <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>
                             <div class="mt-6">
-                                <h2 class="text-lg font-medium text-gray-900 mb-2">Supplier</h2>
-                                <p class="text-blue-500 hover:underline">
+                                <h2 class="text-lg font-medium text-black mb-2">Supplier</h2>
+                                <p className="text-blue-500 hover:underline">
                                     <Link href='/profile'>
-                                        {Product.supplier}
+                                        <span className="text-blue-500 hover:underline">{productDetails[0]?.supplier}</span>
                                     </Link>
                                 </p>
-                                <p class="text-gray-500">{Product.location}</p>
+                                <p class="text-gray-500 ml-6">{productDetails[0]?.location}</p>
                             </div>
                             <div class="flex mt-10">
-                                <span class="title-font font-medium text-2xl text-gray-900">${Product.price}</span>
+                                <span class="title-font font-medium text-2xl text-gray-900">${productDetails[0]?.price}</span>
                                 <button class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Buy Now</button>
                                 <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                                     <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
