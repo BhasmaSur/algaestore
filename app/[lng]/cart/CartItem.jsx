@@ -7,13 +7,10 @@ import { useDispatch } from 'react-redux';
 import { clearCart } from '../../utils/cartSlice';
 import { useRouter } from 'next/navigation';
 
-const CartItem = () => {
-  // const { items, addItem } = useItemContext();
-
-  const cartItems = useSelector((store) => store.cart.items);
-  const dispatch = useDispatch();
+const CartItem = ({cartItems}) => {
   const handleClear = () => {
-    dispatch(clearCart());
+    localStorage.clear();
+    window.location.reload();
   };
 
   const router = useRouter();
@@ -26,7 +23,7 @@ const CartItem = () => {
     <div className="flex flex-col items-center gap-4 justify-center">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-5">
         {cartItems.map((item, index) => {
-          return <CartCard {...item} />;
+          return <CartCard {...item} itemIndex={index}/>;
         })}
       </div>
       <div className="flex justify-center items-center">
