@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { filterData } from '../../utils/helper';
 import httpService from '../../services/httpService';
 import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
+import { getUserDetailsFromCookie } from '../../services/auth';
 
 const StoreData = ({ storeItem, setItem }) => {
   const [data, setData] = useState([]);
@@ -17,7 +18,7 @@ const StoreData = ({ storeItem, setItem }) => {
   const [searchText, setSearchtext] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('');
   const [showFilters, setShowFilters] = useState(false);
-
+  const userDetails = getUserDetailsFromCookie();
   const categories = {
     Harvested: ['Wet Seaweed', 'Dry Seaweed', 'Seed Material'],
     Processed: [
@@ -36,7 +37,7 @@ const StoreData = ({ storeItem, setItem }) => {
 
   const getStoreData = async () => {
     const response = await fetch(
-      'https://www.algaestore.in/api/getallproducts',
+      'http://localhost:3000/api/getallproducts',
       {
         method: 'GET',
         headers: {
@@ -80,6 +81,8 @@ const StoreData = ({ storeItem, setItem }) => {
   const cartItems = useSelector((store) => [store.cart.items]);
 
   const handleClick = () => {
+    console.log("stored data " ,cartItems)
+    localStorage.setItem('cart-items', JSON.stringify(cartItems[0]));
     router.push('/cart');
   };
 
@@ -206,6 +209,7 @@ const StoreData = ({ storeItem, setItem }) => {
                     {...item}
                     storeItem={storeItem}
                     setItem={setItem}
+                    userDetails={userDetails}
                   />
                 );
               })}

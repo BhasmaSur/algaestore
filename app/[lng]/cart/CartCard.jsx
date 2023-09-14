@@ -6,10 +6,14 @@ import { StarIcon } from '@heroicons/react/24/solid';
 import { useDispatch } from 'react-redux';
 import { removeItem } from '../../utils/cartSlice';
 
-const CartCard = ({ product_id, image_url, name, price }) => {
+const CartCard = ({ product_id, image_url, name, price, itemIndex }) => {
   const dispatch = useDispatch();
   const removeWeedItem = (item) => {
-    dispatch(removeItem(item));
+    let cartItems = JSON.parse(localStorage.getItem('cart-items'));
+    cartItems.splice(itemIndex-1, 1)
+    localStorage.setItem('cart-items', JSON.stringify(cartItems))
+    window.location.reload();
+    console.log(cartItems)
   };
   return (
     <motion.div

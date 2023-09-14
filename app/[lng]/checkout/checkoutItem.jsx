@@ -3,13 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import CheckourCard from './CheckoutCard';
 import { useSelector } from 'react-redux';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { getUserDetailsFromCookie } from '../../services/auth';
 import { USER_BUYER_ROLE } from '../../constants/userConstants';
 
 const CheckoutItem = () => {
-  const cartItems = useSelector((store) => store.cart.items);
+  // const cartItems = useSelector((store) => store.cart.items);
   // console.log("cartitem", cartItems)
+  const searchParams = useSearchParams()
+  const cartItems = JSON.parse(localStorage.getItem('cart-items'))
   const router = useRouter();
 
   const [total, setTotal] = useState(0);

@@ -18,6 +18,7 @@ const StoreCard = ({
   price,
   storeItem,
   setItem,
+  userDetails,
 }) => {
   // const { items, addItem } = useItemContext();
 
