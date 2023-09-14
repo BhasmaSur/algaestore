@@ -10,8 +10,10 @@ const CartCard = ({ product_id, image_url, name, price, itemIndex }) => {
   const dispatch = useDispatch();
   const removeWeedItem = (item) => {
     let cartItems = JSON.parse(localStorage.getItem('cart-items'));
-    cartItems[0].splice(itemIndex, 1)
-    console.log(cartItems[0])
+    cartItems.splice(itemIndex-1, 1)
+    localStorage.setItem('cart-items', JSON.stringify(cartItems))
+    window.location.reload();
+    console.log(cartItems)
   };
   return (
     <motion.div

@@ -18,7 +18,7 @@ const page = () => {
                 <h1 className='font-bold text-white m-8'>CART</h1>
             </div>
             <Provider store={store}>
-                <CartItem cartItems={cartItems ? cartItems[0] : []}/>
+                <CartItem cartItems={cartItems ? cartItems : []}/>
             </Provider>
         </div>
     );

@@ -81,7 +81,8 @@ const StoreData = ({ storeItem, setItem }) => {
   const cartItems = useSelector((store) => [store.cart.items]);
 
   const handleClick = () => {
-    localStorage.setItem('cart-items', JSON.stringify(cartItems));
+    console.log("stored data " ,cartItems)
+    localStorage.setItem('cart-items', JSON.stringify(cartItems[0]));
     router.push('/cart');
   };
 
