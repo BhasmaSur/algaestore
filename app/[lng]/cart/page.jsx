@@ -5,14 +5,12 @@ import CartItem from './CartItem';
 import { useRouter } from 'next/navigation';
 import { Provider } from 'react-redux';
 import store from '../../utils/store';
-
+import { useSearchParams } from 'next/navigation'
 const page = () => {
+    const searchParams = useSearchParams()
+    const cartItems = JSON.parse(localStorage.getItem('cart-items'))
 
-    const router = useRouter();
-    // const {items} = router?.query;
-
-    // const parsedItems = items ? JSON.parse(items) : [];
-    // console.log("Item in the cart", parsedItems)
+    console.log("Item in the cart", cartItems)
 
     return (
         <div className="bg-primary-black min-h-screen">
@@ -20,7 +18,7 @@ const page = () => {
                 <h1 className='font-bold text-white m-8'>CART</h1>
             </div>
             <Provider store={store}>
-                <CartItem />
+                <CartItem cartItems={cartItems ? cartItems : []}/>
             </Provider>
         </div>
     );

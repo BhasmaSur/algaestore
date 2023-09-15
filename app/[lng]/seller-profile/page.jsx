@@ -34,10 +34,14 @@ const ProfilePage = () => {
   }, []);
 
   const loggedIn = true;
-  const logout = () =>{
-    removeAllCookies()
+  const logout = () => {
+    removeAllCookies();
     router.push('/');
-  }
+  };
+
+  const redirectTo = () => {
+    router.push('/edit-seller-profile');
+  };
   return (
     <>
       {userProfileData && (
@@ -95,10 +99,16 @@ const ProfilePage = () => {
                     {loggedIn ? (
                       <>
                         {' '}
-                        <button className="bg-indigo-600 mr-2 text-white py-2 px-4 rounded-md">
+                        <button
+                          onClick={redirectTo}
+                          className="bg-indigo-600 mr-2 text-white py-2 px-4 rounded-md"
+                        >
                           Edit Profile
                         </button>
-                        <button onClick={logout} className="bg-indigo-600 text-white py-2 px-4 rounded-md">
+                        <button
+                          onClick={logout}
+                          className="bg-indigo-600 text-white py-2 px-4 rounded-md"
+                        >
                           Logout
                         </button>
                       </>

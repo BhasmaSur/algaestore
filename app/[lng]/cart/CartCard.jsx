@@ -1,11 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { children_variant } from "./helper/framer-motion";
-import { ShoppingBagIcon } from "@heroicons/react/24/outline";
-import { StarIcon } from "@heroicons/react/24/solid";
+import { children_variant } from './helper/framer-motion';
+import { ShoppingBagIcon } from '@heroicons/react/24/outline';
+import { StarIcon } from '@heroicons/react/24/solid';
 import { useDispatch } from 'react-redux';
 import { removeItem } from '../../utils/cartSlice';
 
+<<<<<<< HEAD
 const CartCard = ({ product_id, image_url, name, price}) => {
     const dispatch = useDispatch();
     const removeWeedItem = (item) => {
@@ -36,15 +37,53 @@ const CartCard = ({ product_id, image_url, name, price}) => {
                 <p className="mt-3 font-bold text-[1.6rem] ">${price}</p>
             </div>
             <button
-
-                onClick={() => {removeWeedItem({ image_url, name })}}
-                className="absolute bottom-[-100%] group-hover:bottom-0 bg-[#001134] w-full text-[1.5rem] font-semibold text-white p-5 z-10 transition-all  flex items-center justify-center gap-x-4"
-            >
-                <ShoppingBagIcon className="w-8 h-8" />
-                Remove Item
-            </button>
-        </motion.div>
-    )
-}
+=======
+const CartCard = ({ product_id, image_url, name, price, itemIndex }) => {
+  const dispatch = useDispatch();
+  const removeWeedItem = (item) => {
+    let cartItems = JSON.parse(localStorage.getItem('cart-items'));
+    cartItems.splice(itemIndex-1, 1)
+    localStorage.setItem('cart-items', JSON.stringify(cartItems))
+    window.location.reload();
+    console.log(cartItems)
+  };
+  return (
+    <motion.div
+      variants={children_variant}
+      className="cursor-pointer group relative card border-[1px] border-[#dbdbdb] rounded-[12px] overflow-hidden bg-white"
+    >
+      <img
+        src={image_url}
+        width={600}
+        height={200}
+        alt="product"
+        className="mx-auto w-full md:w-[15rem] h-[15rem] object-cover"
+        loading="lazy"
+      />
+      <div className="card-body p-9 ">
+        {name}
+        <div className="flex items-center gap-x-3 my-6">
+          <div className="flex items-center gap-x-2">
+            {[...Array(5)].map((item, index) => (
+              <StarIcon key={index} color="#FBBF24" className="w-6 h-6" />
+            ))}
+          </div>
+          <p className="text-[#6B81A1] text-2xl font-semibold">({120})</p>
+        </div>
+        <p className="mt-3 font-bold text-[1.6rem] ">${price}</p>
+      </div>
+      <button
+        onClick={() => {
+          removeWeedItem({ image_url, name });
+        }}
+        className="absolute bottom-[-100%] group-hover:bottom-0 bg-[#001134] w-full text-[1.5rem] font-semibold text-white p-5 z-10 transition-all  flex items-center justify-center gap-x-4"
+      >
+        <ShoppingBagIcon className="w-8 h-8" />
+        Remove Item
+      </button>
+    </motion.div>
+  );
+};
+>>>>>>> aa538517e5fcc6460ea866fd8df92b825adbd2dd
 
 export default CartCard;
