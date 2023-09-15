@@ -5,11 +5,7 @@ import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import httpService from '../../services/httpService';
-<<<<<<< HEAD
-import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails'
-=======
 import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
->>>>>>> aa538517e5fcc6460ea866fd8df92b825adbd2dd
 
 const Products = () => {
   const searchParams = useSearchParams();
@@ -70,70 +66,6 @@ const Products = () => {
       });
   };
 
-<<<<<<< HEAD
-    // const getProductDetails = () => {
-    //     const productId = "121"
-    //     httpService(CONTROLLERS.products, METHODS.get, productId, API).then((res) => {
-    //         if(res){
-    //             console.log("product details", res)
-    //         }
-    //         else{
-    //             console.log("No response")
-    //         }
-    //     })
-    // }
-
-    const getProductDetails = async () => {
-        const response = await fetch(`http://localhost:3000/api/products?productId=${pi}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json', // Include your custom headers here
-                // Other headers if needed
-            },
-        }).then(res => res.json()).then((res) => {
-            setProductdetails(res);
-            console.log("api data", res)
-        });
-    }
-
-
-    useEffect(() => {
-        getProductDetails();
-    }, [])
-
-
-
-    return (
-        <div>
-            {/* <h1>Product ID : {pi}</h1> */}
-            <section class="text-gray-700 body-font overflow-hidden bg-white">
-                <div class="container px-5 py-24 mx-auto">
-                    <div class="lg:w-4/5 mx-auto flex flex-wrap">
-                        <img alt="ecommerce" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src={productDetails[0]?.image_url} />
-                        <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-                            <h2 class="text-sm title-font text-gray-500 tracking-widest">{productDetails[0]?.brand}</h2>
-                            <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{productDetails[0]?.name}</h1>
-                            <div class="flex mb-4">
-                                <span class="flex items-center">
-                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                    </svg>
-                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                    </svg>
-                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                    </svg>
-                                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                    </svg>
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-red-500" viewBox="0 0 24 24">
-                                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                    </svg>
-                                    <span class="text-gray-600 ml-3">4 Reviews</span>
-                                </span>
-                                {/* <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
-=======
   useEffect(() => {
     getProductDetails();
   }, []);
@@ -216,7 +148,6 @@ const Products = () => {
                   <span class="text-gray-600 ml-3">4 Reviews</span>
                 </span>
                 {/* <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
->>>>>>> aa538517e5fcc6460ea866fd8df92b825adbd2dd
                                         <a class="text-gray-500">
                                             <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
                                                 <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
@@ -233,17 +164,10 @@ const Products = () => {
                                             </svg>
                                         </a>
                                     </span> */}
-<<<<<<< HEAD
-                            </div>
-                            <p class="leading-relaxed">{productDetails[0]?.description}</p>
-                            <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-                                {/* <div class="flex">
-=======
               </div>
               <p class="leading-relaxed">{productDetails[0]?.description}</p>
               <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
                 {/* <div class="flex">
->>>>>>> aa538517e5fcc6460ea866fd8df92b825adbd2dd
                                         <span class="mr-3">Color</span>
                                         <button class="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
                                         <button class="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
@@ -265,44 +189,6 @@ const Products = () => {
                                             </span>
                                         </div>
                                     </div> */}
-<<<<<<< HEAD
-                            </div>
-                            {productDetails[0]?.ingredients && (<div class="mt-6">
-                                <h2 class="text-lg font-medium text-gray-900 mb-2">Ingredients</h2>
-                                <table class="table-auto w-full">
-                                    <tbody>
-                                        {Object?.entries(productDetails[0]?.ingredients[0]).map(([ingredient, quantity], index) => (
-                                            <tr key={index}>
-                                                <td class="pr-4 py-2">{ingredient}</td>
-                                                <td class="pr-4 py-2">{quantity}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>)
-                            }
-                            <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>
-                            <div class="mt-6">
-                                <h2 class="text-lg font-medium text-black mb-2">Supplier</h2>
-                                <p className="text-blue-500 hover:underline">
-                                    <Link href='/profile'>
-                                        <span className="text-blue-500 hover:underline">{productDetails[0]?.supplier}</span>
-                                    </Link>
-                                </p>
-                                <p class="text-gray-500 ml-6">{productDetails[0]?.location}</p>
-                            </div>
-                            <div class="flex mt-10">
-                                <span class="title-font font-medium text-2xl text-gray-900">${productDetails[0]?.price}</span>
-                                <button class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">Buy Now</button>
-                                <button class="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-=======
               </div>
               {productDetails[0]?.ingredients && (
                 <div class="mt-6">
@@ -321,7 +207,6 @@ const Products = () => {
                       )}
                     </tbody>
                   </table>
->>>>>>> aa538517e5fcc6460ea866fd8df92b825adbd2dd
                 </div>
               )}
               <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5"></div>

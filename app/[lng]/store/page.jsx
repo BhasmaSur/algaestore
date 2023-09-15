@@ -11,13 +11,8 @@ const page = () => {
 
   return (
     <div className="bg-primary-black overflow-hidden top-0 left-0 w-full h-full">
-<<<<<<< HEAD
-      <Provider store = {store}>
-        <StoreData storeItem = {storeItem} setItem={setItem}/>
-=======
       <Provider store={store}>
         <StoreData storeItem={storeItem} setItem={setItem} />
->>>>>>> aa538517e5fcc6460ea866fd8df92b825adbd2dd
       </Provider>
     </div>
   );
