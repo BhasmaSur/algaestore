@@ -7,6 +7,7 @@ import { getUserDetailsFromCookie } from '../../services/auth';
 import { USER_BUYER_ROLE } from '../../constants/userConstants';
 
 const CheckoutItem = () => {
+  const searchParams = useSearchParams()
   const cartItems = JSON.parse(localStorage.getItem('cart-items'))
   const router = useRouter();
 
