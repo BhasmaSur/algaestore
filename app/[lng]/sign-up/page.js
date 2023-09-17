@@ -7,7 +7,7 @@ import { ADMIN_AUTHENTICATION } from '../../demo-data/login-data';
 import { setCookieDetails } from '../../utils/loginUtils';
 import httpService from '../../services/httpService';
 import { API, APIS, CONTROLLERS, METHODS } from '../../constants/apiDetails';
-import { USER_BUYER_ROLE, USER_FARMER_ROLE } from '../../constants/userConstants';
+import { USER_BUYER_ROLE, USER_SELLER_ROLE } from '../../constants/userConstants';
 
 const Page = () => {
   const router = useRouter();
@@ -17,7 +17,7 @@ const Page = () => {
     let userDetails = {
       username,
       password,
-      type : USER_FARMER_ROLE
+      type : USER_SELLER_ROLE
     }
     httpService(CONTROLLERS.signup, METHODS.post, userDetails, API).then((res)=>{
       if(res){
