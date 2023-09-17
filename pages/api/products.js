@@ -1,3 +1,4 @@
+import { getProductsInArray } from "../../app/services/productService";
 import { productDetails } from "../../app/utils/productUtils";
 
 
@@ -18,9 +19,9 @@ export default async function handler(req, res) {
   try {
       if(method === 'GET'){
         const productId = query.productId
-        const productData = await productDetails(productId);
+        const productData = await getProductsInArray([productId])
         // console.log("Product id", productId)
-        if(productData){
+        if(productData.length){
           res.status(200).json(productData);
         }
         else{

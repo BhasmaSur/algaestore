@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { setCookieDetails, signUpValidations } from '../../utils/loginUtils';
 import httpService from '../../services/httpService';
 import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
-import { USER_BUYER_ROLE, USER_FARMER_ROLE, USER_SELLER_ROLE } from '../../constants/userConstants';
+import { USER_BUYER_ROLE, USER_SELLER_ROLE } from '../../constants/userConstants';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 const SignupScreen = () => {

@@ -26,3 +26,5 @@ export const productTypes ={
         ]
     }
 }
+
+export const PRODUCT_HEAD = "product_";
