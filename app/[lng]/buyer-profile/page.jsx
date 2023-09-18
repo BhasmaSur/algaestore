@@ -6,68 +6,8 @@ import { getUserDetailsFromCookie } from '../../services/auth';
 import httpService from '../../services/httpService';
 import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
 import { removeAllCookies } from '../../utils/loginUtils';
-// Dummy order history data
-const dummyOrderHistory = [
-  { id: 1, date: '2023-08-01', total: 100 },
-  { id: 2, date: '2023-08-05', total: 150 },
-  // Add more data as needed
-];
 
-const profiledata = {
-  name: 'Piyush Mishra',
-  email: 'pm@gmail.com',
-  contact: '+917007856878',
-  address: 'Benajhabar, kanpur 208001',
-  wishlist: 3,
-  totalorders: 4,
-  farmer: 2,
-  reviewsgiven: 0,
-  orderdetails: [
-    {
-      name: 'Seaweed Snack',
-      brand: 'Ocean Delights',
-      description:
-        'A delicious and nutritious seaweed snack with a hint of sea salt.',
-      price: 4.99,
-      weight: '50g',
-      ingredients: ['Organic Seaweed', 'Sunflower Oil', 'Sea Salt'],
-      image_url:
-        'https://www.salamat.gr/image/cache/catalog/GEORGINA%20ESHOP/04-03-22/EE11002-1080x1080.png',
-    },
-    {
-      name: 'Oceanic Nori Sheets',
-      brand: 'SeaweedCo',
-      description:
-        'Premium seaweed nori sheets for making sushi rolls and wraps.',
-      price: 9.99,
-      weight: '25 sheets',
-      ingredients: ['Seaweed Nori'],
-      image_url:
-        'https://cdn.shopify.com/s/files/1/0579/3149/7654/products/OCE8_large_a8180de7-daeb-4869-b1fb-6269f3a537e5.jpg?v=1674656643',
-    },
-    {
-      name: 'Seaweed Crisps',
-      brand: 'SeaCrunch',
-      description: 'Crunchy seaweed crisps seasoned with a blend of spices.',
-      price: 3.49,
-      weight: '30g',
-      ingredients: ['Seaweed', 'Canola Oil', 'Spices'],
-      image_url:
-        'https://cdn.shopify.com/s/files/1/0522/0125/9183/products/634158955907_T1.jpg?v=1665569729',
-    },
-    {
-      name: 'Sea Veggie Mix',
-      brand: 'SeaNutri',
-      description:
-        'A mix of different seaweed varieties for a healthy and nutrient-rich addition to meals.',
-      price: 6.99,
-      weight: '100g',
-      ingredients: ['Seaweed Mix (Dulse, Nori, Wakame)', 'Sea Lettuce'],
-      image_url:
-        'https://www.doorsteporganics.com.au/image/optimised/large/Sea-Vegetables-Toated-Fine-Cut-Nori-Nutritionist-Choice-25g.jpg',
-    },
-  ],
-};
+
 
 const Profile = () => {
   // State for edit profile section
@@ -86,8 +26,14 @@ const Profile = () => {
           API
         ).then((res) => {
           if (res) {
-            console.log(res.data);
-            setUserProfileData(res.data);
+            if(res.data.username){
+              setUserProfileData(res.data);
+            }else{
+              let userData = res.data;
+              userData.username = userDetails.emailId;
+              setUserProfileData(userData);
+            }
+            
           }
         });
       } else {
@@ -115,19 +61,19 @@ const Profile = () => {
                 <div class="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
                   <div>
                     <p class="font-bold text-gray-700 text-xl">
-                      {userProfileData.orderHistory.length}
+                      {userProfileData?.orderHistory?.length || 0}
                     </p>
                     <p class="text-gray-400">Orders</p>
                   </div>
                   <div>
                     <p class="font-bold text-gray-700 text-xl">
-                      {userProfileData.wishlist.length}
+                      {userProfileData?.wishlist?.length || 0}
                     </p>
                     <p class="text-gray-400">Wishlist</p>
                   </div>
                   <div>
                     <p class="font-bold text-gray-700 text-xl">
-                      {profiledata.reviewsgiven}
+                      {0}
                     </p>
                     <p class="text-gray-400">Reviews</p>
                   </div>{' '}
@@ -136,7 +82,7 @@ const Profile = () => {
                   <div class="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
                     <img
                       alt="farmer image"
-                      src={userProfileData.image_url}
+                      src={userProfileData?.image_url || '/genericImg.png'}
                       class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                       style={{ width: '150px', height: '150px' }}
                     />
@@ -153,16 +99,16 @@ const Profile = () => {
               </div>
               <div class="mt-20 text-center border-b pb-12">
                 <h1 class="text-4xl font-medium text-gray-700">
-                  {userProfileData.name}{' '}
+                  {userProfileData?.name || 'Name'}{' '}
                   <span class="font-light text-gray-500">27</span>
                 </h1>
                 <p class="font-light text-gray-600 mt-3">
-                  {userProfileData.city}
+                  {userProfileData?.city || 'City'}
                 </p>
                 <p class="mt-8 text-gray-500">
-                  Email - {userProfileData.username}
+                  Email - {userProfileData?.username}
                 </p>
-                <p class="mt-2 text-gray-500">{userProfileData.address}</p>
+                <p class="mt-2 text-gray-500">{userProfileData?.address || 'Address'}</p>
               </div>
 
               <div className="flex flex-col justify-center">

@@ -23,8 +23,12 @@ const ProfilePage = () => {
           },
           API
         ).then((res) => {
-          if (res) {
+          if(res.data.username){
             setUserProfileData(res.data);
+          }else{
+            let userData = res.data;
+            userData.username = userDetails.emailId;
+            setUserProfileData(userData);
           }
         });
       } else {
@@ -64,7 +68,7 @@ const ProfilePage = () => {
                       <div class="relative">
                         <img
                           alt="farmer image"
-                          src={userProfileData.image_url}
+                          src={userProfileData.image_url || '/genericImg.png'}
                           class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                           style={{ width: '150px', height: '150px' }}
                         />
@@ -76,11 +80,11 @@ const ProfilePage = () => {
                   </div>
                   <div class="text-center mt-12">
                     <h3 class="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                      {userProfileData.name}
+                      {userProfileData.name || 'Name'}
                     </h3>
                     <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
                       <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
-                      {userProfileData.city}
+                      {userProfileData.city || 'City'}
                     </div>
                     <div class="mb-2 text-blueGray-600 mt-10">
                       <i class="fas fa-envelope mr-2 text-lg text-blueGray-400"></i>
@@ -88,11 +92,7 @@ const ProfilePage = () => {
                     </div>
                     <div className="mb-2 text-blueGray-600">
                       <i className="fas fa-mobile mr-2 text-lg text-blueGray-400"></i>
-                      {loggedIn ? (
-                        userProfileData.phone
-                      ) : (
-                        <span>{userProfileData.phone.replace(/\d/g, '*')}</span>
-                      )}
+                      {userProfileData.phone || '88888888888'}
                     </div>
                   </div>
                   <div className="text-center m-4">

@@ -11,15 +11,17 @@ import {
 } from 'firebase/firestore';
 
 const getOrderHostoryInArray = async (ordersList) => {
-  const q = query(
-    collection(db, COLLECTIONS.TRANSACTION_DETAILS),
-    where('transactionId', 'in', ordersList)
-  );
   let transactionList = [];
-  const queryTransactionSnap = await getDocs(q);
-  queryTransactionSnap.forEach((doc) => {
-    transactionList.push(doc.data());
-  });
+  if(ordersList.length > 0){
+    const q = query(
+      collection(db, COLLECTIONS.TRANSACTION_DETAILS),
+      where('transactionId', 'in', ordersList)
+    );
+    const queryTransactionSnap = await getDocs(q);
+    queryTransactionSnap.forEach((doc) => {
+      transactionList.push(doc.data());
+    });
+  }
   return transactionList;
 };
 
