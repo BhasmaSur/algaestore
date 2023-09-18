@@ -15,15 +15,17 @@ import {
 } from 'firebase/firestore';
 
 const getProductsInArray = async (producList) => {
-  const q_Products = query(
-    collection(db, COLLECTIONS.PRODUCT_DETAILS),
-    where('product_id', 'in', producList)
-  );
   let publishedPrductsData = [];
-  const queryProductSnap = await getDocs(q_Products);
-  queryProductSnap.forEach((doc) => {
-    publishedPrductsData.push(doc.data());
-  });
+  if(producList.length > 0){
+    const q_Products = query(
+      collection(db, COLLECTIONS.PRODUCT_DETAILS),
+      where('product_id', 'in', producList)
+    );
+    const queryProductSnap = await getDocs(q_Products);
+    queryProductSnap.forEach((doc) => {
+      publishedPrductsData.push(doc.data());
+    });
+  }
   return publishedPrductsData;
 };
 

@@ -22,17 +22,19 @@ const getSellerProfileById = async (userID) => {
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     userProfileData = doc.data();
-    // if(userProfileData.type === USER_SELLER_ROLE){
-    //     userProfileData.username = "*****@*****",
-    //     userProfileData.phone = "*********"
-    // }
   });
-  const publishedProducts = await getProductsInArray(
-    userProfileData.publishedProducts
-  );
-  userProfileData.publishedProducts = [];
-  userProfileData.publishedProducts = publishedProducts;
-  return userProfileData;
+  if(userProfileData){
+    if(userProfileData.publishedProducts){
+      const publishedProducts = await getProductsInArray(
+        userProfileData.publishedProducts
+      );
+      userProfileData.publishedProducts = [];
+      userProfileData.publishedProducts = publishedProducts;
+    }
+    return userProfileData;
+  }else{
+    return {};
+  }
 };
 
 const getBuyerProfileById = async (userID) => {
@@ -45,15 +47,20 @@ const getBuyerProfileById = async (userID) => {
   querySnapshot.forEach((doc) => {
     userProfileData = doc.data();
   });
-  const orderHistory = await getOrderHostoryInArray(
-    userProfileData.orderHistory
-  );
-  const wishlist = await getProductsInArray(userProfileData.wishlist);
-  userProfileData.orderHistory = [];
-  userProfileData.wishlist = [];
-  userProfileData.orderHistory = orderHistory;
-  userProfileData.wishlist = wishlist;
-  return userProfileData;
+  if(userProfileData){
+    const orderHistory = await getOrderHostoryInArray(
+      userProfileData.orderHistory
+    );
+    const wishlist = await getProductsInArray(userProfileData.wishlist);
+    userProfileData.orderHistory = [];
+    userProfileData.wishlist = [];
+    userProfileData.orderHistory = orderHistory;
+    userProfileData.wishlist = wishlist;
+    return userProfileData;
+  }else{
+    return {};
+  }
+
 };
 
 const saveProfile = async (profileData) => {

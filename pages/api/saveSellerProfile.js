@@ -8,9 +8,11 @@ export default async function handler(req, res) {
   }
   let productIdsList = []
   let changedProfileData = req.body;
-  changedProfileData.publishedProducts.map((prod)=>{
-    productIdsList.push(prod.product_id)
-  })
+  if(changedProfileData.publishedProducts){
+    changedProfileData.publishedProducts.map((prod)=>{
+      productIdsList.push(prod.product_id)
+    })
+  }
   changedProfileData.publishedProducts = productIdsList;
   const isSaved = await saveProfile(changedProfileData)
   res.json(isSaved)

@@ -30,8 +30,12 @@ const page = () => {
           },
           API
         ).then((res) => {
-          if (res) {
+          if(res.data.username){
             setUserProfileData(res.data);
+          }else{
+            let userData = res.data;
+            userData.username = userDetails.emailId;
+            setUserProfileData(userData);
           }
         });
       } else {
