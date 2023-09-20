@@ -6,12 +6,12 @@ const Stats = () => {
         <div className="flex items-center">
           <div className="container max-w-1 px-0 lg:px-5 mx-1 my-28">
             <div className="grid gap-7 grid-cols-1 lg:grid-cols-1">
-              <div className="p-2 lg:p-5 bg-white rounded shadow-sm dark:bg-gray-800">
+              <div className="p-2 lg:p-5 bg-white rounded">
                 <div className="text-base text-dark lg:text-2xl dark:text-gray-300">
                   Sellers
                 </div>
                 <div className="flex items-center pt-1">
-                  <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <div className="text-2xl font-bold text-dark dark:text-gray-100">
                     200
                   </div>
                   <span className="flex items-center px-2 py-0.5 mx-2 text-sm rounded-full text-green-600 bg-green-100 dark:bg-green-900 dark:text-emerald-400">
@@ -56,7 +56,7 @@ const Stats = () => {
                   Buyers
                 </div>
                 <div className="flex items-center pt-1">
-                  <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <div className="text-2xl font-bold text-dark dark:text-gray-100">
                     10
                   </div>
                   <span className="flex items-center px-2 py-0.5 mx-2 text-sm rounded-full text-red-600 bg-red-100 dark:bg-red-900 dark:text-red-300">
@@ -96,12 +96,12 @@ const Stats = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-5 bg-white rounded shadow-sm dark:bg-gray-800">
+              <div className="p-5 bg-white rounded">
                 <div className="text-base text-dark lg:text-2xl dark:text-gray-300">
                   Products
                 </div>
                 <div className="flex items-center pt-1">
-                  <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                  <div className="text-2xl font-bold text-dark dark:text-gray-100">
                     10
                   </div>
                   <span className="flex items-center px-2 py-0.5 mx-2 text-sm rounded-full text-green-600 bg-green-100 dark:bg-green-900 dark:text-emerald-400">
