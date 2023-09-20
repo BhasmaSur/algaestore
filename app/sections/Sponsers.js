@@ -1,30 +1,30 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
 // PoweredBy.js
 
-const PoweredBy = () => {
+const Sponsers = () => {
   const imageCommonProps = {
-    target: "_blank",
-    rel: "noopener noreferrer",
-    className: "w-24 h-24 object-cover", // Fixed width and height for all images
+    target: '_blank',
+    rel: 'noopener noreferrer',
+    className: 'w-1/4 h-1/4 object-cover', // Fixed width and height for all images
   };
 
   return (
     <div className="text-center py-4">
-      <p className="text-white mb-6">Powered by:</p>
+      <p className="text-dark text-lg mb-4 lg:text-5xl lg:mb-20">Powered by:</p>
       <div className="flex justify-center items-center">
-        <div className="flex  space-x-6">
-          <a
-            href="https://techcamp.america.gov/techcamps/techcamp-kochi/" // Replace with your SVG link
-            {...imageCommonProps}
+        <div className="flex space-x-6 justify-center items-center">
+        <a
+          href="https://techcamp.america.gov/techcamps/techcamp-kochi/" // Replace with your SVG link
+          {...imageCommonProps}
           >
             <img
               class="logo-main  scale-with-grid"
               src="/TechCamp.png"
               alt="Centre for Public Policy Research (CPPR)"
-              className="mt-5"
+              className="mt-3"
             />
           </a>
           <a
@@ -55,4 +55,4 @@ const PoweredBy = () => {
   );
 };
 
-export default PoweredBy;
+export default Sponsers;
