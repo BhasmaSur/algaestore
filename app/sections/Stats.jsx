@@ -51,7 +51,7 @@ const Stats = () => {
                   </div>
                 </div>
               </div>
-              <div className="p-5 bg-white rounded shadow-sm dark:bg-gray-800">
+              <div className="p-5 bg-white rounded">
                 <div className="text-base text-dark lg:text-2xl dark:text-gray-300">
                   Buyers
                 </div>
