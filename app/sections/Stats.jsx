@@ -77,7 +77,7 @@ const Stats = () => {
                     <span>2.5%</span>
                   </span>
                 </div>
-                <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-2">
+                <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-2 order-last lg:order-first">
                   <div className="flex-row items-left pt-1">
                     <div>
                       Seaweed buyers, explore the ocean's bounty! Seaweed offers
@@ -91,7 +91,7 @@ const Stats = () => {
                       Explore All Buyers
                     </button>
                   </div>
-                  <div className="bg-indigo-300">
+                  <div className="bg-indigo-300 order-first lg:order-last">
                     <img className="object-fill" src="farmers.jpg" />
                   </div>
                 </div>

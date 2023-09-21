@@ -3,15 +3,15 @@ import { StarIcon } from '@heroicons/react/24/solid';
 import { useDispatch } from 'react-redux';
 import { removeItem } from '../../utils/cartSlice';
 
-const CheckourCard = ({ poduct_id, price, image_url, name }) => {
+const CheckourCard = ({ poduct_id, price, image_url, name, classFields, width, height }) => {
   return (
     <div className="cursor-pointer group relative card border-[1px] border-[#dbdbdb] rounded-[12px] overflow-hidden bg-white">
       <img
         src={image_url}
-        width={600}
-        height={200}
+        width={width ? width : 600}
+        height={height ? height : 200}
         alt="product"
-        className="mx-auto w-full md:w-[15rem] h-[15rem] object-cover"
+        className={classFields ? classFields : "mx-auto w-full md:w-[15rem] h-[15rem] object-cover"}
         loading="lazy"
       />
       <div className="card-body p-9 ">
