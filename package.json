@@ -11,11 +11,14 @@
     "start:debug": "nest start --debug --watch"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@heroicons/react": "^2.0.18",
     "@reduxjs/toolkit": "^1.9.5",
     "accept-language": "^3.0.18",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.40.0",
+    "emailjs-com": "^3.2.0",
     "eslint-config-next": "13.0.3",
     "firebase": "^10.1.0",
     "framer-motion": "^7.6.7",
