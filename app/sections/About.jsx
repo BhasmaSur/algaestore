@@ -22,17 +22,16 @@ const About = () => (
         variants={fadeIn('up', 'tween', 0.2, 1)}
         className="mt-[8px] font-normal sm:text-[32px] text-[20px] text-center"
       >
-        <span className="font-extrabold text-green-600">Algae Store</span> is a
-        comprehensive platform dedicated to facilitating the buying and selling
-        of <span className="font-extrabold text-green-600"> Seaweed </span>
-        products between{' '}
-        <span className="font-extrabold text-green-600">Buyers </span>and{' '}
-        <span className="font-extrabold text-green-600">Sellers</span> . Our
-        mission is to connect seaweed sellers with interested buyers , creating
-        a sustainable marketplace for this unique and valuable resource. To
-        ensure a smooth and efficient experience for all users, we have
-        developed various features and functionalities that cater to the
-        specific needs of our community.
+        <span>Introducing </span>
+        <span className="font-extrabold text-green-600">
+          Algae Store :
+        </span>{' '}
+        Your Premier B2B Hub for Seaweed Trading
+        <br />
+        Are you in the business of seaweed cultivation, processing, or
+        distribution? Look no further. Algae Store is your one-stop digital
+        destination, revolutionizing the way seaweed buyers and sellers connect,
+        collaborate, and thrive.
         <br />
         <br />
       </motion.p>

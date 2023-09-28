@@ -45,16 +45,16 @@ const NavbarContent = ({ navObject }) => {
   const router = useRouter();
 
   const redirectToPage = (redirectTo) => {
-    router.push(redirectTo)
+    router.push(redirectTo);
   };
 
-  const openUsersProfile = () =>{
-    if(links === BUYER_SETTINGS){
+  const openUsersProfile = () => {
+    if (links === BUYER_SETTINGS) {
       router.push("/buyer-profile");
-    }else{
+    } else {
       router.push("/seller-profile");
     }
-  }
+  };
   useEffect(() => {
     const userDetails = getUserDetailsFromCookie();
     if (userDetails) {
@@ -123,10 +123,7 @@ const NavbarContent = ({ navObject }) => {
                 />
               )}
               {!isLoggedIn && (
-                <Link
-                  href="/login"
-                  className="text-white p-1 text-xs"
-                >
+                <Link href="/login" className="text-white p-1 text-xs">
                   Login
                 </Link>
               )}
