@@ -6,7 +6,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { getUserDetailsFromCookie } from '../../services/auth';
 import { USER_BUYER_ROLE } from '../../constants/userConstants';
 import { sendEmail } from '../../services/emailService';
-
+import httpService from '../../services/httpService';
+import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
 const CheckoutItem = () => {
   const searchParams = useSearchParams();
   const [optionalEmail, setOptionalEmail] = useState();
@@ -42,7 +43,8 @@ const CheckoutItem = () => {
   };
 
   const placeOrder = () => {
-    const emailToMail = optionalEmail ? optionalEmail : userDetails.emailId;
+    console.log(cartItems);
+    const emailToMail = optionalEmail;
     let message = '';
     cartItems.map((item, index) => {
       message = message.concat(`${index + 1}. ${item.name} - ${item.price} \n`);
@@ -57,10 +59,38 @@ const CheckoutItem = () => {
     };
     sendEmail(mailObject).then((res) => {
       if (res) {
+        if (res.status === 'OK') {
+          mailObject.heading =
+            `An order is placed by ${emailToMail}. \n` +
+            mailObject.item_message;
+          mailObject.to_email = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+          sendEmail(mailObject);
+        }
         alert(
           'Your order is submitted successfully, our representative will contact you soon.'
         );
-        router.push('/store');
+        const transactionObjectList = {
+          buyer: emailToMail,
+          cost: calculateTotal(),
+          paymentProof: null,
+          paymentType: null,
+          productDetails: [],
+          status: 'OPEN',
+          transactionId: null,
+        };
+        cartItems.map((item) => {
+          transactionObjectList.productDetails.push({
+            price: item.price,
+            productId: item.product_id,
+            sellerId: item.supplier,
+          });
+        });
+
+        // httpService(CONTROLLERS.addTransaction, METHODS.post, transactionObjectList, API).then((trans)=>{
+        //   if(trans){
+        //     router.push('/store');
+        //   }
+        // })
       }
     });
   };

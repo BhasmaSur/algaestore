@@ -8,6 +8,7 @@ export const CONTROLLERS = {
   saveSellerProfile: 'saveSellerProfile',
   saveBuyerProfile: 'saveBuyerProfile',
   addProduct: 'addProduct',
+  addTransaction: 'transaction',
 };
 
 export const METHODS = {
