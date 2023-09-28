@@ -1,43 +1,18 @@
-// import Link from 'next/link'
-// import { Trans } from 'react-i18next/TransWithoutContext'
-// import { languages } from '../i18n/settings'
-// import { useTranslation } from '../i18n'
+"use client";
 
-// const Footer = async ({ lng }) => {
-//   const { t } = await useTranslation(lng, 'footer')
-//   return (
-//     <footer style={{ marginTop: 50 }}>
-//       <Trans i18nKey="languageSwitcher" t={t}>
-//         Switch from <strong>{{lng}}</strong> to:{' '}
-//       </Trans>
-//       {languages.filter((l) => lng !== l).map((l, index) => {
-//         return (
-//           <span key={l}>
-//             {index > 0 && (' or ')}
-// <Link href={`/${l}`}>
-//   {l}
-// </Link>
-//           </span>
-//         )
-//       })}
-//     </footer>
-//   )
-// }
-
-// export default Footer;
-'use client';
-
-import { motion } from 'framer-motion';
-import { socials } from '../constants';
-import Link from 'next/link'
-import styles from '../../styles';
-import { footerVariants } from '../utils/motion';
-import { languages } from '../constants/languages';
-import PoweredBy from './Poweredby';
+import { motion } from "framer-motion";
+import { socials } from "../constants";
+import Link from "next/link";
+import styles from "../../styles";
+import { footerVariants } from "../utils/motion";
+import { languages } from "../constants/languages";
+import PoweredBy from "./Poweredby";
 
 const Footer = ({ footerObject }) => {
   const getLanguage = (l) => {
-    const choosenLanguage = Object.keys(languages).filter((lang)=> languages[lang].includes(l))
+    const choosenLanguage = Object.keys(languages).filter((lang) =>
+      languages[lang].includes(l)
+    );
     return choosenLanguage;
   };
   return (
@@ -61,47 +36,29 @@ const Footer = ({ footerObject }) => {
               {footerObject.languageList.map((l) => {
                 return (
                   <Link href={`/${getLanguage(l)}`}>
-                    <h5
-                      className="text-white cursor-pointer"
-                    >
-                      {l}
-                    </h5>
+                    <h5 className="text-white cursor-pointer">{l}</h5>
                   </Link>
                 );
               })}
             </div>
           </div>
-          {/* <button
-          type="button"
-          className="flex items-center h-fit py-4 px-6 bg-[#25618B] rounded-[32px] gap-[12px]"
-        >
-          <img
-            src="/uparrow.svg"
-            alt="uparrow"
-            className="w-[24px] h-[24px] object-contain"
-          />
-          <span className="font-normal text-[16px] text-white">PROFILES</span>
-        </button> */}
         </div>
 
         <div className="flex flex-col">
           <div className="mb-[50px] h-[2px] bg-black  opacity-10" />
 
           <div className="flex items-center justify-between flex-wrap gap-4">
-            {/* <h4 className="font-extrabold text-[24px] text-white">ALGAETECH</h4> */}
-            {/* <p className="font-normal text-[14px] text-white opacity-50">
-              Copyright © 2023 Enso . All Rights Reserved .
-            </p> */}
-            <PoweredBy/>
+            <PoweredBy />
             <div className="flex gap-4">
-              {socials.map((social) => (
-                <img
-                  key={social.name}
-                  src={social.url}
-                  alt={social.name}
-                  className="w-[24px] h-[24px] object-contain cursor-pointer"
-                />
-              ))}
+              <a href="https://www.linkedin.com/company/algae-store/?viewAsMember=true">
+              <img
+                key={"Linkdin"}
+                src={"/lindin.png"}
+                alt={"Linkdin"}
+                className="w-[24px] h-[24px] object-contain cursor-pointer"
+              />
+              </a>
+              
             </div>
           </div>
         </div>
