@@ -30,9 +30,9 @@ const page = () => {
           },
           API
         ).then((res) => {
-          if(res.data.username){
+          if (res.data.username) {
             setUserProfileData(res.data);
-          }else{
+          } else {
             let userData = res.data;
             userData.username = userDetails.emailId;
             setUserProfileData(userData);
@@ -67,12 +67,11 @@ const page = () => {
               </h1>
               <div className="p-6 md:mb-12">
                 {/* Details (random text) */}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                fermentum quam volutpat, euismod lectus sed, tristique lectus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                fermentum quam volutpat, euismod lectus sed, tristique lectus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                fermentum quam volutpat, euismod lectus sed, tristique lectus.
+                Are you in search of premium seaweed products to elevate your
+                business or research efforts? Welcome to the Algae Store, your
+                gateway to a diverse and sustainable world of seaweed sourcing.
+                Fill up this form and then login to our portal to access the
+                products sold.
               </div>
               <div className="text-center">
                 {/* Image */}

@@ -63,12 +63,10 @@ const page = () => {
               </h1>
               <div className="p-6 md:mb-12">
                 {/* Details (random text) */}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                fermentum quam volutpat, euismod lectus sed, tristique lectus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                fermentum quam volutpat, euismod lectus sed, tristique lectus.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                fermentum quam volutpat, euismod lectus sed, tristique lectus.
+                Are you a seaweed producer, supplier, or manufacturer looking to
+            expand your reach and connect with a global network of buyers? Look
+            no further – our Sellers Page is your gateway to a world of
+            opportunities in the thriving seaweed industry.
               </div>
               <div className="text-center">
                 {/* Image */}

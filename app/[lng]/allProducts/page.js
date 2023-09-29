@@ -3,16 +3,16 @@ const productTypesDetails = [{}];
 const Page = () => {
   return (
     <div className="text-center py-4">
-      <p className="text-dark text-lg mb-4 lg:text-5xl lg:mb-20">
+      <section class="text-dark body-font overflow-hidden bg-white bg-[url('/nature-2616239_1920.jpg')]">
+      <p className="text-dark text-lg mt-20 mb-4 lg:text-5xl lg:mb-20">
         Product Types :
       </p>
-      <section class="text-gray-700 body-font overflow-hidden bg-white">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 h-96 mx-auto flex flex-wrap">
             <img
               alt="ecommerce"
-              class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
-              src={'Sargassum.jpg'}
+              class="lg:w-1/2 w-full object-cover object-center rounded"
+              src={'Sargassum.png'}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
@@ -27,13 +27,13 @@ const Page = () => {
           </div>
         </div>
       </section>
-      <section class="text-gray-700 body-font overflow-hidden bg-white">
+      <section class="text-dark body-font overflow-hidden bg-white bg-[url('/underwater-2966572_1920.jpg')]">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <img
               alt="ecommerce"
-              class="lg:w-1/2 w-full h-96 object-center rounded border border-gray-200 order-first lg:order-last"
-              src={'Kappaphycus alvaresii.jpg'}
+              class="lg:w-1/2 w-full h-96 object-center rounded order-first lg:order-last"
+              src={'Kappaphycus alvaresii.png'}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
@@ -48,13 +48,13 @@ const Page = () => {
           </div>
         </div>
       </section>
-      <section class="text-gray-700 body-font overflow-hidden bg-white">
+      <section class="text-dark body-font overflow-hidden bg-white bg-[url('/nature-2616239_1920.jpg')]">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <img
               alt="ecommerce"
-              class="lg:w-1/2 h-96 w-full object-cover object-center rounded border border-gray-200 order-first lg:order-first"
-              src={'Ulva lactuca.jpg'}
+              class="lg:w-1/2 h-96 w-full object-cover object-center rounded order-first lg:order-first"
+              src={'Ulva lactuca.png'}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
@@ -69,12 +69,12 @@ const Page = () => {
           </div>
         </div>
       </section>
-      <section class="text-gray-700 body-font overflow-hidden bg-white">
+      <section class="text-dark body-font overflow-hidden bg-white bg-[url('/underwater-2966572_1920.jpg')]">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <img
               alt="ecommerce"
-              class="lg:w-1/2 h-96 w-full object-cover object-center rounded border border-gray-200 order-first lg:order-last"
+              class="lg:w-1/2 h-96 w-full object-cover object-center rounded order-first lg:order-last"
               src={'Geledium amansii.png'}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -90,13 +90,13 @@ const Page = () => {
           </div>
         </div>
       </section>
-      <section class="text-gray-700 body-font overflow-hidden bg-white">
+      <section class="text-dark body-font overflow-hidden bg-white bg-[url('/nature-2616239_1920.jpg')]">
         <div class="container px-5 py-24 mx-auto">
-          <div class="lg:w-4/5 h-96 mx-auto flex flex-wrap">
+          <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <img
               alt="ecommerce"
-              class="lg:w-1/2 h-96 w-full object-cover object-center rounded border border-gray-200 lg:order-first"
-              src={'Gracilaria.jpg'}
+              class="lg:w-1/2 h-96 w-full object-cover object-center rounded lg:order-first"
+              src={'Gracilaria.png'}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">

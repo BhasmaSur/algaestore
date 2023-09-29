@@ -76,7 +76,7 @@ const NavbarContent = ({ navObject }) => {
           variants={navVariants}
           initial="hidden"
           whileInView="show"
-          className={`${styles.xPaddings} py-8 relative bg-gradient-to-r from-gray-500 to-gray-900`}
+          className={`${styles.xPaddings} py-8 relative`}
         >
           <div />
           <div
@@ -85,18 +85,18 @@ const NavbarContent = ({ navObject }) => {
             <img
               src="/algaelogo.png"
               alt="search"
-              className="w-[100px] object-contain"
+              className="w-[110px] object-contain"
             />
             <div class="invisible lg:visible">
               <div
                 class="hidden w-full md:block md:w-auto"
                 id="navbar-dropdown"
               >
-                <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
+                <ul class="flex cursor-pointer flex-col font-medium p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
                   {menuDetails.map((menu) => {
                     return (
                       <li
-                        class="block py-2 pl-3 pr-4 cursor-pointer text-white hover:bg-sky-700 rounded"
+                        class="block py-2 pl-3 pr-4 cursor-pointer text-dark hover:bg-sky-700 rounded"
                         onClick={() => redirectToPage(menu.to)}
                       >
                         {menu.name}
@@ -106,24 +106,24 @@ const NavbarContent = ({ navObject }) => {
                 </ul>
               </div>
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 text-dark">
               <Link href="/store">
                 <img
                   src="/store.svg"
                   alt="menu"
-                  className="w-[24px] h-[24px] object-contain fill-white text-green-600"
+                  className="w-[24px] h-[24px] object-contain fill-white text-green-600 mt-1"
                 />
               </Link>
               {isLoggedIn && (
                 <img
-                  className="w-[24px] h-[24px] object-contain fill-white text-green-600 cursor-pointer"
+                  className="w-[24px] h-[24px] object-contain fill-white text-green-600 cursor-pointer mt-1"
                   src="/defaultProfile.svg"
                   alt="Rounded avatar"
                   onClick={openUsersProfile}
                 />
               )}
               {!isLoggedIn && (
-                <Link href="/login" className="text-white p-1 text-xs">
+                <Link href="/login" className="text-dark p-1 text-lg">
                   Login
                 </Link>
               )}
@@ -132,7 +132,7 @@ const NavbarContent = ({ navObject }) => {
                   <img
                     src="/close.svg"
                     alt="close"
-                    className="w-[25px] h-[25px] object-contain "
+                    className="w-[25px] h-[25px] object-contain mt-1"
                     style={{ filter: "brightness(100%)", fill: "white" }}
                     onClick={cycleOpenMenu}
                   />
@@ -140,7 +140,7 @@ const NavbarContent = ({ navObject }) => {
                   <img
                     src="/menu.svg"
                     alt="menu"
-                    className="w-[24px] h-[24px] object-contain cursor-pointer"
+                    className="w-[24px] h-[24px] object-contain cursor-pointer mt-1"
                     onClick={cycleOpenMenu}
                   />
                 )}
