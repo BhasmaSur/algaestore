@@ -27,8 +27,11 @@ const Page = async ({params : {lng}}) => {
 
   return (
   <div className="bg-primary-white overflow-hidden">
+    <div className="bg-[url('/nature-2616239_1920.jpg')]">
     <Navbar navObject={heroObject}/>
     <Hero heroObject={heroObject}/>
+    </div>
+
     <div className="relative">
       <About />
       <div className="gradient-03 z-0" />

@@ -1,17 +1,38 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import { useRouter, usePathname } from 'next/navigation';
+import { sendEmail } from '../../services/emailService';
 
 const page = () => {
+  const [userProfileData, setUserProfileData] = useState({});
+  const setFieldValue = (fieldValue, fieldName) => {
+    let changedValue = userProfileData;
+    changedValue[fieldName] = fieldValue;
+    setUserProfileData((prevUserProfileData) => ({
+      ...userProfileData,
+      ...changedValue,
+    }));
+  };
   const router = useRouter();
   const pathname = usePathname();
 
   const handleSubmit = () => {
-    const truncatedPath = pathname.replace('/supplier', '');
-    console.log('trucatedPath', truncatedPath);
-    router.push(pathname.replace('/supplier', '') + '/signup?user=supplier');
+    const message = `Organisation Website : ${userProfileData.website}\n Organisation Name : ${userProfileData.organisationName}\n Name : ${userProfileData.name}\n Country of Origin : ${userProfileData.country}\n City : ${userProfileData.city}\n Phone Number : ${userProfileData.phone}\n Email : ${userProfileData.email}`;
+    const payload = {
+      from_name: 'Alage Store',
+      to_name: 'Admin',
+      heading: 'A new selling request : ',
+      item_message: message,
+      to_email: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
+    };
+    sendEmail(payload).then((emailRes)=>{
+      if(emailRes){
+        alert("Your selling request is sent to our admin, will contact you soon.")
+        router.push("/")
+      }
+    })
   };
 
   return (
@@ -30,11 +51,7 @@ const page = () => {
           </div>
           <div className="text-center">
             {/* Image */}
-            <img
-              src={"/bg356.png"}
-              alt="img"
-              className="mx-auto mb-0"
-            />
+            <img src={'/bg356.png'} alt="img" className="mx-auto mb-0" />
           </div>
         </div>
       </div>
@@ -52,6 +69,10 @@ const page = () => {
                 Organisation Name:
               </label>
               <input
+                onChange={(e) =>
+                  setFieldValue(e.target.value, 'organisationName')
+                }
+                value={userProfileData.organisationName}
                 type="text"
                 id="organisationName"
                 placeholder="ISRO"
@@ -63,6 +84,8 @@ const page = () => {
                 Organisation Website:
               </label>
               <input
+                onChange={(e) => setFieldValue(e.target.value, 'website')}
+                value={userProfileData.website}
                 type="text"
                 id="website"
                 placeholder="isroindia.com"
@@ -73,23 +96,44 @@ const page = () => {
               <div className="flex flex-col md:flex-row">
                 <div className="mb-2 md:mb-0 md:mr-4">
                   <label htmlFor="firstname" className="block font-medium mb-2">
-                    First Name:
+                    Full Name:
                   </label>
                   <input
+                    onChange={(e) => setFieldValue(e.target.value, 'name')}
+                    value={userProfileData.name}
                     type="text"
                     id="firstname"
                     placeholder="John"
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
                 </div>
-                <div className="md:ml-4">
-                  <label htmlFor="lastname" className="block font-medium mb-2">
-                    Last Name:
+              </div>
+            </div>
+            <div className="mb-4">
+              <div className="flex flex-col md:flex-row">
+                <div className="mb-2 md:mb-0 md:mr-4">
+                  <label htmlFor="email" className="block font-medium mb-2">
+                    Email:
                   </label>
                   <input
+                    onChange={(e) => setFieldValue(e.target.value, 'email')}
+                    value={userProfileData.email}
                     type="text"
-                    id="lastname"
-                    placeholder="Doe"
+                    id="email"
+                    placeholder="someone@gmail.com"
+                    className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                  />
+                </div>
+                <div className="md:ml-4">
+                  <label htmlFor="city" className="block font-medium mb-2">
+                    Phone:
+                  </label>
+                  <input
+                    onChange={(e) => setFieldValue(e.target.value, 'phone')}
+                    value={userProfileData.phone}
+                    type="text"
+                    id="phone"
+                    placeholder="+91 XXXXXXXXXX"
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
                 </div>
@@ -102,6 +146,8 @@ const page = () => {
                     Country:
                   </label>
                   <input
+                    onChange={(e) => setFieldValue(e.target.value, 'country')}
+                    value={userProfileData.country}
                     type="text"
                     id="country"
                     placeholder="USA"
@@ -113,20 +159,11 @@ const page = () => {
                     City:
                   </label>
                   <input
+                    onChange={(e) => setFieldValue(e.target.value, 'city')}
+                    value={userProfileData.city}
                     type="text"
                     id="city"
                     placeholder="California "
-                    className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                  />
-                </div>
-                <div className="md:ml-4">
-                  <label htmlFor="phone" className="block font-medium mb-2">
-                    Phone Number:
-                  </label>
-                  <input
-                    type="text"
-                    id="phone"
-                    placeholder="+1 (XXX) XXX-XXXX"
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
                 </div>
@@ -170,10 +207,12 @@ const page = () => {
                         </div> */}
             <div className="mb-4">
               <label htmlFor="address" className="block mb-2 font-medium">
-                Address
+                What are you interested in selling:
               </label>
               <textarea
-                id="address"
+                onChange={(e) => setFieldValue(e.target.value, 'interest')}
+                value={userProfileData.interest}
+                id="interest"
                 placeholder="Tell us more about what you're doing!"
                 className="w-full bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               ></textarea>

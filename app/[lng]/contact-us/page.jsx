@@ -22,32 +22,30 @@ const ContactUsPage = () => {
     });
   };
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-[url('/underwater-2966572_1920.jpg')]">
       <div className="w-3/4 relative h-11 md:h-auto mb-10">
-        <img
+        {/* <img
           src="https://img.freepik.com/premium-photo/green-art-plants-abstract-composition_443830-3554.jpg?w=1060"
           alt="Contact Us"
           className="w-full h-full object-cover rounded-t-lg md:rounded-l-lg"
-        />
+        /> */}
         <div className="absolute inset-0 flex items-center justify-center text-white">
           <h1 className="text-2xl font-bold">Contact Us</h1>
         </div>
       </div>
       <div className="flex flex-col md:flex-row w-full md:w-2/3">
-        <div className="bg-white p-8 rounded-lg  mb-4 md:mb-0">
+        <div className="p-8 rounded-lg  mb-4 md:mb-0">
           <h2 className="text-xl font-bold mb-2">Get in touch</h2>
-          <p className="text-gray-700 mb-4">
+          <p className="text-dark mb-4">
             Looking for help or a new successful partnership? Feel free to drop
             us a message with some details of your question. We will be happy to
             help you. We answer within 1 business day.
           </p>
-          <div className="text-gray-700">
+          <div className="text-dark">
             <p>Email: info@algaestore.in</p>
             <p>Phone: +91 7741944777</p>
           </div>
-        </div>
-        <div className="bg-white p-8 rounded-lg w-full md:ml-4">
-          <h2 className="text-xl font-bold mb-4">Contact Form</h2>
+          <h2 className="text-xl font-bold mb-4 mt-10">Contact Form</h2>
           <form className="space-y-4">
             <input
               value={name}
@@ -78,6 +76,13 @@ const ContactUsPage = () => {
               Submit
             </button>
           </form>
+        </div>
+        <div className="p-8 rounded-lg w-full md:ml-4">
+        <img
+              alt="ecommerce"
+              class="lg:w-full w-full object-cover object-center rounded order-first lg:order-last"
+              src={'photo1695977237-removebg-preview.png'}
+            />
         </div>
       </div>
     </div>

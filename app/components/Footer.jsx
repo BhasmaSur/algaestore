@@ -20,9 +20,8 @@ const Footer = ({ footerObject }) => {
       variants={footerVariants}
       initial="hidden"
       whileInView="show"
-      className={`${styles.xPaddings} py-8 relative bg-gradient-to-r from-gray-500 to-gray-900`}
+      className={`${styles.xPaddings} py-8 relative bg-[url('/jellyfish-6222849_1920.jpg')]`}
     >
-      <div className="footer-gradient" />
       <div className={`${styles.innerWidth} mx-auto flex flex-col gap-8`}>
         <div className="flex items-center justify-between flex-wrap gap-5">
           <h4 className="font-bold md:text-[64px] text-[44px] text-white">

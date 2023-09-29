@@ -1,17 +1,37 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 import { useRouter, usePathname } from 'next/navigation';
+import { sendEmail } from '../../services/emailService';
 
 const page = () => {
+  const [userProfileData, setUserProfileData] = useState({});
+  const setFieldValue = (fieldValue, fieldName) => {
+    let changedValue = userProfileData;
+    changedValue[fieldName] = fieldValue;
+    setUserProfileData((prevUserProfileData) => ({
+      ...userProfileData,
+      ...changedValue,
+    }));
+  };
   const router = useRouter();
-  const pathname = usePathname();
 
   const handleSubmit = () => {
-    const truncatedPath = pathname.replace('/supplier', '');
-    console.log('trucatedPath', truncatedPath);
-    router.push(pathname.replace('/buyer', '') + '/signup?user=buyer');
+    const message = `Name : ${userProfileData.name}\n Country of Origin : ${userProfileData.country}\n City : ${userProfileData.city}\n Phone Number : ${userProfileData.phone}\n Email : ${userProfileData.email}`;
+    const payload = {
+      from_name: 'Alage Store',
+      to_name: 'Admin',
+      heading: 'A new buying request : ',
+      item_message: message,
+      to_email: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
+    };
+    sendEmail(payload).then((emailRes)=>{
+      if(emailRes){
+        alert("Your buying request is sent to our admin, will contact you soon.")
+        router.push("/")
+      }
+    })
   };
 
   return (
@@ -46,6 +66,8 @@ const page = () => {
                 Country of Origin:
               </label>
               <input
+                onChange={(e) => setFieldValue(e.target.value, 'country')}
+                value={userProfileData.country}
                 type="text"
                 id="country"
                 placeholder="INDIA"
@@ -57,6 +79,8 @@ const page = () => {
                 City of Origin:
               </label>
               <input
+                onChange={(e) => setFieldValue(e.target.value, 'city')}
+                value={userProfileData.city}
                 type="text"
                 id="city"
                 placeholder="GOA"
@@ -68,6 +92,8 @@ const page = () => {
                 Full Name:
               </label>
               <input
+                onChange={(e) => setFieldValue(e.target.value, 'name')}
+                value={userProfileData.name}
                 type="text"
                 id="fullname"
                 placeholder="Jason Chris"
@@ -79,9 +105,24 @@ const page = () => {
                 Phone Number:
               </label>
               <input
+                onChange={(e) => setFieldValue(e.target.value, 'phone')}
+                value={userProfileData.phone}
                 type="text"
                 id="phone"
                 placeholder="+1 (XXX) XXX-XXXX"
+                className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="email" className="block mb-2 font-medium">
+                Email:
+              </label>
+              <input
+                onChange={(e) => setFieldValue(e.target.value, 'email')}
+                value={userProfileData.email}
+                type="text"
+                id="email"
+                placeholder="someone@gmail.com"
                 className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               />
             </div>
