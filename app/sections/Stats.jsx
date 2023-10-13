@@ -155,7 +155,11 @@ const Stats = () => {
                       eco-conscious choices with seaweed-based goods. Unlock the
                       potential of the ocean's treasure!
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
+                    <button onClick = {
+                      () => {
+                        router.push('/store')
+                      }
+                    } className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
                       Explore All Products
                     </button>
                   </div>
