@@ -10,7 +10,7 @@ const ContactUsPage = () => {
   const sendContactEmail = () => {
     const emailPayload = {
       from_name: 'Alage Store',
-      to_name: 'Saksho Gore',
+      to_name: 'Sakshi Gore',
       heading: `${name}, Email : ${contactEmail} wants to send you message on Algae Store,`,
       item_message: message,
       to_email: process.env.NEXT_PUBLIC_SUPERUSER_EMAIL,
