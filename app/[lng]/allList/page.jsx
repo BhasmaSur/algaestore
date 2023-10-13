@@ -16,7 +16,7 @@ const page = () => {
         fetchApi = options == "Sellers" ? fetchApi = 'getAllSellerProfile' : 'getAllBuyerProfile';
 
         try {
-            const response = await fetch(`http://localhost:3000/api/${fetchApi}`, {
+            const response = await fetch(`https://www.algaestore.in/api/${fetchApi}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
