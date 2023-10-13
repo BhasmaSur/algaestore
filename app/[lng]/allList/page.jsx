@@ -16,7 +16,7 @@ const page = () => {
         fetchApi = options == "Sellers" ? fetchApi = 'getAllSellerProfile' : 'getAllBuyerProfile';
 
         try {
-            const response = await fetch(`https://www.algaestore.in/api/${fetchApi}`, {
+            const response = await fetch(`http://localhost:3000/api/${fetchApi}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const page = () => {
                 {
                     data.map((val, index) => {
                         return (
-                            <Card id={index} name={val.name} email={val.username} phone={val.phone} img={val.img} />
+                            <Card id={index} name={val.name} email={val.username} phone={val.phone} img={val.img} options = {options} val={val}/>
                         );
                     })
                 }
