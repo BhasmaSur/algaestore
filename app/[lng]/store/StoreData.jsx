@@ -60,7 +60,7 @@ const StoreData = ({ storeItem, setItem }) => {
     ],
     finishedGoods: ['agriculture', 'food', 'packaging', 'fuel', 'textile'],
   };
-
+ 
   const toggleFilters = () => {
     setShowFilters(!showFilters);
   };

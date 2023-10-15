@@ -23,8 +23,8 @@ const getSellerProfileById = async (userID) => {
   querySnapshot.forEach((doc) => {
     userProfileData = doc.data();
   });
-  if(userProfileData){
-    if(userProfileData.publishedProducts){
+  if (userProfileData) {
+    if (userProfileData.publishedProducts) {
       const publishedProducts = await getProductsInArray(
         userProfileData.publishedProducts
       );
@@ -32,10 +32,28 @@ const getSellerProfileById = async (userID) => {
       userProfileData.publishedProducts = publishedProducts;
     }
     return userProfileData;
-  }else{
+  } else {
     return {};
   }
 };
+
+
+const getAllSeller = async () => {
+  const q = query(
+    collection(db, COLLECTIONS.PROFILE_DETAILS),
+    where('type', '==', 'USER_SELLER')
+  )
+  let userProfileData = [];
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    userProfileData.push(doc.data());
+  });
+  if (userProfileData) {
+    return userProfileData;
+  } else {
+    return {};
+  }
+}
 
 const getBuyerProfileById = async (userID) => {
   const q = query(
@@ -47,7 +65,7 @@ const getBuyerProfileById = async (userID) => {
   querySnapshot.forEach((doc) => {
     userProfileData = doc.data();
   });
-  if(userProfileData){
+  if (userProfileData) {
     const orderHistory = await getOrderHostoryInArray(
       userProfileData.orderHistory
     );
@@ -57,11 +75,28 @@ const getBuyerProfileById = async (userID) => {
     userProfileData.orderHistory = orderHistory;
     userProfileData.wishlist = wishlist;
     return userProfileData;
-  }else{
+  } else {
     return {};
   }
 
 };
+
+const getAllBuyer = async () => {
+  const q = query(
+    collection(db, COLLECTIONS.PROFILE_DETAILS),
+    where('type', '==', 'USER_BUYER')
+  )
+  let userProfileData = [];
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    userProfileData.push(doc.data());
+  });
+  if (userProfileData) {
+    return userProfileData;
+  } else {
+    return {};
+  }
+}
 
 const saveProfile = async (profileData) => {
   try {
@@ -75,4 +110,4 @@ const saveProfile = async (profileData) => {
   }
 };
 
-export { getSellerProfileById, getBuyerProfileById, saveProfile };
+export { getSellerProfileById, getAllSeller, getBuyerProfileById, getAllBuyer, saveProfile };

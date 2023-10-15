@@ -1,4 +1,20 @@
+'use client'
+
+import { usePathname, useRouter } from 'next/navigation';
+
+
 const Stats = ({statsObject}) => {
+  
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleClick = (bos) => {
+    console.log("option from static", bos);
+
+    router.push(pathname + '/allList?selection=' + bos)
+  }
+
+
   return (
     <>
       <div className="text-center py-4 bg-gray-100 dark:bg-gray-900 mt-20">
@@ -40,7 +56,9 @@ const Stats = ({statsObject}) => {
                     <div>
                       {statsObject.sellersPara}
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
+                    <button onClick = {() => {
+                      handleClick("Sellers")
+                    }}  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
                       {statsObject.exploreAllSellers}
                     </button>
                   </div>
@@ -77,7 +95,9 @@ const Stats = ({statsObject}) => {
                     <div>
                       {statsObject.buyersPara}
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
+                    <button onClick = {() => {
+                      handleClick("Buyers")
+                    }} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
                       {statsObject.exploreAllBuyers}
                     </button>
                   </div>
@@ -120,7 +140,11 @@ const Stats = ({statsObject}) => {
                     <div>
                       {statsObject.productsPara}
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
+                    <button onClick = {
+                      () => {
+                        router.push('/store')
+                      }
+                    } className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
                       {statsObject.exploreAllProducts}
                     </button>
                   </div>
