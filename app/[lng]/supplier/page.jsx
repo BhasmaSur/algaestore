@@ -1,13 +1,46 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { useRouter, usePathname } from 'next/navigation';
 import { sendEmail } from '../../services/emailService';
 import { LottieAnimation } from '../../components';
+import { getLanguageCookie } from '../../utils/loginUtils';
+import { useTranslation } from '../../i18n';
 const page = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [userProfileData, setUserProfileData] = useState({});
+  const [languageObject, setLanguageObject] = useState({});
+
+  useEffect(() => {
+    getLanguageData();
+  }, []);
+
+  const getLanguageData = async () => {
+    const lng = getLanguageCookie();
+    const { t } = await useTranslation(lng);
+    setLanguageObject({
+      forSuppliers: t('forSuppliers'),
+      forSuppliersPara: t('forSuppliersPara'),
+      supplierInformationForm: t('supplierInformationForm'),
+      organisationName: t('organisationName'),
+      organisationWebsite: t('organisationWebsite'),
+      yourinterest: t('yourinterest'),
+      phoneNumber: t('phoneNumber'),
+      email: t('email'),
+      send: t('send'),
+      india: t('india'),
+      goa: t('goa'),
+      jasonChris: t('jasonChris'),
+      someoneEmail: t('someoneEmail'),
+      countryOfOrigin: t('countryOfOrigin'),
+      cityOfOrigin: t('cityOfOrigin'),
+      tellWhatSelling: t('tellWhatSelling'),
+      title: t('title'),
+      dummyWebsite: t('dummyWebsite'),
+      fullName: t('fullName'),
+    });
+  };
   const setFieldValue = (fieldValue, fieldName) => {
     let changedValue = userProfileData;
     changedValue[fieldName] = fieldValue;
@@ -48,14 +81,11 @@ const page = () => {
           <div className="md:w-1/2 bg-violet-200">
             <div className="p-6 md:p-20">
               <h1 className="text-3xl font-semibold text-gray-800 mb-4 md:mb-10 pl-6">
-                For Suppliers
+                {languageObject.forSuppliers}
               </h1>
               <div className="p-6 md:mb-12">
                 {/* Details (random text) */}
-                Are you a seaweed producer, supplier, or manufacturer looking to
-                expand your reach and connect with a global network of buyers?
-                Look no further – our Sellers Page is your gateway to a world of
-                opportunities in the thriving seaweed industry.
+                {languageObject.forSuppliersPara}
               </div>
               <div className="text-center">
                 {/* Image */}
@@ -66,7 +96,7 @@ const page = () => {
           <div className="md:w-1/2 bg-white">
             <div className="p-6 md:p-20">
               <h2 className="text-2xl font-semibold mb-6">
-                Supplier Information Form
+                {languageObject.supplierInformationForm}
               </h2>
               <form>
                 <div className="mb-4">
@@ -74,7 +104,7 @@ const page = () => {
                     htmlFor="organisationName"
                     className="block mb-2 font-medium"
                   >
-                    Organisation Name:
+                    {languageObject.organisationName}
                   </label>
                   <input
                     onChange={(e) =>
@@ -83,20 +113,20 @@ const page = () => {
                     value={userProfileData.organisationName}
                     type="text"
                     id="organisationName"
-                    placeholder="ISRO"
+                    placeholder={languageObject.title}
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
                 </div>
                 <div className="mb-4">
                   <label htmlFor="website" className="block mb-2 font-medium">
-                    Organisation Website:
+                    {languageObject.organisationWebsite}
                   </label>
                   <input
                     onChange={(e) => setFieldValue(e.target.value, 'website')}
                     value={userProfileData.website}
                     type="text"
                     id="website"
-                    placeholder="isroindia.com"
+                    placeholder={languageObject.dummyWebsite}
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
                 </div>
@@ -107,14 +137,14 @@ const page = () => {
                         htmlFor="firstname"
                         className="block font-medium mb-2"
                       >
-                        Full Name:
+                        {languageObject.fullName}
                       </label>
                       <input
                         onChange={(e) => setFieldValue(e.target.value, 'name')}
                         value={userProfileData.name}
                         type="text"
                         id="firstname"
-                        placeholder="John"
+                        placeholder={languageObject.jasonChris}
                         className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                       />
                     </div>
@@ -124,7 +154,7 @@ const page = () => {
                   <div className="flex flex-col md:flex-row">
                     <div className="mb-2 md:mb-0 md:mr-4">
                       <label htmlFor="email" className="block font-medium mb-2">
-                        Email:
+                        {languageObject.email}
                       </label>
                       <input
                         onChange={(e) => setFieldValue(e.target.value, 'email')}
@@ -137,7 +167,7 @@ const page = () => {
                     </div>
                     <div className="md:ml-4">
                       <label htmlFor="city" className="block font-medium mb-2">
-                        Phone:
+                        {languageObject.phoneNumber}
                       </label>
                       <input
                         onChange={(e) => setFieldValue(e.target.value, 'phone')}
@@ -157,7 +187,7 @@ const page = () => {
                         htmlFor="country"
                         className="block font-medium mb-2"
                       >
-                        Country:
+                        {languageObject.countryOfOrigin}
                       </label>
                       <input
                         onChange={(e) =>
@@ -166,20 +196,20 @@ const page = () => {
                         value={userProfileData.country}
                         type="text"
                         id="country"
-                        placeholder="USA"
+                        placeholder={languageObject.india}
                         className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                       />
                     </div>
                     <div className="md:ml-4">
                       <label htmlFor="city" className="block font-medium mb-2">
-                        City:
+                        {languageObject.cityOfOrigin}
                       </label>
                       <input
                         onChange={(e) => setFieldValue(e.target.value, 'city')}
                         value={userProfileData.city}
                         type="text"
                         id="city"
-                        placeholder="California "
+                        placeholder={languageObject.goa}
                         className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                       />
                     </div>
@@ -187,13 +217,13 @@ const page = () => {
                 </div>
                 <div className="mb-4">
                   <label htmlFor="address" className="block mb-2 font-medium">
-                    What are you interested in selling:
+                    {languageObject.yourinterest}
                   </label>
                   <textarea
                     onChange={(e) => setFieldValue(e.target.value, 'interest')}
-                    value={userProfileData.interest}
+                    value={userProfileData.tellWhatSelling}
                     id="interest"
-                    placeholder="Tell us more about what you're doing!"
+                    placeholder={languageObject.tellWhatSelling}
                     className="w-full bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   ></textarea>
                 </div>
@@ -203,7 +233,7 @@ const page = () => {
                     type="button"
                     className="w-full py-3 px-4 bg-violet-500 text-white rounded hover:bg-violet-600"
                   >
-                    Send
+                    {languageObject.send}
                   </button>
                 </div>
               </form>

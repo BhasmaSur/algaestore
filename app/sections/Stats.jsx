@@ -1,14 +1,14 @@
-const Stats = () => {
+const Stats = ({statsObject}) => {
   return (
     <>
       <div className="text-center py-4 bg-gray-100 dark:bg-gray-900 mt-20">
-        <p className="text-dark text-lg mb-4 lg:text-5xl lg:mb-20">Stats:</p>
+        <p className="text-dark text-lg mb-4 lg:text-5xl lg:mb-20">{statsObject.stats}:</p>
         <div className="flex items-center">
           <div className="container max-w-1 px-0 lg:px-5 mx-1 my-28">
             <div className="grid gap-7 grid-cols-1 lg:grid-cols-1">
               <div className="p-2 lg:p-5 bg-white rounded">
                 <div className="text-base text-black lg:text-2xl">
-                  Sellers
+                  {statsObject.sellers}
                 </div>
                 <div className="flex items-center pt-1">
                   <div className="text-2xl font-bold text-black">
@@ -38,22 +38,17 @@ const Stats = () => {
                   </div>
                   <div className="flex-row items-left pt-1">
                     <div>
-                      For sellers, algae present a burgeoning market with a wide
-                      array of products. From nutritional supplements and
-                      cosmetics to biofuels and pharmaceuticals, the demand for
-                      algae-derived goods continues to grow. Capitalizing on
-                      this burgeoning demand can be a lucrative venture for
-                      entrepreneurs and distributors alike.
+                      {statsObject.sellersPara}
                     </div>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
-                      Explore All Sellers
+                      {statsObject.exploreAllSellers}
                     </button>
                   </div>
                 </div>
               </div>
               <div className="p-5 bg-white rounded">
                 <div className="text-base text-black lg:text-2xl">
-                  Buyers
+                  {statsObject.buyers}
                 </div>
                 <div className="flex items-center pt-1">
                   <div className="text-2xl font-bold text-black">
@@ -80,15 +75,10 @@ const Stats = () => {
                 <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-2 order-last lg:order-first">
                   <div className="flex-row items-left pt-1">
                     <div>
-                      Seaweed buyers, explore the ocean's bounty! Seaweed offers
-                      a world of culinary delights, health benefits, and
-                      sustainable alternatives. Dive into a diverse selection of
-                      seaweed products for an eco-friendly and delicious
-                      addition to your kitchen. Embrace the sea's natural
-                      goodness today!
+                      {statsObject.buyersPara}
                     </div>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
-                      Explore All Buyers
+                      {statsObject.exploreAllBuyers}
                     </button>
                   </div>
                   <div className="bg-indigo-300 order-first lg:order-last">
@@ -98,7 +88,7 @@ const Stats = () => {
               </div>
               <div className="p-5 bg-white rounded">
                 <div className="text-base text-black lg:text-2xl">
-                  Products
+                  {statsObject.products}
                 </div>
                 <div className="flex items-center pt-1">
                   <div className="text-2xl font-bold text-black">
@@ -128,15 +118,10 @@ const Stats = () => {
                   </div>
                   <div className="flex-row items-left pt-1">
                     <div>
-                      Discover the wonders of seaweed products. From savory
-                      snacks to skincare essentials, seaweed's versatility knows
-                      no bounds. Packed with nutrients, it promotes health and
-                      sustainability. Dive into a world of flavor, wellness, and
-                      eco-conscious choices with seaweed-based goods. Unlock the
-                      potential of the ocean's treasure!
+                      {statsObject.productsPara}
                     </div>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10">
-                      Explore All Products
+                      {statsObject.exploreAllProducts}
                     </button>
                   </div>
                 </div>

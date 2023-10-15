@@ -1,5 +1,6 @@
 export const languages = {
-    en : ["English", "इंग्रजी", "ஆங்கிலம்"],
-    marathi : ["Marathi", "मराठी", "மராத்தி"],
-    tamil : ["Tamil", "तमिळ", "தமிழ்"]
+    en : ["English", "English", "English", "English"],
+    gujarati : ["ગુજરાતી", "ગુજરાતી", "ગુજરાતી", "ગુજરાતી"],
+    tamil : ["தமிழ்", "தமிழ்", "தமிழ்", "தமிழ்"],
+    hindi : ["हिंदी","हिंदी","हिंदी", "हिंदी"]
 }

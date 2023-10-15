@@ -4,7 +4,7 @@ import React from 'react';
 
 // PoweredBy.js
 
-const Sponsers = () => {
+const Sponsers = ({sponsersObject}) => {
   const imageCommonProps = {
     target: '_blank',
     rel: 'noopener noreferrer',
@@ -13,7 +13,7 @@ const Sponsers = () => {
 
   return (
     <div className="text-center py-4">
-      <p className="text-dark text-lg mb-4 lg:text-5xl lg:mb-20">Powered by:</p>
+      <p className="text-dark text-lg mb-4 lg:text-5xl lg:mb-20">{sponsersObject.poweredBy}:</p>
       <div className="flex justify-center items-center">
         <div className="flex space-x-6 justify-center items-center">
         <a

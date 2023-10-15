@@ -1,16 +1,13 @@
 'use client';
-import React, { useEffect, useState, useContext } from 'react';
-import { storeData } from '../../constants/index';
+import React, { useEffect, useState } from 'react';
 import StoreCard from './StoreCard';
-import { ItemContext } from '../../utils/ItemContext';
-import store from '../../utils/store';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
 import { filterData } from '../../utils/helper';
-import httpService from '../../services/httpService';
-import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
 import { getUserDetailsFromCookie } from '../../services/auth';
+import { getLanguageCookie } from '../../utils/loginUtils';
+import { useTranslation } from '../../i18n';
 
 const StoreData = ({ storeItem, setItem }) => {
   const [data, setData] = useState([]);
@@ -19,16 +16,49 @@ const StoreData = ({ storeItem, setItem }) => {
   const [selectedFilter, setSelectedFilter] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const userDetails = getUserDetailsFromCookie();
+  const [languageObject, setLanguageObject] = useState({});
+
+  useEffect(() => {
+    getLanguageData();
+  }, []);
+
+  const getLanguageData = async () => {
+    const lng = getLanguageCookie();
+    const { t } = await useTranslation(lng);
+    setLanguageObject({
+      search: t('search'),
+      enterSearch: t('enterSearch'),
+      filters: t('filters'),
+      harvested: t('harvested'),
+      processed: t('processed'),
+      finishedGoods: t('finishedGoods'),
+      wetSeaweed: t('wetSeaweed'),
+      drySeaweed: t('drySeaweed'),
+      seedMaterial: t('seedMaterial'),
+      all: t('all'),
+      extractSap: t('extractSap'),
+      pulverizedSeaweed: t('pulverizedSeaweed'),
+      powderedSeaweed: t('powderedSeaweed'),
+      hydrocolloids: t('hydrocolloids'),
+      cellulosicResidue: t('cellulosicResidue'),
+      agriculture: t('agriculture'),
+      food: t('food'),
+      packaging: t('packaging'),
+      fuel: t('fuel'),
+      all: t('all'),
+      textile: t('textile'),
+    });
+  };
   const categories = {
-    Harvested: ['Wet Seaweed', 'Dry Seaweed', 'Seed Material'],
-    Processed: [
-      'Extract/Sap',
-      'Pulverized Seaweed',
-      'Powdered Seaweed',
-      'Hydrocolloids',
-      'Cellulosic Residue',
+    harvested: ['wetSeaweed', 'drySeaweed', 'seedMaterial'],
+    processed: [
+      'extractSap',
+      'pulverizedSeaweed',
+      'powderedSeaweed',
+      'hydrocolloids',
+      'cellulosicResidue',
     ],
-    FinishedGoods: ['Agriculture', 'Food', 'Packaging', 'Fuel', 'Textile'],
+    finishedGoods: ['agriculture', 'food', 'packaging', 'fuel', 'textile'],
   };
 
   const toggleFilters = () => {
@@ -39,13 +69,12 @@ const StoreData = ({ storeItem, setItem }) => {
     const response = await fetch(
       'https://www.algaestore.in/api/getallproducts',
       {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json', // Include your custom headers here
-          // Other headers if needed
-        },
-      }
-    )
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json', // Include your custom headers here
+        // Other headers if needed
+      },
+    })
       .then((res) => res.json())
       .then((res) => {
         setData(res);
@@ -81,7 +110,7 @@ const StoreData = ({ storeItem, setItem }) => {
   const cartItems = useSelector((store) => [store.cart.items]);
 
   const handleClick = () => {
-    console.log("stored data " ,cartItems)
+    console.log('stored data ', cartItems);
     localStorage.setItem('cart-items', JSON.stringify(cartItems[0]));
     router.push('/cart');
   };
@@ -107,7 +136,7 @@ const StoreData = ({ storeItem, setItem }) => {
                     setSearchtext(e.target.value);
                   }}
                   type="text"
-                  placeholder="Enter your search here"
+                  placeholder={languageObject.enterSearch}
                   className="rounded-full flex-1 px-0 py-2 ml-2 text-gray-700 focus:outline-none sm:w-64 md:w-auto"
                 />
                 <button
@@ -119,11 +148,10 @@ const StoreData = ({ storeItem, setItem }) => {
                       selectedFilter
                     );
                     setSearchdata(newData);
-                    console.log('Filterdata', newData);
                   }}
                   className="bg-indigo-500 text-white rounded-full font-semibold px-8 py-4 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none"
                 >
-                  Search
+                  {languageObject.search}
                 </button>
               </form>
               <div className="glow glow-1 z-10 animate-glow1 bg-pink-400 rounded-100 w-120 h-120 -top-10 -left-10 absolute"></div>
@@ -166,7 +194,7 @@ const StoreData = ({ storeItem, setItem }) => {
           <h2 className="text-xl font-semibold text-white mb-4">Filters:</h2>
           {Object.keys(categories).map((category) => (
             <div key={category} className="mb-2">
-              <label className="text-white font-black">{category}:</label>
+              <label className="text-white font-black">{languageObject[category]} :</label>
               <div className="flex-col space-x-2">
                 {categories[category].map((filter) => (
                   <label
@@ -179,7 +207,7 @@ const StoreData = ({ storeItem, setItem }) => {
                       checked={selectedFilter === filter}
                       onChange={() => applyFilter(filter)}
                     />
-                    {filter}
+                    {languageObject[filter]}
                   </label>
                 ))}
                 <label className="ml-2 text-white flex items-center">
@@ -189,7 +217,7 @@ const StoreData = ({ storeItem, setItem }) => {
                     checked={selectedFilter === ''}
                     onChange={() => applyFilter('')} // Deselect filter
                   />
-                  All
+                  {languageObject.all}
                 </label>
               </div>
             </div>

@@ -1,28 +1,52 @@
+"use client"
+import { useEffect, useState } from 'react';
+import { getLanguageCookie } from '../../utils/loginUtils';
+import { useTranslation } from '../../i18n';
+
 const productTypesDetails = [{}];
 
 const Page = () => {
+  const [languageObject, setLanguageObject] = useState({});
+
+  useEffect(() => {
+    getLanguageData();
+  }, []);
+
+  const getLanguageData = async () => {
+    const lng = getLanguageCookie();
+    const { t } = await useTranslation(lng);
+    setLanguageObject({
+      sargassum: t('sargassum'),
+      sargassumPara: t('sargassumPara'),
+      kappaphycusAlvarezii: t('kappaphycusAlvarezii'),
+      kappaphycusAlvareziiPara: t('kappaphycusAlvareziiPara'),
+      ulvaLactuca: t('ulvaLactuca'),
+      ulvaLactucaPara: t('ulvaLactucaPara'),
+      geledium: t('geledium'),
+      gelediumPara: t('gelediumPara'),
+      gracillaria: t('gracillaria'),
+      gracillariaPara: t('gracillariaPara'),
+      productTypes: t('productTypes'),
+    });
+  };
   return (
     <div className="text-center py-4">
       <section class="text-dark body-font overflow-hidden bg-white bg-[url('/nature-2616239_1920.jpg')]">
-      <p className="text-dark text-lg mt-20 mb-4 lg:text-5xl lg:mb-20">
-        Product Types :
-      </p>
+        <p className="text-dark text-lg mt-20 mb-4 lg:text-5xl lg:mb-20">
+          {languageObject.productTypes}
+        </p>
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 h-96 mx-auto flex flex-wrap">
             <img
               alt="ecommerce"
               class="lg:w-1/2 w-full object-cover object-center rounded"
-              src={'Sargassum.png'}
+              src={'https://res.cloudinary.com/dxuiv9rpq/image/upload/v1697396490/ydihcdrrvq0n8we1eils.png'}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-                {'Sargassum'}
+                {languageObject.sargassum}
               </h1>
-              <p class="leading-relaxed">
-                {
-                  "Sargassum is a brown macroalgae seaweed. Many of these species are distributed throughout the world's warm and tropical oceans, where they generally inhabit shallow waters and coral reefs. Sargassum is widely known for its free-floating growth method and this seaweed is widely used by the fertilizer, bioplastic, and animal feed industries."
-                }
-              </p>
+              <p class="leading-relaxed">{languageObject.sargassumPara}</p>
             </div>
           </div>
         </div>
@@ -33,16 +57,14 @@ const Page = () => {
             <img
               alt="ecommerce"
               class="lg:w-1/2 w-full h-96 object-center rounded order-first lg:order-last"
-              src={'Kappaphycus alvaresii.png'}
+              src={'https://res.cloudinary.com/dxuiv9rpq/image/upload/v1697396490/ea8lx42nrcl6b8uyi85f.png'}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-                {'Kappaphycus alvarezii'}
+                {languageObject.kappaphycusAlvarezii}
               </h1>
               <p class="leading-relaxed">
-                {
-                  'Kappaphycus alvarezii  is a carrageenan-producing seaweed that is commonly used as raw material for carrageenan industries. Carrageenan is mainly used as additives for food, beverage, cosmetics, pharmaceutical, paint, textile, and other industries. Cottonii seaweeds can also be applied as a source of growth hormone which is beneficial for organic fertilizers.'
-                }
+                {languageObject.kappaphycusAlvareziiPara}
               </p>
             </div>
           </div>
@@ -54,17 +76,13 @@ const Page = () => {
             <img
               alt="ecommerce"
               class="lg:w-1/2 h-96 w-full object-cover object-center rounded order-first lg:order-first"
-              src={'Ulva lactuca.png'}
+              src={'https://res.cloudinary.com/dxuiv9rpq/image/upload/v1697396490/lqfs21mfksakvphhnur2.png'}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-                {'Ulva lactuca'}
+                {languageObject.ulvaLactuca}
               </h1>
-              <p class="leading-relaxed">
-                {
-                  'Ulva, also known as Sea Lettuce is an edible green algae is a seaweed that lives by sticking to rocks, gravel and coral reefs, but sometimes it can also be found floating in the sea.'
-                }
-              </p>
+              <p class="leading-relaxed">{languageObject.ulvaLactucaPara}</p>
             </div>
           </div>
         </div>
@@ -75,38 +93,31 @@ const Page = () => {
             <img
               alt="ecommerce"
               class="lg:w-1/2 h-96 w-full object-cover object-center rounded order-first lg:order-last"
-              src={'Geledium amansii.png'}
+              src={'https://res.cloudinary.com/dxuiv9rpq/image/upload/v1697396490/ylqrjl3bvwt2iwckbv5z.png'}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-                {'Geledium'}
+                {languageObject.geledium}
               </h1>
-              <p class="leading-relaxed">
-                {
-                  'In many countries, Gelidium is the raw material that is widely used for the extraction of high quality agar. Gelidium content is higher than Glacilaria. Traditionally Gelidium is consumed as a vegetable and to make jelly jelly. Gelidium is often eaten raw, but can also be steamed or cooked and mixed with herbs before serving.'
-                }
-              </p>
+              <p class="leading-relaxed">{languageObject.gelediumPara}</p>
             </div>
           </div>
         </div>
       </section>
+
       <section class="text-dark body-font overflow-hidden bg-white bg-[url('/nature-2616239_1920.jpg')]">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <img
               alt="ecommerce"
               class="lg:w-1/2 h-96 w-full object-cover object-center rounded lg:order-first"
-              src={'Gracilaria.png'}
+              src={'https://res.cloudinary.com/dxuiv9rpq/image/upload/v1697396490/t271yfvonnmckheoxoti.png'}
             />
             <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
-                {'Gracillaria'}
+                {languageObject.gracillaria}
               </h1>
-              <p class="leading-relaxed">
-                {
-                  'Gracillaria is generally used as the main raw material for the production of edible gelatin. For food applications, it is mainly used as a source of dietary fiber, solidifying agent, mixture of various beverages, thickening and stabilizing agent. For non-food applications, Glacilaria is used in the cosmetic industrial; shampoo, cream, sunscreen, toothpaste, and pharmaceutical industries.'
-                }
-              </p>
+              <p class="leading-relaxed">{languageObject.gracillariaPara}</p>
             </div>
           </div>
         </div>
