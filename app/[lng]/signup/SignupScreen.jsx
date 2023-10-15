@@ -3,11 +3,13 @@
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { setCookieDetails, signUpValidations } from '../../utils/loginUtils';
+import { getLanguageCookie, setCookieDetails, signUpValidations } from '../../utils/loginUtils';
 import httpService from '../../services/httpService';
 import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
 import { USER_BUYER_ROLE, USER_SELLER_ROLE } from '../../constants/userConstants';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { useTranslation } from '../../i18n';
+import { useEffect } from 'react';
 
 const SignupScreen = () => {
   const router = useRouter();
@@ -15,6 +17,31 @@ const SignupScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [languageObject, setLanguageObject] = useState({});
+
+  useEffect(() => {
+    getLanguageData();
+  }, []);
+
+  const getLanguageData = async () => {
+    const lng = getLanguageCookie();
+    const { t } = await useTranslation(lng);
+    setLanguageObject({
+      welcomeAlgaeStore: t('welcomeAlgaeStore'),
+      password: t('password'),
+      username: t('username'),
+      logIn: t('logIn'),
+      createYour: t('createYour'),
+      emailOrPhone: t('emailOrPhone'),
+      confirmPassword: t('confirmPassword'),
+      alreadyAccount: t('alreadyAccount'),
+      moreThanStore: t('moreThanStore'),
+      createAccount : t('createAccount'),
+      buyer: t('buyer'),
+      seller : t('seller'),
+      account : t('account')
+    });
+  };
 
   const searchParams = useSearchParams()
   const search = searchParams.get('user')
@@ -69,7 +96,7 @@ const SignupScreen = () => {
                           alt="logo"
                         />
                         <h4 class="mb-12 mt-1 pb-1 text-xl font-semibold">
-                          Welcome to Algae Store
+                          {languageObject.welcomeAlgaeStore}
                         </h4>
                       </div>
 
@@ -79,7 +106,7 @@ const SignupScreen = () => {
                             class="block text-gray-700 text-lg font-bold mb-10"
                             for="password"
                           >
-                            Create your 
+                            {languageObject.createYour}
                           </label>
                           {
                             search ? <div class="block text-gray-700 text-lg font-bold mb-2 pl-1.5 pr-1.5"> {search} </div> :
@@ -96,9 +123,9 @@ const SignupScreen = () => {
                                   />
                                 </svg>
                                 <select onChange={(e) => setUserType(e.target.value)} class="ml-2 mr-2 border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                                  <option value={USER_BUYER_ROLE}>Buyer</option>
+                                  <option value={USER_BUYER_ROLE}>{languageObject.buyer}</option>
                                   {/* <option value={USER_FARMER_ROLE}>Farmer</option> */}
-                                  <option value={USER_SELLER_ROLE}>Seller</option>
+                                  <option value={USER_SELLER_ROLE}>{languageObject.seller}</option>
                                 </select>
                               </div>
 
@@ -107,7 +134,7 @@ const SignupScreen = () => {
                             class="block text-gray-700 text-lg font-bold mb-2"
                             for="password"
                           >
-                            account
+                            {languageObject.account}
                           </label>
                         </div>
 
@@ -117,7 +144,7 @@ const SignupScreen = () => {
                             for="password"
                            
                           >
-                            Email or Phone Number
+                            {languageObject.emailOrPhone}
                           </label>
                           <input
                             value={username}
@@ -138,7 +165,7 @@ const SignupScreen = () => {
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="password"
                           >
-                            Password
+                            {languageObject.password}
                           </label>
                           <input
                             value={password}
@@ -157,7 +184,7 @@ const SignupScreen = () => {
                             class="block text-gray-700 text-sm font-bold mb-2"
                             for="password"
                           >
-                            Confirm Password
+                            {languageObject.confirmPassword}
                           </label>
                           <input
                             value={confirmPassword}
@@ -168,7 +195,7 @@ const SignupScreen = () => {
                             class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
                             // id="exampleFormControlInput11"
                             className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
-                            placeholder="Confirm Password"
+                            placeholder={languageObject.confirmPassword}
                           />
                         </div>
 
@@ -185,7 +212,7 @@ const SignupScreen = () => {
                                 'linear-gradient(to right, #6D6CC7, #8B4BC7, #9542C7, #b44593)',
                             }}
                           >
-                            Create Account
+                            {languageObject.createAccount}
                           </button>
 
                           {/* <!--Forgot password link--> */}
@@ -194,7 +221,7 @@ const SignupScreen = () => {
 
                         {/* <!--Register button--> */}
                         <div class="flex items-center justify-between pb-6">
-                          <p class="mb-0 mr-2">Already have an account?</p>
+                          <p class="mb-0 mr-2">{languageObject.alreadyAccount}</p>
                           <button
                             type="button"
                             class="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-danger-600 focus:border-danger-600 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
@@ -202,7 +229,7 @@ const SignupScreen = () => {
                             data-te-ripple-color="light"
                             onClick={redirectToLogin}
                           >
-                            Login
+                            {languageObject.logIn}
                           </button>
                         </div>
                       </form>
@@ -219,14 +246,10 @@ const SignupScreen = () => {
                   >
                     <div class="px-4 py-6 text-white md:mx-6 md:p-12">
                       <h4 class="mb-6 text-xl font-semibold">
-                        We are more than just a store
+                        {languageObject.welcomeAlgaeStore}
                       </h4>
                       <p class="text-sm">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex
-                        ea commodo consequat.
+                        {languageObject.moreThanStore}
                       </p>
                     </div>
                   </div>

@@ -1,27 +1,27 @@
 export const menuDetails = [
     {
         id: 1,
-        name : "About",
+        name : "about",
         to : "/aboutUs"
     },
     {
         id : 2,
-        name : "Buyers",
+        name : "buyers",
         to : "/buyer"
     },
     {
         id : 3,
-        name : "Suppliers",
+        name : "suppliers",
         to : "/supplier"
     },
     {
         id : 3,
-        name : "Products",
+        name : "products",
         to : "/allProducts"
     },
     {
         id : 3,
-        name : "Contact Us",
+        name : "contactUs",
         to : "/contact-us"
     },
 ]

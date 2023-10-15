@@ -1,13 +1,40 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css';
 import { useRouter, usePathname } from 'next/navigation';
 import { sendEmail } from '../../services/emailService';
 import { LottieAnimation } from '../../components';
+import { getLanguageCookie } from '../../utils/loginUtils';
+import { useTranslation } from '../../i18n';
 const page = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [userProfileData, setUserProfileData] = useState({});
+  const [languageObject, setLanguageObject] = useState({});
+
+  useEffect(() => {
+    getLanguageData();
+  }, []);
+
+  const getLanguageData = async () => {
+    const lng = getLanguageCookie();
+    const { t } = await useTranslation(lng);
+    setLanguageObject({
+      forBuyers: t('forBuyers'),
+      forBuyersPara: t('forBuyersPara'),
+      submitBuyingRequest: t('submitBuyingRequest'),
+      countryOfOrigin: t('countryOfOrigin'),
+      cityOfOrigin: t('cityOfOrigin'),
+      fullName: t('fullName'),
+      phoneNumber: t('phoneNumber'),
+      email: t('email'),
+      send: t('send'),
+      india: t('india'),
+      goa: t('goa'),
+      jasonChris: t('jasonChris'),
+      someoneEmail: t('someoneEmail'),
+    });
+  };
   const setFieldValue = (fieldValue, fieldName) => {
     let changedValue = userProfileData;
     changedValue[fieldName] = fieldValue;
@@ -47,15 +74,11 @@ const page = () => {
           <div className="md:w-1/2 bg-violet-200">
             <div className="p-6 md:p-20">
               <h1 className="text-3xl font-semibold text-gray-800 mb-4 md:mb-10 pl-6">
-                For Buyers
+                {languageObject.forBuyers}
               </h1>
               <div className="p-6 md:mb-12">
                 {/* Details (random text) */}
-                Are you in search of premium seaweed products to elevate your
-                business or research efforts? Welcome to the Algae Store, your
-                gateway to a diverse and sustainable world of seaweed sourcing.
-                Fill up this form and then login to our portal to access the
-                products sold.
+                {languageObject.forBuyersPara}
               </div>
               <div className="text-center">
                 {/* Image */}
@@ -66,51 +89,51 @@ const page = () => {
           <div className="md:w-1/2 bg-white">
             <div className="p-6 md:p-20">
               <h2 className="text-2xl font-semibold mb-6">
-                Submit a buying request
+                {languageObject.submitBuyingRequest}
               </h2>
               <form>
                 <div className="mb-4">
                   <label htmlFor="country" className="block mb-2 font-medium">
-                    Country of Origin:
+                    {languageObject.countryOfOrigin}
                   </label>
                   <input
                     onChange={(e) => setFieldValue(e.target.value, 'country')}
                     value={userProfileData.country}
                     type="text"
                     id="country"
-                    placeholder="INDIA"
+                    placeholder={languageObject.india}
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
                 </div>
                 <div className="mb-4">
                   <label htmlFor="city" className="block mb-2 font-medium">
-                    City of Origin:
+                    {languageObject.cityOfOrigin}
                   </label>
                   <input
                     onChange={(e) => setFieldValue(e.target.value, 'city')}
                     value={userProfileData.city}
                     type="text"
                     id="city"
-                    placeholder="GOA"
+                    placeholder={languageObject.goa}
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
                 </div>
                 <div className="mb-4">
                   <label htmlFor="fullname" className="block mb-2 font-medium">
-                    Full Name:
+                    {languageObject.fullName}
                   </label>
                   <input
                     onChange={(e) => setFieldValue(e.target.value, 'name')}
                     value={userProfileData.name}
                     type="text"
                     id="fullname"
-                    placeholder="Jason Chris"
+                    placeholder={languageObject.jasonChris}
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
                 </div>
                 <div className="mb-4">
                   <label htmlFor="phone" className="block mb-2 font-medium">
-                    Phone Number:
+                    {languageObject.phoneNumber}
                   </label>
                   <input
                     onChange={(e) => setFieldValue(e.target.value, 'phone')}
@@ -123,7 +146,7 @@ const page = () => {
                 </div>
                 <div className="mb-4">
                   <label htmlFor="email" className="block mb-2 font-medium">
-                    Email:
+                    {languageObject.email}
                   </label>
                   <input
                     onChange={(e) => setFieldValue(e.target.value, 'email')}
@@ -140,7 +163,7 @@ const page = () => {
                     type="button"
                     className="w-full px-4 py-2 bg-violet-500 text-white rounded hover:bg-violet-600"
                   >
-                    Send
+                    {languageObject.send}
                   </button>
                 </div>
               </form>

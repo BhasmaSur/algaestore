@@ -99,7 +99,7 @@ const NavbarContent = ({ navObject }) => {
                         class="block py-2 pl-3 pr-4 cursor-pointer text-dark hover:bg-sky-700 rounded"
                         onClick={() => redirectToPage(menu.to)}
                       >
-                        {menu.name}
+                        {navObject[menu.name]}
                       </li>
                     );
                   })}
@@ -124,7 +124,7 @@ const NavbarContent = ({ navObject }) => {
               )}
               {!isLoggedIn && (
                 <Link href="/login" className="text-dark p-1 text-lg">
-                  Login
+                  {navObject.logIn}
                 </Link>
               )}
               <div class="lg:invisible">

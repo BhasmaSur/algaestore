@@ -1,13 +1,11 @@
 'use client';
 
-import React, { useContext } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import CartCard from './CartCard';
-import { useDispatch } from 'react-redux';
-import { clearCart } from '../../utils/cartSlice';
 import { useRouter } from 'next/navigation';
 
-const CartItem = ({cartItems}) => {
+const CartItem = ({cartItems, languageObject}) => {
+ 
   const handleClear = () => {
     localStorage.clear();
     window.location.reload();
@@ -17,7 +15,7 @@ const CartItem = ({cartItems}) => {
 
   return cartItems?.length === 0 ? (
     <div className="flex justify-center">
-      <h1 className="font-bold text-[#ff6b81] m-5">No Item in the cart</h1>
+      <h1 className="font-bold text-[#ff6b81] m-5">{languageObject.noItemInCart}</h1>
     </div>
   ) : (
     <div className="flex flex-col items-center gap-4 justify-center">
@@ -31,13 +29,13 @@ const CartItem = ({cartItems}) => {
           class="bg-red-500 hover:bg-hover-600 text-white font-bold py-3 px-6 rounded m-4"
           onClick={handleClear}
         >
-          Clear Cart
+          {languageObject.clearCart}
         </button>
         <button
           onClick={() => router.push('/checkout')}
           class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded m-4"
         >
-          Proceed
+          {languageObject.proceed}
         </button>
       </div>
     </div>

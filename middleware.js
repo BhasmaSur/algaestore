@@ -27,7 +27,7 @@ export function middleware(req) {
     !languages.some(loc => req.nextUrl.pathname.startsWith(`/${loc}`)) &&
     !req.nextUrl.pathname.startsWith('/_next')
   ) {
-    if(req.nextUrl.pathname.includes('.jpg') || req.nextUrl.pathname.includes('.png') || req.nextUrl.pathname.includes('.svg'))
+    if(req.nextUrl.pathname.includes('.jpg') || req.nextUrl.pathname.includes('.png') || req.nextUrl.pathname.includes('.svg') || req.nextUrl.pathname.includes('.jpeg'))
       return NextResponse.redirect(new URL(`/en${req.nextUrl.pathname}`, req.url))
     else if(req.nextUrl.pathname.includes('/api/')){
       return NextResponse.redirect(new URL(`/${req.nextUrl.pathname}`, req.url))

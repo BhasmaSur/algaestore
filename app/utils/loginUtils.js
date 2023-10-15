@@ -15,6 +15,11 @@ export const getCookieObject = () => {
   return authenticationObj;
 };
 
+export const getLanguageCookie = () =>{
+  const langCookie = Cookies.get('i18next')
+  return langCookie;
+}
+
 export const removeAllCookies = () => {
   Cookies.remove('username');
   Cookies.remove('role');
@@ -61,7 +66,7 @@ export const signUpValidations = (userName, password, confirmPassword) => {
     } else {
       return {
         valid: false,
-        message: "Password should be of length greater then or equal to 8",
+        message: "Password should be of length greater then or equal to 8.",
       };
     }
   } else {

@@ -6,14 +6,37 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { getUserDetailsFromCookie } from '../../services/auth';
 import { USER_BUYER_ROLE } from '../../constants/userConstants';
 import { sendEmail } from '../../services/emailService';
-import httpService from '../../services/httpService';
-import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
+import { getLanguageCookie } from '../../utils/loginUtils';
+import { useTranslation } from '../../i18n';
 const CheckoutItem = () => {
   const searchParams = useSearchParams();
   const [optionalEmail, setOptionalEmail] = useState();
   const cartItems = JSON.parse(localStorage.getItem('cart-items'));
   const router = useRouter();
   const [isLoggin, setIsLoggedIn] = useState(false);
+  const [languageObject, setLanguageObject] = useState({});
+
+    useEffect(() => {
+      getLanguageData();
+    }, []);
+  
+    const getLanguageData = async () => {
+      const lng = getLanguageCookie();
+      const { t } = await useTranslation(lng);
+      setLanguageObject({
+        checkout: t('checkout'),
+        selectedItems: t('selectedItems'),
+        purchaseMemo: t('purchaseMemo'),
+        number : t('number'),
+        name: t('name'),
+        price: t('price'),
+        back: t('back'),
+        placeOrder : t('placeOrder'),
+        orderSubmittedSuccessfully: t('orderSubmittedSuccessfully'),
+        total: t('total'),
+        changeEmail : t('changeEmail'),
+      });
+    };
 
   const calculateTotal = () => {
     let totalPrice = 0;
@@ -43,7 +66,6 @@ const CheckoutItem = () => {
   };
 
   const placeOrder = () => {
-    console.log(cartItems);
     const emailToMail = optionalEmail;
     let message = '';
     cartItems.map((item, index) => {
@@ -66,8 +88,7 @@ const CheckoutItem = () => {
           mailObject.to_email = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
           sendEmail(mailObject);
         }
-        alert(
-          'Your order is submitted successfully, our representative will contact you soon.'
+        alert(`${languageObject.orderSubmittedSuccessfully}`
         );
         const transactionObjectList = {
           buyer: emailToMail,
@@ -85,12 +106,6 @@ const CheckoutItem = () => {
             sellerId: item.supplier,
           });
         });
-
-        // httpService(CONTROLLERS.addTransaction, METHODS.post, transactionObjectList, API).then((trans)=>{
-        //   if(trans){
-        //     router.push('/store');
-        //   }
-        // })
       }
     });
   };
@@ -100,7 +115,7 @@ const CheckoutItem = () => {
       (
       <div className="text-center py-4 bg-gray-100 dark:bg-gray-900 mt-20">
         <p className="text-dark text-2xl lg:text-5xl lg:mb-0 pt-5 pb-10">
-          Checkout:
+          {languageObject.checkout} :
         </p>
         <div className="flex items-center">
           <div className="container max-w-1 px-0 lg:px-5 mx-1">
@@ -111,7 +126,7 @@ const CheckoutItem = () => {
                     {cartItems && (
                       <div className="bg-primary-black overflow-hidden top-0 left-0 w-full h-full">
                         <div className="text-white mt-10 mb-10 text-2xl">
-                          Selected Items
+                          {languageObject.selectedItems}
                         </div>
                         <div className="grid grid-cols-1 grid-cols-2 md:grid-cols-3 lg:grid-cols-2 gap-4 px-5 py-5">
                           {cartItems.map((item, index) => {
@@ -132,17 +147,17 @@ const CheckoutItem = () => {
                   </div>
                   <div className="flex-row items-left pt-1">
                     <div className="text-black mt-10 mb-10 text-2xl">
-                      Purchase Memo
+                     {languageObject.purchaseMemo}
                     </div>
                     <table class="border-collapse border border-slate-400 ...">
                       <thead>
                         <tr>
-                          <th class="border-2 p-2 border-slate-300 ...">No.</th>
+                          <th class="border-2 p-2 border-slate-300 ...">{languageObject.number}</th>
                           <th class="border-2 p-2 border-slate-300 ...">
-                            Name
+                            {languageObject.name}
                           </th>
                           <th class="border-2 p-2 border-slate-300 ...">
-                            Price
+                            {languageObject.price}
                           </th>
                         </tr>
                       </thead>
@@ -168,7 +183,7 @@ const CheckoutItem = () => {
                         <tr>
                           <td class="border-4 border-slate-300 ...">{''}</td>
                           <td class="border-4 w-full border-slate-300 ...">
-                            {'Total'}
+                            {languageObject.total}
                           </td>
                           <td class="border-4 border-slate-300 ...">
                             {calculateTotal()}
@@ -181,7 +196,7 @@ const CheckoutItem = () => {
                         htmlFor="country"
                         className="block mb-2 font-medium"
                       >
-                        Change Email (optional) :
+                       {languageObject.changeEmail} :
                       </label>
                       <input
                         onChange={(e) => setOptionalEmail(e.target.value)}
@@ -197,13 +212,13 @@ const CheckoutItem = () => {
                         class="bg-red-500 hover:bg-hover-600 text-white font-bold py-3 px-6 rounded m-4"
                         onClick={handleBack}
                       >
-                        Back
+                        {languageObject.back}
                       </button>
                       <button
                         onClick={placeOrder}
                         class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded m-4"
                       >
-                        Place Order
+                        {languageObject.placeOrder}
                       </button>
                     </div>
                   </div>

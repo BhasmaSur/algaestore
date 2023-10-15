@@ -5,13 +5,32 @@ import { useRouter } from 'next/navigation';
 import { getUserDetailsFromCookie } from '../../services/auth';
 import httpService from '../../services/httpService';
 import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
-import { removeAllCookies } from '../../utils/loginUtils';
+import { getLanguageCookie, removeAllCookies } from '../../utils/loginUtils';
+import { useTranslation } from '../../i18n';
 
 
 
 const Profile = () => {
-  // State for edit profile section
+  
   const [userProfileData, setUserProfileData] = useState(null);
+  const [languageObject, setLanguageObject] = useState({});
+
+  useEffect(() => {
+    getLanguageData();
+  }, []);
+
+  const getLanguageData = async () => {
+    const lng = getLanguageCookie();
+    const { t } = await useTranslation(lng);
+    setLanguageObject({
+      orders: t('orders'),
+      wishlist: t('wishlist'),
+      reviews: t('reviews'),
+      editProfile : t('editProfile'),
+      logout: t('logout'),
+      email: t('email'),
+    });
+  };
   const router = useRouter();
   useEffect(() => {
     if (!userProfileData) {
@@ -63,19 +82,19 @@ const Profile = () => {
                     <p class="font-bold text-gray-700 text-xl">
                       {userProfileData?.orderHistory?.length || 0}
                     </p>
-                    <p class="text-gray-400">Orders</p>
+                    <p class="text-gray-400">{languageObject.orders}</p>
                   </div>
                   <div>
                     <p class="font-bold text-gray-700 text-xl">
                       {userProfileData?.wishlist?.length || 0}
                     </p>
-                    <p class="text-gray-400">Wishlist</p>
+                    <p class="text-gray-400">{languageObject.wishlist}</p>
                   </div>
                   <div>
                     <p class="font-bold text-gray-700 text-xl">
                       {0}
                     </p>
-                    <p class="text-gray-400">Reviews</p>
+                    <p class="text-gray-400">{languageObject.reviews}</p>
                   </div>{' '}
                 </div>{' '}
                 <div class="relative">
@@ -90,10 +109,10 @@ const Profile = () => {
                 </div>
                 <div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
                   <button onClick={redirectTo} class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                    EDIT PROFILE
+                  {languageObject.editProfile}
                   </button>
                   <button onClick={logout} class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                    LOGOUT
+                  {languageObject.logout}
                   </button>
                 </div>
               </div>
@@ -106,7 +125,7 @@ const Profile = () => {
                   {userProfileData?.city || 'City'}
                 </p>
                 <p class="mt-8 text-gray-500">
-                  Email - {userProfileData?.username}
+                {languageObject.email} - {userProfileData?.username}
                 </p>
                 <p class="mt-2 text-gray-500">{userProfileData?.address || 'Address'}</p>
               </div>
@@ -114,7 +133,7 @@ const Profile = () => {
               <div className="flex flex-col justify-center">
                 <div className="mt-12 text-center">
                   <h2 className="text-3xl font-semibold text-gray-700">
-                    Wishlist
+                  {languageObject.wishlist}
                   </h2>
                 </div>
 
