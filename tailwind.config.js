@@ -18,9 +18,12 @@ module.exports = {
       colors: {
         'primary-black': '#1A232E',
         'secondary-white': '#c7c7c7',
+        'sidebar-bg': '#353b48',
+        'header-bg' : '#111827',
+        'content-bg': '#1f2937',
         'light-blue': colors.lightBlue,
         cyan: colors.cyan,
-        'light-green' : '#f4fbf8'
+        'light-green': '#f4fbf8'
       },
       width: {
         120: '120%',
@@ -76,5 +79,15 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.top-30': {
+          top: '88px',
+        },
+      };
+
+      addUtilities(newUtilities);
+    },
+  ],
 };

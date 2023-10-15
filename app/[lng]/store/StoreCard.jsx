@@ -20,11 +20,6 @@ const StoreCard = ({
   setItem,
   userDetails,
 }) => {
-  // const { items, addItem } = useItemContext();
-
-  // console.log("cart item from store", items)
-
-  // const newItemObj = {image_url, name};
 
   const dispatch = useDispatch();
 

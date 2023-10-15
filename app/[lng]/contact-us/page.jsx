@@ -105,7 +105,7 @@ const ContactUsPage = () => {
           <img
             alt="ecommerce"
             class="lg:w-full w-full object-cover object-center rounded order-first lg:order-last"
-            src={'photo1695977237-removebg-preview.png'}
+            src={'https://res.cloudinary.com/dxuiv9rpq/image/upload/v1697397940/rdo8bxmzhh4lgg2z9gaj.png'}
           />
         </div>
       </div>
