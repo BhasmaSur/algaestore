@@ -1,16 +1,60 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import ProductCard from './ProductCard';
 import { getUserDetailsFromCookie } from '../../services/auth';
 import { useRouter } from 'next/navigation';
 import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
 import httpService from '../../services/httpService';
 import { removeAllCookies } from '../../utils/loginUtils';
+import { uploadFileOnCloudinary } from '../../services/cloudinaryService';
 
 const ProfilePage = () => {
   const [userProfileData, setUserProfileData] = useState(null);
+  const [fileSelected, setFileSelected] = useState();
+  const fileInput = useRef();
   const router = useRouter();
+
+  const selectFile = () => {
+    fileInput.current.click();
+  };
+
+  const fileChanged = (event) => {
+    setFileSelected(event.target.files[0]);
+  };
+
+  useEffect(()=>{
+    if(fileSelected){
+      editProfilePic()
+    }
+  },[fileSelected])
+
+  const editProfilePic = () =>{
+    const formData = new FormData();
+    if (fileSelected) {
+      formData.append("file", fileSelected);
+      formData.append("upload_preset", "kt2tvpbd")
+      uploadFileOnCloudinary(formData).then((src)=>{
+        if(src){
+          if(src.url){
+            let payload = {
+              ...userProfileData,
+              image_url : src.url,
+            }
+            httpService(CONTROLLERS.addProfilePic, METHODS.post, payload, API).then((src)=>{
+              if(src){
+                window.location.reload(false);
+                alert("Profile pic updated")
+              }
+            })
+          }else{
+            alert("Something went wrong please try again later")
+          }
+        }
+      })
+    }
+  }
+
   useEffect(() => {
     if (!userProfileData) {
       const userDetails = getUserDetailsFromCookie();
@@ -69,8 +113,15 @@ const ProfilePage = () => {
                         <img
                           alt="farmer image"
                           src={userProfileData.image_url || '/genericImg.png'}
-                          class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                          class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px cursor-pointer"
                           style={{ width: '150px', height: '150px' }}
+                          onClick={selectFile}
+                        />
+                        <input
+                          onChange={fileChanged}
+                          type="file"
+                          style={{ display: "none" }}
+                          ref={fileInput}
                         />
                       </div>
                     </div>
