@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Card from "./BuyerCard";
 import Buyer from './Buyer';
 import Seller from './Seller';
+import Addproduct from './AddProduct';
 
 const Content = ({ option }) => {
 
@@ -23,6 +24,7 @@ const Content = ({ option }) => {
 
         {option == "Buyer" && <Buyer />}
         {option == "Seller" && <Seller />}
+        {option == "Addproduct" && <Addproduct />}
 
       </main>
     </>

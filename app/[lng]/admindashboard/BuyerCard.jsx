@@ -2,7 +2,31 @@
 
 import React, { useState } from "react";
 
-const Card = ({ name, email, phone, img }) => {
+const Card = ({ name, email, phone, img, active, handleActive }) => {
+
+    // const [Active, setActive] = useState(active)
+
+    // const handleActive = async () => {
+    //     try {
+    //         const response = await fetch(`http://localhost:3000/api/changeActive?username=${email}&active=${Active}`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //         })
+    //         if (!response.ok) {
+    //             throw new Error('Network response was not ok');
+    //         }
+
+    //         const res = await response.json();
+    //         console.log("res",res.active)
+    //         setActive(res.active)
+    //     }
+    //     catch (error) {
+    //         console.log("Error fetching data:", error)
+    //     }
+    // }
+
     return (
 
         <div class="w-full max-w-sm m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -32,10 +56,18 @@ const Card = ({ name, email, phone, img }) => {
                 <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://cdn-icons-png.flaticon.com/512/2202/2202112.png" alt="Bonnie image" />
                 <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{name}</h5>
                 <span class="text-sm text-gray-500 dark:text-gray-400">{email}</span>
-                <span class="text-sm text-gray-500 dark:text-gray-400">{phone}</span>
+                <span class="text-sm text-gray-500 dark:text-ksgray-400">{phone}</span>
                 <div class="flex mt-4 space-x-3 md:mt-6">
                     <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">View Orders</a>
-                    <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-400 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Approve</a>
+                    {active ? 
+                    <div onClick={() => handleActive(email)}>
+                        <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-red-400 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Inactivate</a>
+                    </div>
+                        :
+                    <div onClick={() => handleActive(email)}>
+                        <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-400 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Activate</a>
+                    </div>
+                    }
                 </div>
             </div>
         </div>
