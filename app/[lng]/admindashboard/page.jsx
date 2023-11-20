@@ -30,7 +30,7 @@ const Page = () => {
 
                 </div>
 
-                <Content option="Seller" />
+                <Content option = {option} />
             </div>
         </div>
     );
