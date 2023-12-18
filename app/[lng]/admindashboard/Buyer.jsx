@@ -9,7 +9,7 @@ const Buyer = () => {
     const [data, setData] = useState([]);
     const getBuyer = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/getAllBuyerProfile', {
+            const response = await fetch('https://www.algaestore.in/api/getAllBuyerProfile', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
