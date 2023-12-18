@@ -62,11 +62,15 @@ const SignupScreen = () => {
         (res) => {
           if (res) {
             const jwtToken = res?.data?.jwtToken;
-            setCookieDetails({
-              username,
-              jwtToken,
-            });
-            router.push('/login');
+            if(jwtToken){
+              setCookieDetails({
+                username,
+                jwtToken,
+              });
+              router.push('/login');
+            }else{
+              alert("Somthing went wrong, please try agian later")
+            }
           }
         }
       );
