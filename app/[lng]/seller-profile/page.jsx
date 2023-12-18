@@ -23,37 +23,42 @@ const ProfilePage = () => {
     setFileSelected(event.target.files[0]);
   };
 
-  useEffect(()=>{
-    if(fileSelected){
-      editProfilePic()
+  useEffect(() => {
+    if (fileSelected) {
+      editProfilePic();
     }
-  },[fileSelected])
+  }, [fileSelected]);
 
-  const editProfilePic = () =>{
+  const editProfilePic = () => {
     const formData = new FormData();
     if (fileSelected) {
-      formData.append("file", fileSelected);
-      formData.append("upload_preset", "kt2tvpbd")
-      uploadFileOnCloudinary(formData).then((src)=>{
-        if(src){
-          if(src.url){
+      formData.append('file', fileSelected);
+      formData.append('upload_preset', 'kt2tvpbd');
+      uploadFileOnCloudinary(formData).then((src) => {
+        if (src) {
+          if (src.url) {
             let payload = {
               ...userProfileData,
-              image_url : src.url,
-            }
-            httpService(CONTROLLERS.addProfilePic, METHODS.post, payload, API).then((src)=>{
-              if(src){
+              image_url: src.url,
+            };
+            httpService(
+              CONTROLLERS.addProfilePic,
+              METHODS.post,
+              payload,
+              API
+            ).then((src) => {
+              if (src) {
                 window.location.reload(false);
-                alert("Profile pic updated")
+                alert('Profile pic updated');
               }
-            })
-          }else{
-            alert("Something went wrong please try again later")
+            });
+          } else {
+            alert('Something went wrong please try again later');
           }
         }
-      })
+      });
     }
-  }
+  };
 
   useEffect(() => {
     if (!userProfileData) {
@@ -67,9 +72,9 @@ const ProfilePage = () => {
           },
           API
         ).then((res) => {
-          if(res.data.username){
+          if (res.data.username) {
             setUserProfileData(res.data);
-          }else{
+          } else {
             let userData = res.data;
             userData.username = userDetails.emailId;
             setUserProfileData(userData);
@@ -120,7 +125,7 @@ const ProfilePage = () => {
                         <input
                           onChange={fileChanged}
                           type="file"
-                          style={{ display: "none" }}
+                          style={{ display: 'none' }}
                           ref={fileInput}
                         />
                       </div>

@@ -9,6 +9,7 @@ import {
   query,
   where,
   getDocs,
+  writeBatch,
 } from 'firebase/firestore';
 import { getProductsInArray } from './productService';
 import { getOrderHostoryInArray } from './transactonService';
@@ -37,12 +38,11 @@ const getSellerProfileById = async (userID) => {
   }
 };
 
-
 const getAllSeller = async () => {
   const q = query(
     collection(db, COLLECTIONS.PROFILE_DETAILS),
     where('type', '==', 'USER_SELLER')
-  )
+  );
   let userProfileData = [];
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
@@ -53,7 +53,7 @@ const getAllSeller = async () => {
   } else {
     return {};
   }
-}
+};
 
 const getBuyerProfileById = async (userID) => {
   const q = query(
@@ -78,14 +78,13 @@ const getBuyerProfileById = async (userID) => {
   } else {
     return {};
   }
-
 };
 
 const getAllBuyer = async () => {
   const q = query(
     collection(db, COLLECTIONS.PROFILE_DETAILS),
     where('type', '==', 'USER_BUYER')
-  )
+  );
   let userProfileData = [];
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
@@ -96,7 +95,7 @@ const getAllBuyer = async () => {
   } else {
     return {};
   }
-}
+};
 
 const saveProfile = async (profileData) => {
   try {
@@ -110,4 +109,30 @@ const saveProfile = async (profileData) => {
   }
 };
 
-export { getSellerProfileById, getAllSeller, getBuyerProfileById, getAllBuyer, saveProfile };
+const saveBatchProfiles = async (usersBatch) => {
+  try {
+    const batch = writeBatch(db);
+    usersBatch.forEach((docu) => {
+      var docRef = doc(db, COLLECTIONS.PROFILE_DETAILS, docu.username);
+      batch.set(docRef, docu);
+    });
+    await batch.commit();
+    return {
+      batchRunStaus: true,
+    };
+  } catch (e) {
+    console.log('Error : ', e);
+    return {
+      batchRunStaus: false,
+    };
+  }
+};
+
+export {
+  saveBatchProfiles,
+  getSellerProfileById,
+  getAllSeller,
+  getBuyerProfileById,
+  getAllBuyer,
+  saveProfile,
+};

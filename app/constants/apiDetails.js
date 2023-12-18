@@ -10,6 +10,8 @@ export const CONTROLLERS = {
   addProduct: 'addProduct',
   addTransaction: 'transaction',
   addProfilePic: 'addProfilePic',
+  batchSignUp: 'batchSignUp',
+  batchProfilesAdd: 'batchProfileAdd',
 };
 
 export const METHODS = {

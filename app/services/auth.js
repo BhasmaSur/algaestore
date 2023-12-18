@@ -19,7 +19,9 @@ const addUser = async (userDetails) => {
   const userDoc = doc(db, COLLECTIONS.USER_CREDS, userDetails.username);
   const userSnap = await getDoc(userDoc);
   if (userSnap.exists()) {
-    return null;
+    return {
+      token : null
+    }
   } else {
     const encryptedPassword = await Encrypt.cryptPassword(userDetails.password);
     let payload = {
@@ -38,7 +40,9 @@ const addUser = async (userDetails) => {
       },
       process.env.JWT_KEY
     );
-    return 'Bearer ' + jwtToken;
+    return {
+      token : 'Bearer ' + jwtToken
+    };
   }
 };
 
