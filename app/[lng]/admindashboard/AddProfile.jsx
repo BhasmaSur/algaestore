@@ -8,7 +8,7 @@ import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
 const AddProfile = () => {
   const fileInput = useRef();
   const [data, setData] = useState([]);
-  const [message, setMessage] = useState("testing message")
+  const [message, setMessage] = useState(null)
   const selectFile = () => {
     fileInput.current.click();
   };
