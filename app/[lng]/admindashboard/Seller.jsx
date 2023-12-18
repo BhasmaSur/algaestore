@@ -9,7 +9,7 @@ const Seller = () => {
 
     const getSeller = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/getAllSellerProfile', {
+            const response = await fetch('https://www.algaestore.in/api/getAllSellerProfile', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
