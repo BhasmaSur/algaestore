@@ -6,6 +6,7 @@ import Buyer from './Buyer';
 import Seller from './Seller';
 import Addproduct from './AddProduct';
 import AddProfile from "./AddProfile";
+import Transactions from "./Transactions";
 
 const Content = ({ option }) => {
 
@@ -27,7 +28,7 @@ const Content = ({ option }) => {
         {option == "Seller" && <Seller />}
         {option == "Addproduct" && <Addproduct />}
         {option == "AddProfile" && <AddProfile />}
-
+        {option == "Transactions" && <Transactions />}
       </main>
     </>
   );

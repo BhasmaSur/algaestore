@@ -8,6 +8,9 @@ import { USER_BUYER_ROLE } from '../../constants/userConstants';
 import { sendEmail } from '../../services/emailService';
 import { getLanguageCookie } from '../../utils/loginUtils';
 import { useTranslation } from '../../i18n';
+import httpService from '../../services/httpService';
+import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
+import { ERROR_MESSAGE } from '../../constants/errorMessage';
 const CheckoutItem = () => {
   const searchParams = useSearchParams();
   const [optionalEmail, setOptionalEmail] = useState();
@@ -16,27 +19,27 @@ const CheckoutItem = () => {
   const [isLoggin, setIsLoggedIn] = useState(false);
   const [languageObject, setLanguageObject] = useState({});
 
-    useEffect(() => {
-      getLanguageData();
-    }, []);
-  
-    const getLanguageData = async () => {
-      const lng = getLanguageCookie();
-      const { t } = await useTranslation(lng);
-      setLanguageObject({
-        checkout: t('checkout'),
-        selectedItems: t('selectedItems'),
-        purchaseMemo: t('purchaseMemo'),
-        number : t('number'),
-        name: t('name'),
-        price: t('price'),
-        back: t('back'),
-        placeOrder : t('placeOrder'),
-        orderSubmittedSuccessfully: t('orderSubmittedSuccessfully'),
-        total: t('total'),
-        changeEmail : t('changeEmail'),
-      });
-    };
+  useEffect(() => {
+    getLanguageData();
+  }, []);
+
+  const getLanguageData = async () => {
+    const lng = getLanguageCookie();
+    const { t } = await useTranslation(lng);
+    setLanguageObject({
+      checkout: t('checkout'),
+      selectedItems: t('selectedItems'),
+      purchaseMemo: t('purchaseMemo'),
+      number: t('number'),
+      name: t('name'),
+      price: t('price'),
+      back: t('back'),
+      placeOrder: t('placeOrder'),
+      orderSubmittedSuccessfully: t('orderSubmittedSuccessfully'),
+      total: t('total'),
+      changeEmail: t('changeEmail'),
+    });
+  };
 
   const calculateTotal = () => {
     let totalPrice = 0;
@@ -88,8 +91,6 @@ const CheckoutItem = () => {
           mailObject.to_email = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
           sendEmail(mailObject);
         }
-        alert(`${languageObject.orderSubmittedSuccessfully}`
-        );
         const transactionObjectList = {
           buyer: emailToMail,
           cost: calculateTotal(),
@@ -102,9 +103,25 @@ const CheckoutItem = () => {
         cartItems.map((item) => {
           transactionObjectList.productDetails.push({
             price: item.price,
+            productName: item.name,
             productId: item.product_id,
             sellerId: item.supplier,
           });
+        });
+        httpService(
+          CONTROLLERS.addTransaction,
+          METHODS.post,
+          transactionObjectList,
+          API
+        ).then((src) => {
+          if (src) {
+            if (src.status === 200) {
+              alert(`${languageObject.orderSubmittedSuccessfully}`);
+              router.push('store');
+            } else {
+              alert(ERROR_MESSAGE.SOMTHING_WRONG);
+            }
+          }
         });
       }
     });
@@ -147,12 +164,14 @@ const CheckoutItem = () => {
                   </div>
                   <div className="flex-row items-left pt-1">
                     <div className="text-black mt-10 mb-10 text-2xl">
-                     {languageObject.purchaseMemo}
+                      {languageObject.purchaseMemo}
                     </div>
                     <table class="border-collapse border border-slate-400 ...">
                       <thead>
                         <tr>
-                          <th class="border-2 p-2 border-slate-300 ...">{languageObject.number}</th>
+                          <th class="border-2 p-2 border-slate-300 ...">
+                            {languageObject.number}
+                          </th>
                           <th class="border-2 p-2 border-slate-300 ...">
                             {languageObject.name}
                           </th>
@@ -196,7 +215,7 @@ const CheckoutItem = () => {
                         htmlFor="country"
                         className="block mb-2 font-medium"
                       >
-                       {languageObject.changeEmail} :
+                        {languageObject.changeEmail} :
                       </label>
                       <input
                         onChange={(e) => setOptionalEmail(e.target.value)}

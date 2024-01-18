@@ -1,14 +1,8 @@
-import React, { useContext } from 'react';
-import { ItemContext } from '../../utils/ItemContext';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { children_variant } from './helper/framer-motion';
-import Image from 'next/image';
+import { children_variant } from '../[lng]/seller-profile/helper/framer-motion';
 import { ShoppingBagIcon } from '@heroicons/react/24/outline';
-import { StarIcon } from '@heroicons/react/24/solid';
-import { useItemContext } from '../../utils/ItemContext';
-import { addItem } from '../../utils/cartSlice';
-import { useDispatch } from 'react-redux';
-import { USER_SELLER_ROLE } from '../../constants/userConstants';
+import { USER_SELLER_ROLE } from '../constants/userConstants';
 
 const ProductCard = ({ image_url, name, price, userType }) => {
   // const { items, addItem } = useItemContext();

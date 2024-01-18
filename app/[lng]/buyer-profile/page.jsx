@@ -1,17 +1,17 @@
 'use client';
 import { useEffect, useState } from 'react';
-import ProductCard from './ProductCard';
 import { useRouter } from 'next/navigation';
 import { getUserDetailsFromCookie } from '../../services/auth';
 import httpService from '../../services/httpService';
 import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
 import { getLanguageCookie, removeAllCookies } from '../../utils/loginUtils';
 import { useTranslation } from '../../i18n';
-
-
+import ProductCard from '../../components/ProductCard';
+import { USER_SELLER_ROLE } from '../../constants/userConstants';
+import OrderHistoryCard from '../../components/OrderHistoryCard';
 
 const Profile = () => {
-  
+  const [isWishlistSelected, setIsWishlistSelected] = useState(true);
   const [userProfileData, setUserProfileData] = useState(null);
   const [languageObject, setLanguageObject] = useState({});
 
@@ -24,9 +24,10 @@ const Profile = () => {
     const { t } = await useTranslation(lng);
     setLanguageObject({
       orders: t('orders'),
+      orderHistory: t('orderHistory'),
       wishlist: t('wishlist'),
       reviews: t('reviews'),
-      editProfile : t('editProfile'),
+      editProfile: t('editProfile'),
       logout: t('logout'),
       email: t('email'),
     });
@@ -45,14 +46,13 @@ const Profile = () => {
           API
         ).then((res) => {
           if (res) {
-            if(res.data.username){
+            if (res.data.username) {
               setUserProfileData(res.data);
-            }else{
+            } else {
               let userData = res.data;
               userData.username = userDetails.emailId;
               setUserProfileData(userData);
             }
-            
           }
         });
       } else {
@@ -61,20 +61,19 @@ const Profile = () => {
     }
   }, []);
 
-  const logout = () =>{
-    removeAllCookies()
+  const logout = () => {
+    removeAllCookies();
     router.push('/');
-  }
+  };
 
   const redirectTo = () => {
     router.push('/edit-buyer-profile');
   };
-
   return (
     <>
       {userProfileData && (
         <div>
-          <div class="p-16">
+          <div class="p-6">
             <div class="p-8 bg-white shadow mt-24">
               <div class="grid grid-cols-1 md:grid-cols-3">
                 <div class="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
@@ -91,9 +90,7 @@ const Profile = () => {
                     <p class="text-gray-400">{languageObject.wishlist}</p>
                   </div>
                   <div>
-                    <p class="font-bold text-gray-700 text-xl">
-                      {0}
-                    </p>
+                    <p class="font-bold text-gray-700 text-xl">{0}</p>
                     <p class="text-gray-400">{languageObject.reviews}</p>
                   </div>{' '}
                 </div>{' '}
@@ -108,11 +105,17 @@ const Profile = () => {
                   </div>
                 </div>
                 <div class="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
-                  <button onClick={redirectTo} class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                  {languageObject.editProfile}
+                  <button
+                    onClick={redirectTo}
+                    class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                  >
+                    {languageObject.editProfile}
                   </button>
-                  <button onClick={logout} class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
-                  {languageObject.logout}
+                  <button
+                    onClick={logout}
+                    class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                  >
+                    {languageObject.logout}
                   </button>
                 </div>
               </div>
@@ -125,31 +128,55 @@ const Profile = () => {
                   {userProfileData?.city || 'City'}
                 </p>
                 <p class="mt-8 text-gray-500">
-                {languageObject.email} - {userProfileData?.username}
+                  {languageObject.email} - {userProfileData?.username}
                 </p>
-                <p class="mt-2 text-gray-500">{userProfileData?.address || 'Address'}</p>
+                <p class="mt-2 text-gray-500">
+                  {userProfileData?.address || 'Address'}
+                </p>
               </div>
-
-              <div className="flex flex-col justify-center">
-                <div className="mt-12 text-center">
-                  <h2 className="text-3xl font-semibold text-gray-700">
-                  {languageObject.wishlist}
-                  </h2>
-                </div>
-
-                <div class="mt-12 flex flex-col ">
-                  <div class="w-full lg:w-9/12 px-4 m-auto">
-                    <div className="flex flex-nowrap overflow-x-scroll justify-center">
-                      {userProfileData?.wishlist?.map((item, index) => {
-                        return (
-                          <div class="flex-none w-64 mr-4 mb-6">
-                            <ProductCard {...item} />
-                          </div>
-                        );
-                      })}
+              <div class="mt-2 py-10 text-center">
+                <h3 class="text-xl font-semibold leading-normal mb-6 text-blueGray-700 mb-10">
+                  <span
+                    onClick={() => {
+                      !isWishlistSelected && setIsWishlistSelected(true);
+                    }}
+                  >
+                    {languageObject.wishlist} (
+                    {userProfileData?.wishlist.length})
+                  </span>{' '}
+                  |{' '}
+                  <span
+                    onClick={() => {
+                      isWishlistSelected && setIsWishlistSelected(false);
+                    }}
+                  >
+                    {languageObject.orderHistory} (
+                    {userProfileData?.orderHistory.length})
+                  </span>
+                </h3>
+                {isWishlistSelected && (
+                  <div class="flex flex-wrap justify-center">
+                    <div class="w-full lg:w-11/12 px-4">
+                      <div className="flex flex-nowrap overflow-x-scroll">
+                        {userProfileData?.wishlist?.map((item, index) => {
+                          return (
+                            <div class="flex-none w-64 mr-4">
+                              <ProductCard
+                                {...item}
+                                userType={USER_SELLER_ROLE}
+                              />
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
+                {!isWishlistSelected && (
+                  <div class="flex flex-wrap justify-center">
+                    <OrderHistoryCard />
+                  </div>
+                )}
               </div>
             </div>
           </div>

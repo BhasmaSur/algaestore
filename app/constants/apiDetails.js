@@ -8,10 +8,12 @@ export const CONTROLLERS = {
   saveSellerProfile: 'saveSellerProfile',
   saveBuyerProfile: 'saveBuyerProfile',
   addProduct: 'addProduct',
-  addTransaction: 'transaction',
+  addTransaction: 'addTransaction',
   addProfilePic: 'addProfilePic',
   batchSignUp: 'batchSignUp',
   batchProfilesAdd: 'batchProfileAdd',
+  getAllTransactions: 'getAllTransactions',
+  updateTransactionStatus: 'setTransactionStatus',
 };
 
 export const METHODS = {
