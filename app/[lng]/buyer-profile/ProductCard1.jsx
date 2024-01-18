@@ -9,7 +9,7 @@ import { useItemContext } from '../../utils/ItemContext';
 import { addItem } from '../../utils/cartSlice';
 import { useDispatch } from 'react-redux';
 
-const ProductCard = ({ image_url, name, storeItem, setItem }) => {
+const ProductCard1 = ({ image_url, name, storeItem, setItem }) => {
 
     // const { items, addItem } = useItemContext();
 
@@ -53,4 +53,4 @@ const ProductCard = ({ image_url, name, storeItem, setItem }) => {
     )
 }
 
-export default ProductCard;
+export default ProductCard1;

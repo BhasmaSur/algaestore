@@ -146,5 +146,6 @@
     "account": "account",
     "createAccount": "Create Account",
     "buyer": "buyer",
-    "seller": "seller"
+    "seller": "seller",
+    "orderHistory": "Order History"
   }

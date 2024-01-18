@@ -146,5 +146,6 @@
   "account": "खाता",
   "createAccount": "खाता बनाएं",
   "buyer": "क्रेता",
-  "seller": "विक्रेता"
+  "seller": "विक्रेता",
+  "orderHistory": "आदेश इतिहास"
 }

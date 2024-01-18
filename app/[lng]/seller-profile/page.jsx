@@ -8,6 +8,7 @@ import { API, CONTROLLERS, METHODS } from '../../constants/apiDetails';
 import httpService from '../../services/httpService';
 import { removeAllCookies } from '../../utils/loginUtils';
 import { uploadFileOnCloudinary } from '../../services/cloudinaryService';
+import { USER_SELLER_ROLE } from '../../constants/userConstants';
 
 const ProfilePage = () => {
   const [userProfileData, setUserProfileData] = useState(null);
@@ -109,7 +110,7 @@ const ProfilePage = () => {
           />
 
           <section class="pt-16 bg-blueGray-50">
-            <div class="w-full lg:w-4/12 px-4 mx-auto">
+            <div class="w-full lg:w-12 px-4 mx-auto">
               <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16">
                 <div class="px-6">
                   <div class="flex flex-wrap justify-center">
@@ -177,7 +178,8 @@ const ProfilePage = () => {
 
                   <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
                     <h3 class="text-xl font-semibold leading-normal mb-6 text-blueGray-700 mb-2 ">
-                      Published Product
+                      Published Product (
+                      {userProfileData?.publishedProducts.length})
                     </h3>
                     <div class="flex flex-wrap justify-center">
                       <div class="w-full lg:w-9/12 px-4">
@@ -186,7 +188,10 @@ const ProfilePage = () => {
                             (item, index) => {
                               return (
                                 <div class="flex-none w-64 mr-4">
-                                  <ProductCard {...item} />
+                                  <ProductCard
+                                    {...item}
+                                    userType={USER_SELLER_ROLE}
+                                  />
                                 </div>
                               );
                             }

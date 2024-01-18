@@ -51,6 +51,11 @@ const Sidebar = ({ option, setOption }) => {
                 Add User Profile
               </a>
             </li>
+            <li className="mb-2" onClick={() => handleClick('Transactions')}>
+              <a href="#" className="text-gray-300 hover:text-white">
+                Transactions
+              </a>
+            </li>
           </ul>
         </div>
         <div>
