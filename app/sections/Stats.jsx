@@ -1,23 +1,44 @@
-'use client'
+'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
 
-
-const Stats = ({statsObject}) => {
-  
+const Stats = ({ statsObject }) => {
   const router = useRouter();
   const pathname = usePathname();
 
   const handleClick = (bos) => {
-    console.log("option from static", bos);
+    console.log('option from static', bos);
 
-    router.push(pathname + '/allList?selection=' + bos)
-  }
-
+    router.push(pathname + '/allList?selection=' + bos);
+  };
 
   return (
     <>
-      <div className="text-center py-4 bg-gray-100 dark:bg-gray-900 mt-20">
+      <section className="home-statistics mt-20 mb-20">
+        <h3 className="home-header01 mb-20">{statsObject.stats}</h3>
+        <div className="home-content">
+          <div className="home-stat">
+            <h3 className="home-header01">10</h3>
+            <span className="home-caption02">
+              {statsObject.sellers}
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: ' ',
+                }}
+              />
+            </span>
+          </div>
+          <div className="home-stat1">
+            <h3 className="home-header02">20</h3>
+            <span className="home-caption03">{statsObject.buyers}</span>
+          </div>
+          <div className="home-stat2">
+            <h3 className="home-header03">50</h3>
+            <span className="home-caption04">{statsObject.products}</span>
+          </div>
+        </div>
+      </section>
+      {/* <div className="text-center py-4 bg-gray-100 dark:bg-gray-900 mt-20">
         <p className="text-dark text-lg mb-4 lg:text-5xl lg:mb-20">{statsObject.stats}:</p>
         <div className="flex items-center">
           <div className="container max-w-1 px-0 lg:px-5 mx-1 my-28">
@@ -153,7 +174,7 @@ const Stats = ({statsObject}) => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

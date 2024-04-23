@@ -20,7 +20,7 @@ const Footer = ({ footerObject }) => {
       variants={footerVariants}
       initial="hidden"
       whileInView="show"
-      className={`${styles.xPaddings} py-8 relative bg-[url('/jellyfish-6222849_1920.jpg')]`}
+      className={`${styles.xPaddings} py-8 relative bg-gradient-to-r from-cyan-500 to-blue-500`}
     >
       <div className={`${styles.innerWidth} mx-auto flex flex-col gap-8`}>
         <div className="flex items-center justify-between flex-wrap gap-5">

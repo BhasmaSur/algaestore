@@ -12,8 +12,9 @@ const Sponsers = ({sponsersObject}) => {
   };
 
   return (
-    <div className="text-center py-4">
-      <p className="text-dark text-lg mb-4 lg:text-5xl lg:mb-20">{sponsersObject.poweredBy}:</p>
+    <div className="text-center py-4 mt-20 mb-20">
+      <h3 className="home-header01 mb-20">{sponsersObject.poweredBy}</h3>
+      {/* <p className="text-dark text-lg mb-4 lg:text-5xl lg:mb-20">{sponsersObject.poweredBy}:</p> */}
       <div className="flex justify-center items-center">
         <div className="flex space-x-6 justify-center items-center">
         <a
