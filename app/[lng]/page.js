@@ -1,9 +1,6 @@
-import { Footer, Navbar } from '../components';
-import { About, Hero, Stats } from '../sections';
+import { Hero } from '../sections';
 import { useTranslation } from '../i18n';
 import { languages } from '../i18n/settings';
-import Sponsers from '../sections/Sponsers';
-import Home from './tempTest/page';
 
 const Page = async ({ params: { lng } }) => {
   const { t } = await useTranslation(lng);
