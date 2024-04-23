@@ -14,9 +14,10 @@ import { ERROR_MESSAGE } from '../../constants/errorMessage';
 const CheckoutItem = () => {
   const searchParams = useSearchParams();
   const [optionalEmail, setOptionalEmail] = useState();
+  const [contactNumber, setContactNumber] = useState();
   const cartItems = JSON.parse(localStorage.getItem('cart-items'));
   const router = useRouter();
-  const [isLoggin, setIsLoggedIn] = useState(false);
+  // const [isLoggin, setIsLoggedIn] = useState(false);
   const [languageObject, setLanguageObject] = useState({});
 
   useEffect(() => {
@@ -38,6 +39,9 @@ const CheckoutItem = () => {
       orderSubmittedSuccessfully: t('orderSubmittedSuccessfully'),
       total: t('total'),
       changeEmail: t('changeEmail'),
+      buyerDetails: t('buyerDetails'),
+      email: t('email'),
+      mobileNumber: t('mobileNumber'),
     });
   };
 
@@ -51,80 +55,85 @@ const CheckoutItem = () => {
     return Math.round(totalPrice);
   };
 
-  useEffect(() => {
-    const userDetailsFromCookie = getUserDetailsFromCookie();
-    if (
-      userDetailsFromCookie &&
-      userDetailsFromCookie.role === USER_BUYER_ROLE
-    ) {
-      setIsLoggedIn(true);
-      setOptionalEmail(userDetailsFromCookie.emailId);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const userDetailsFromCookie = getUserDetailsFromCookie();
+  //   if (
+  //     userDetailsFromCookie &&
+  //     userDetailsFromCookie.role === USER_BUYER_ROLE
+  //   ) {
+  //     setIsLoggedIn(true);
+  //     setOptionalEmail(userDetailsFromCookie.emailId);
+  //   } else {
+  //     setIsLoggedIn(false);
+  //   }
+  // }, []);
 
   const handleBack = () => {
     router.push('/cart');
   };
 
   const placeOrder = () => {
-    const emailToMail = optionalEmail;
-    let message = '';
-    cartItems.map((item, index) => {
-      message = message.concat(`${index + 1}. ${item.name} - ${item.price} \n`);
-    });
-    message = message.concat(`\n\n\nTotal Cost : ${calculateTotal()}`);
-    const mailObject = {
-      from_name: 'Alage Store',
-      to_name: 'Buyer',
-      heading: 'Your Order Details : ',
-      item_message: message,
-      to_email: emailToMail,
-    };
-    sendEmail(mailObject).then((res) => {
-      if (res) {
-        if (res.status === 'OK') {
-          mailObject.heading =
-            `An order is placed by ${emailToMail}. \n` +
-            mailObject.item_message;
-          mailObject.to_email = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
-          sendEmail(mailObject);
-        }
-        const transactionObjectList = {
-          buyer: emailToMail,
-          cost: calculateTotal(),
-          paymentProof: null,
-          paymentType: null,
-          productDetails: [],
-          status: 'OPEN',
-          transactionId: null,
-        };
-        cartItems.map((item) => {
-          transactionObjectList.productDetails.push({
-            price: item.price,
-            productName: item.name,
-            productId: item.product_id,
-            sellerId: item.supplier,
-          });
-        });
-        httpService(
-          CONTROLLERS.addTransaction,
-          METHODS.post,
-          transactionObjectList,
-          API
-        ).then((src) => {
-          if (src) {
-            if (src.status === 200) {
-              alert(`${languageObject.orderSubmittedSuccessfully}`);
-              router.push('store');
-            } else {
-              alert(ERROR_MESSAGE.SOMTHING_WRONG);
-            }
+    if(optionalEmail && contactNumber){
+      const emailToMail = optionalEmail;
+      let message = '';
+      cartItems.map((item, index) => {
+        message = message.concat(`${index + 1}. ${item.name} - ${item.price} \n`);
+      });
+      message = message.concat(`\n\n\nTotal Cost : ${calculateTotal()}`);
+      const mailObject = {
+        from_name: 'Alage Store',
+        to_name: `Buyer (${contactNumber})`,
+        heading: 'Your Order Details : ',
+        item_message: message,
+        to_email: emailToMail
+      };
+      sendEmail(mailObject).then((res) => {
+        if (res) {
+          if (res.text === 'OK') {
+            mailObject.heading =
+              `An order is placed by ${emailToMail}. \n` +
+              mailObject.item_message;
+            mailObject.to_email = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+            sendEmail(mailObject);
           }
-        });
-      }
-    });
+          const transactionObjectList = {
+            buyer: emailToMail,
+            cost: calculateTotal(),
+            paymentProof: null,
+            paymentType: null,
+            productDetails: [],
+            status: 'OPEN',
+            transactionId: null,
+          };
+          cartItems.map((item) => {
+            transactionObjectList.productDetails.push({
+              price: item.price,
+              productName: item.name,
+              productId: item.product_id,
+              sellerId: item.supplier,
+            });
+          });
+          httpService(
+            CONTROLLERS.addTransaction,
+            METHODS.post,
+            transactionObjectList,
+            API
+          ).then((src) => {
+            if (src) {
+              if (src.status === 200) {
+                alert(`${languageObject.orderSubmittedSuccessfully}`);
+                router.push('store');
+              } else {
+                alert(ERROR_MESSAGE.SOMTHING_WRONG);
+              }
+            }
+          });
+        }
+      });
+    }else{
+      alert("Please provide email and contact number")
+    }
+    
   };
 
   return (
@@ -210,20 +219,33 @@ const CheckoutItem = () => {
                         </tr>
                       </tbody>
                     </table>
+                    <div className="text-black mt-20 mb-10 text-2xl">
+                      {languageObject.buyerDetails}
+                    </div>
                     <div className="mb-4">
-                      <label
-                        htmlFor="country"
-                        className="block mb-2 font-medium"
-                      >
-                        {languageObject.changeEmail} :
+                      <label htmlFor="email" className="flex mb-2 font-medium">
+                        {languageObject.email}
                       </label>
                       <input
                         onChange={(e) => setOptionalEmail(e.target.value)}
                         value={optionalEmail}
                         type="text"
                         id="email"
-                        placeholder={optionalEmail}
-                        className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                        placeholder={'example@gmail.com'}
+                        className="appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                      />
+                    </div>
+                    <div className="mb-4 left">
+                      <label htmlFor="city" className="flex mb-2 font-medium">
+                        {languageObject.mobileNumber}
+                      </label>
+                      <input
+                        onChange={(e) => setContactNumber(e.target.value)}
+                        value={contactNumber}
+                        type="text"
+                        id="contactNumber"
+                        placeholder={'Mobile Number'}
+                        className="appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                       />
                     </div>
                     <div>

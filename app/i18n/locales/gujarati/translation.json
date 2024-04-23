@@ -147,5 +147,11 @@
   "createAccount": "ખાતું બનાવો",
   "buyer": "ખરીદનાર",
   "seller": "વેચનાર",
-  "orderHistory": "ઓર્ડર ઇતિહાસ"
+  "orderHistory": "ઓર્ડર ઇતિહાસ",
+  "goToStore": "અમારા સ્ટોર તપાસો",
+  "algaeStoreForFarmers":"ખેડૂતો માટે શેવાળ સ્ટોર",
+  "connectWithUs":"અમારી સાથે જોડાઓ",
+  "algaeStoreForBuyers": "ખરીદદારો માટે શેવાળ સ્ટોર",
+  "buyerDetails":"ખરીદનાર વિગતો",
+  "mobileNumber":"મોબાઇલ નંબર"
 }
