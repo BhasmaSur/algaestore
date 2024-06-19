@@ -33,6 +33,19 @@ const page = () => {
       goa: t('goa'),
       jasonChris: t('jasonChris'),
       someoneEmail: t('someoneEmail'),
+      organisationName: t('organisationName'),
+      industry: t('industry'),
+      additionalInfo: t('additionalInfo'),
+      title: t('title'),
+      takePainOut: t('takePainOut'),
+      algaeStoreForBuyerInfo : t('algaeStoreForBuyerInfo'),
+      step1 : t('step1'),
+      step2 : t('step2'),
+      step3 : t('step3'),
+      submitBuyingRequest : t('submitBuyingRequest'),
+      buyingStep2 : t('buyingStep2'),
+      buyingStep3 : t('buyingStep3'),
+      noUpfrontCost : t('noUpfrontCost')
     });
   };
   const setFieldValue = (fieldValue, fieldName) => {
@@ -47,12 +60,12 @@ const page = () => {
 
   const handleSubmit = () => {
     setIsLoading(true);
-    const message = `Name : ${userProfileData.name}\n Country of Origin : ${userProfileData.country}\n City : ${userProfileData.city}\n Phone Number : ${userProfileData.phone}\n Email : ${userProfileData.email}`;
+    const message = `Name : ${userProfileData.name}\n Organisation : ${userProfileData.organisationName}\n Industry : ${userProfileData.industry}\n Phone Number : ${userProfileData.phone}\n Email : ${userProfileData.email}`;
     const payload = {
       from_name: 'Alage Store',
       to_name: 'Admin',
       heading: 'A new buying request : ',
-      item_message: message,
+      message: message,
       to_email: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
     };
     sendEmail(payload).then((emailRes) => {
@@ -77,12 +90,36 @@ const page = () => {
                 {languageObject.forBuyers}
               </h1>
               <div className="p-6 md:mb-12">
-                {/* Details (random text) */}
-                {languageObject.forBuyersPara}
+                <div>
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-4 md:mb-10">
+                    {languageObject.takePainOut}
+                  </h2>
+                </div>
+                <div>
+                  <h1 className="text-xl text-gray-800 mb-4 md:mb-10">
+                    {languageObject.algaeStoreForBuyerInfo}
+                  </h1>
+                </div>
+                <div>
+                  <h1 className="text-xl text-gray-800 mb-2 md:mb-4">
+                    <span className="text-2xl font-semibold text-gray-800 mb-2 md:mb-4">{languageObject.step1} : </span>{languageObject.submitBuyingRequest} 
+                  </h1>
+                  <h1 className="text-xl text-gray-800 mb-2 md:mb-4">
+                    <span className="text-2xl font-semibold text-gray-800 mb-2 md:mb-4">{languageObject.step2} : </span>{languageObject.buyingStep2} 
+                  </h1>
+                  <h1 className="text-xl text-gray-800 mb-2 md:mb-4">
+                    <span className="text-2xl font-semibold text-gray-800 mb-2 md:mb-4">{languageObject.step3} : </span>{languageObject.buyingStep3} 
+                  </h1>
+                </div>
+                <div>
+                  <h1 className="text-sm text-gray-800 mb-4 md:mb-10">
+                    {languageObject.noUpfrontCost}
+                  </h1>
+                </div>
               </div>
               <div className="text-center">
                 {/* Image */}
-                <img src={'/bg356.png'} alt="img" className="mx-auto mb-0" />
+                <img src={'/bg356.png'} alt="img" width={100} height={100} className="mx-auto mb-0" />
               </div>
             </div>
           </div>
@@ -93,28 +130,28 @@ const page = () => {
               </h2>
               <form>
                 <div className="mb-4">
-                  <label htmlFor="country" className="block mb-2 font-medium">
-                    {languageObject.countryOfOrigin}
+                  <label htmlFor="organisationName" className="block mb-2 font-medium">
+                    {languageObject.organisationName}
                   </label>
                   <input
-                    onChange={(e) => setFieldValue(e.target.value, 'country')}
-                    value={userProfileData.country}
+                    onChange={(e) => setFieldValue(e.target.value, 'organisationName')}
+                    value={userProfileData.organisationName}
                     type="text"
                     id="country"
-                    placeholder={languageObject.india}
+                    placeholder={languageObject.title}
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
                 </div>
                 <div className="mb-4">
-                  <label htmlFor="city" className="block mb-2 font-medium">
-                    {languageObject.cityOfOrigin}
+                  <label htmlFor="industry" className="block mb-2 font-medium">
+                    {languageObject.industry}
                   </label>
                   <input
-                    onChange={(e) => setFieldValue(e.target.value, 'city')}
-                    value={userProfileData.city}
+                    onChange={(e) => setFieldValue(e.target.value, 'industry')}
+                    value={userProfileData.industry}
                     type="text"
                     id="city"
-                    placeholder={languageObject.goa}
+                    placeholder={languageObject.title}
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
                 </div>
@@ -156,6 +193,18 @@ const page = () => {
                     placeholder="someone@gmail.com"
                     className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
                   />
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="interest" className="block mb-2 font-medium">
+                    {languageObject.additionalInfo}
+                  </label>
+                  <textarea
+                    onChange={(e) => setFieldValue(e.target.value, 'interest')}
+                    value={userProfileData.interest}
+                    id="interest"
+                    placeholder={languageObject.additionalInfo}
+                    className="w-full bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+                  ></textarea>
                 </div>
                 <div className="flex justify-center">
                   <button

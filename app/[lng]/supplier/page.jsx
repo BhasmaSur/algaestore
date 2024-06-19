@@ -39,6 +39,15 @@ const page = () => {
       title: t('title'),
       dummyWebsite: t('dummyWebsite'),
       fullName: t('fullName'),
+      gainNewCustomers: t('gainNewCustomers'),
+      algaeStoreProvides : t('algaeStoreProvides'),
+      step1 : t('step1'),
+      step2 : t('step2'),
+      step3 : t('step3'),
+      submitSupplierInfo : t('submitSupplierInfo'),
+      scheduleAnOnboarding : t('scheduleAnOnboarding'),
+      reciveBuyingRequests : t('reciveBuyingRequests'),
+      noUpfrontCost : t('noUpfrontCost')
     });
   };
   const setFieldValue = (fieldValue, fieldName) => {
@@ -59,7 +68,7 @@ const page = () => {
       from_name: 'Alage Store',
       to_name: 'Admin',
       heading: 'A new selling request : ',
-      item_message: message,
+      message: message,
       to_email: process.env.NEXT_PUBLIC_ADMIN_EMAIL,
     };
     sendEmail(payload).then((emailRes) => {
@@ -84,12 +93,36 @@ const page = () => {
                 {languageObject.forSuppliers}
               </h1>
               <div className="p-6 md:mb-12">
-                {/* Details (random text) */}
-                {languageObject.forSuppliersPara}
+                <div>
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-4 md:mb-10">
+                    {languageObject.gainNewCustomers}
+                  </h2>
+                </div>
+                <div>
+                  <h1 className="text-xl text-gray-800 mb-4 md:mb-10">
+                    {languageObject.algaeStoreProvides}
+                  </h1>
+                </div>
+                <div>
+                  <h1 className="text-xl text-gray-800 mb-2 md:mb-4">
+                    <span className="text-2xl font-semibold text-gray-800 mb-2 md:mb-4">{languageObject.step1} : </span>{languageObject.submitSupplierInfo} 
+                  </h1>
+                  <h1 className="text-xl text-gray-800 mb-2 md:mb-4">
+                    <span className="text-2xl font-semibold text-gray-800 mb-2 md:mb-4">{languageObject.step2} : </span>{languageObject.scheduleAnOnboarding} 
+                  </h1>
+                  <h1 className="text-xl text-gray-800 mb-2 md:mb-4">
+                    <span className="text-2xl font-semibold text-gray-800 mb-2 md:mb-4">{languageObject.step3} : </span>{languageObject.reciveBuyingRequests} 
+                  </h1>
+                </div>
+                <div>
+                  <h1 className="text-sm text-gray-800 mb-4 md:mb-10">
+                    {languageObject.noUpfrontCost}
+                  </h1>
+                </div>
               </div>
               <div className="text-center">
                 {/* Image */}
-                <img src={'/bg356.png'} alt="img" className="mx-auto mb-0" />
+                <img src={'/bg356.png'} alt="img" className="mx-auto mb-0" width={100} height={100}/>
               </div>
             </div>
           </div>
