@@ -154,5 +154,21 @@
   "connectWithUs": "Connect with us",
   "algaeStoreForBuyers": "Algae Store For Buyers",
   "buyerDetails": "Buyer Details",
-  "mobileNumber": "Mobile Number"
+  "mobileNumber": "Mobile Number",
+  "industry": "Industry",
+  "additionalInfo": "Additional Info",
+  "takePainOut": "Take the pain out of procurement",
+  "algaeStoreForBuyerInfo": "Algae Store is a one-stop shop for discovering and procuring biobased chemicals, ingredients, materials, and finished products.",
+  "buyingStep2" : "Algae Store shares the request with supplier network",
+  "buyingStep3" : "Receive spec sheets, quotes, and direct introductions to relevant suppliers",
+  "noCost" : "There is no cost to Buyers for Algae Store’s services. Suppliers pay us a fee on completed sales.",
+  "gainNewCustomers" :"Gain new customers without the hassle",
+  "algaeStoreProvides" : "Algae Store provides suppliers with buying requests and introductions to potential customers looking for biobased products.",
+  "submitSupplierInfo" : "Submit supplier information form.",
+  "step1" : "Step 1",
+  "step2" : "Step 2",
+  "step3" : "Step 3",
+  "scheduleAnOnboarding" : "Schedule an onboarding call with Algae Store to complete company and product listings.",
+  "reciveBuyingRequests" : "Receive buying requests from potential customers.",
+  "noUpfrontCost" : "There is no upfront cost to suppliers for company and product listings. As part of the onboarding process, we agree on a fee for completed sales."
 }

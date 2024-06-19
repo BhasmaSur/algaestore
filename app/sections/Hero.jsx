@@ -4,6 +4,7 @@ import React from 'react';
 import { Footer, Navbar } from '../components';
 import Sponsers from './Sponsers';
 import { useRouter } from 'next/navigation';
+import { USER_BUYER_ROLE, USER_SELLER_ROLE, pages } from '../constants/userConstants';
 
 const Hero = ({
   heroObject,
@@ -14,8 +15,8 @@ const Hero = ({
   sponsersObject,
 }) => {
   const router = useRouter();
-  const redirectToContactus = () => {
-    router.push('/contact-us');
+  const redirectToContactus = (pageType) => {
+    router.push(pageType);
   };
 
   const redirectToStore = () =>{
@@ -56,12 +57,12 @@ const Hero = ({
               </div>
               <p className="home-caption">{heroObject.premiumHub}</p>
             </div>
-            <button className="button home-button" onClick={redirectToStore}>
+            {/* <button className="button home-button" onClick={redirectToStore}>
               <span>
                 <span>{heroObject.goToStore}</span>
                 <br></br>
               </span>
-            </button>
+            </button> */}
           </div>
         </section>
         <Sponsers sponsersObject={sponsersObject} />
@@ -142,7 +143,7 @@ const Hero = ({
               </p>
               <p className="home-caption16">
                 <button
-                  onClick={redirectToContactus}
+                  onClick={()=>redirectToContactus(pages.SUPPLIER)}
                   type="button"
                   class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                 >
@@ -198,7 +199,7 @@ const Hero = ({
                 </div>
                 <p className="home-caption17">{heroObject.buyersPara}</p>
                 <button
-                  onClick={redirectToContactus}
+                  onClick={()=>redirectToContactus(pages.BUYER)}
                   type="button"
                   class="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
                 >
